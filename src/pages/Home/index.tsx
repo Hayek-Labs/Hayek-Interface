@@ -10,7 +10,6 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-import styles from './index.less';
 
 const map = (value, sMin, sMax, dMin, dMax) => {
   return dMin + ((value - sMin) / (sMax - sMin)) * (dMax - dMin);
@@ -101,20 +100,18 @@ const graphData = [
 const App = () => {
   const [showSidebar, onSetShowSidebar] = useState(false);
   return (
-    <div className={styles.dashboard}>
-      <div className="flex">
-        <Sidebar
-          onSidebarHide={() => {
-            onSetShowSidebar(false);
-          }}
-          showSidebar={showSidebar}
-        />
-        <Content
-          onSidebarHide={() => {
-            onSetShowSidebar(true);
-          }}
-        />
-      </div>
+    <div className="flex">
+      <Sidebar
+        onSidebarHide={() => {
+          onSetShowSidebar(false);
+        }}
+        showSidebar={showSidebar}
+      />
+      <Content
+        onSidebarHide={() => {
+          onSetShowSidebar(true);
+        }}
+      />
     </div>
   );
 };
