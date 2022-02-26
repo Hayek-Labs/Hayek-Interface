@@ -10,6 +10,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
+import { ReactComponent as LogoSVG } from '@/assets/hayek-logo-white.svg';
 
 const map = (value, sMin, sMax, dMin, dMax) => {
   return dMin + ((value - sMin) / (sMax - sMin)) * (dMax - dMin);
@@ -134,7 +135,7 @@ function Sidebar({ onSidebarHide, showSidebar }) {
     >
       <div className="flex-shrink-0 overflow-hidden p-2">
         <div className="flex items-center h-full sm:justify-center xl:justify-start p-2 sidebar-separator-top">
-          <IconButton icon="res-react-dash-logo" className="w-10 h-10" />
+          {/* <IconButton icon="res-react-dash-logo" className="w-10 h-10" />
           <div className="block sm:hidden xl:block ml-2 font-bold text-xl text-white">
             React
           </div>
@@ -143,7 +144,8 @@ function Sidebar({ onSidebarHide, showSidebar }) {
             icon="res-react-dash-sidebar-close"
             className="block sm:hidden"
             onClick={onSidebarHide}
-          />
+          /> */}
+          <LogoSVG width="100" viewBox="0 0 512 400" />
         </div>
       </div>
       <div className="flex-grow overflow-x-hidden overflow-y-auto flex flex-col">
