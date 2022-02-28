@@ -8,3 +8,7 @@ declare module '*.svg' {
   const url: string;
   export default url;
 }
+
+declare type OnClickFn<T = Element, E = MouseEvent> = (
+  event: React.MouseEvent<T, E>,
+) => void;

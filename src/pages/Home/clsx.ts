@@ -1,10 +1,22 @@
-function toVal(mix) {
+const isString = (mix: string | number | object): mix is string => {
+  return typeof mix === 'string';
+};
+
+const isNumber = (mix: string | number | object): mix is number => {
+  return typeof mix === 'number';
+};
+
+const isObject = (mix: string | number | object): mix is object => {
+  return typeof mix === 'object';
+};
+
+function toVal(mix: any) {
   var k,
     y,
     str = '';
-  if (typeof mix === 'string' || typeof mix === 'number') {
+  if (isString(mix) || isNumber(mix)) {
     str += mix;
-  } else if (typeof mix === 'object') {
+  } else if (isObject(mix)) {
     if (Array.isArray(mix)) {
       for (k = 0; k < mix.length; k++) {
         if (mix[k]) {
@@ -16,7 +28,7 @@ function toVal(mix) {
       }
     } else {
       for (k in mix) {
-        if (mix[k]) {
+        if ((mix as any)[k]) {
           str && (str += ' ');
           str += k;
         }
@@ -25,7 +37,8 @@ function toVal(mix) {
   }
   return str;
 }
-function clsx_m() {
+
+function clsx_m(..._: any[]) {
   var i = 0,
     tmp,
     x,
