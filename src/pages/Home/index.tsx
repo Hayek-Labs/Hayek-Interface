@@ -10,7 +10,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-import { ReactComponent as LogoSVG } from '@/assets/hayek-logo-white.svg';
+import { ReactComponent as LogoSVG } from '@/assets/logo.svg';
 
 const map = (value, sMin, sMax, dMin, dMax) => {
   return dMin + ((value - sMin) / (sMax - sMin)) * (dMax - dMin);
