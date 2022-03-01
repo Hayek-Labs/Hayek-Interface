@@ -1,16 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import Sidebar from './Sidebar';
 import Content from './Content';
 
 const App = () => {
   const [showSidebar, setShowSidebar] = useState(false);
-  const a = 5;
-  useEffect(() => {
-    if (a) {
-      setShowSidebar(true);
-    }
-  }, []);
+
   return (
     <div className="flex">
       <Sidebar
