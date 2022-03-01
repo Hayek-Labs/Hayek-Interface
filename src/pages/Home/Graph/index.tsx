@@ -7,23 +7,44 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-import { graphData } from '..';
 
 import Icon from '../Icon';
 
-const Graph = () => {
-  const CustomTooltip = () => (
-    <div className="rounded-xl overflow-hidden tooltip-head">
-      <div className="flex items-center justify-between p-2">
-        <div className="">Revenue</div>
-        <Icon path="res-react-dash-options" className="w-2 h-2" />
-      </div>
-      <div className="tooltip-body text-center p-3">
-        <div className="text-white font-bold">$1300.50</div>
-        <div className="">Revenue from 230 sales</div>
-      </div>
+const graphData = [
+  'Nov',
+  'Dec',
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'June',
+  'July',
+].map((i) => {
+  const revenue = 500 + Math.random() * 2000;
+  const expectedRevenue = Math.max(revenue + (Math.random() - 0.5) * 2000, 0);
+  return {
+    name: i,
+    revenue,
+    expectedRevenue,
+    sales: Math.floor(Math.random() * 500),
+  };
+});
+
+const CustomTooltip = () => (
+  <div className="rounded-xl overflow-hidden tooltip-head">
+    <div className="flex items-center justify-between p-2">
+      <div className="">Revenue</div>
+      <Icon path="res-react-dash-options" className="w-2 h-2" />
     </div>
-  );
+    <div className="tooltip-body text-center p-3">
+      <div className="text-white font-bold">$1300.50</div>
+      <div className="">Revenue from 230 sales</div>
+    </div>
+  </div>
+);
+
+const Graph = () => {
   return (
     <div className="flex p-4 h-full flex-col">
       <div className="">

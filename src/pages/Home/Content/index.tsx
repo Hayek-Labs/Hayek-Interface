@@ -1,4 +1,3 @@
-import { employeeData } from '..';
 import AddComponent from '../AddComponent';
 import Graph from '../Graph';
 import Icon from '../Icon';
@@ -7,6 +6,38 @@ import NameCard from '../NameCard';
 import Satisfication from '../Satisfaction';
 import Segmentation from '../Segmentation';
 import TopCountries from '../TopCountries';
+
+const employeeData = [
+  {
+    id: 1,
+    name: 'Esther Howard',
+    position: "Sale's manager USA",
+    transactions: 3490,
+    rise: true,
+    tasksCompleted: 3,
+    imgId: 0,
+  },
+
+  {
+    id: 2,
+    name: 'Eleanor Pena',
+    position: "Sale's manager Europe",
+    transactions: 590,
+    rise: false,
+    tasksCompleted: 5,
+    imgId: 2,
+  },
+
+  {
+    id: 3,
+    name: 'Robert Fox',
+    position: "Sale's manager Asia",
+    transactions: 2600,
+    rise: true,
+    tasksCompleted: 1,
+    imgId: 3,
+  },
+];
 
 interface Props {
   onSidebarHide: OnClickFn;
@@ -85,30 +116,50 @@ const Content: React.FC<Props> = ({ onSidebarHide }) => {
           ),
         )}
 
-        <div className="w-full p-2 lg:w-2/3">
-          <div className="rounded-lg bg-card sm:h-80 h-60">
-            <Graph />
+        <div className="w-full flex flex-col lg:w-2/3">
+          <div className="w-full p-2">
+            <div className="rounded-lg bg-card sm:h-80 h-60">
+              <Graph />
+            </div>
           </div>
-        </div>
-        <div className="w-full p-2 lg:w-1/3">
-          <div className="rounded-lg bg-card h-80">
-            <TopCountries />
+          <div className="w-full p-2">
+            <div className="rounded-lg bg-card sm:h-80 h-60">
+              <Graph />
+            </div>
+          </div>
+          <div className="w-full p-2">
+            <div className="rounded-lg bg-card sm:h-80 h-60">
+              <Graph />
+            </div>
+          </div>
+          <div className="w-full p-2">
+            <div className="rounded-lg bg-card sm:h-80 h-60">
+              <Graph />
+            </div>
           </div>
         </div>
 
-        <div className="w-full p-2 lg:w-1/3">
-          <div className="rounded-lg bg-card h-80">
-            <Segmentation />
+        <div className="w-full flex flex-col lg:w-1/3">
+          <div className="w-full p-2">
+            <div className="rounded-lg bg-card h-80">
+              <TopCountries />
+            </div>
           </div>
-        </div>
-        <div className="w-full p-2 lg:w-1/3">
-          <div className="rounded-lg bg-card h-80">
-            <Satisfication />
+
+          <div className="w-full p-2">
+            <div className="rounded-lg bg-card h-80">
+              <Segmentation />
+            </div>
           </div>
-        </div>
-        <div className="w-full p-2 lg:w-1/3">
-          <div className="rounded-lg bg-card overflow-hidden h-80">
-            <AddComponent />
+          <div className="w-full p-2">
+            <div className="rounded-lg bg-card h-80">
+              <Satisfication />
+            </div>
+          </div>
+          <div className="w-full p-2">
+            <div className="rounded-lg bg-card overflow-hidden h-80">
+              <AddComponent />
+            </div>
           </div>
         </div>
       </div>
