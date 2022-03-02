@@ -1,7 +1,17 @@
 import clsx from 'clsx';
 import SidebarIcons from '../SidebarIcons';
 
-const MenuItem = ({
+interface Props {
+  item: {
+    id: string;
+    title: string;
+    notifications: number | null;
+  };
+  onClick: (id: string) => void;
+  selected: string;
+}
+
+const MenuItem: React.FC<Props> = ({
   item: { id, title, notifications },
   onClick,
   selected,

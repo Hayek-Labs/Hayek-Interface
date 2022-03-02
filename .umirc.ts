@@ -8,7 +8,15 @@ export default defineConfig({
     {
       path: '/',
       component: '@/layouts/Main',
-      routes: [{ path: '/', component: '@/pages/Home' }],
+      routes: [
+        { path: '/', component: '@/pages/Home' },
+        { path: '/mint', component: '@/pages/Mint' },
+        { path: '/redeem', component: '@/pages/Redeem' },
+        {
+          path: '/buyback-recollateralize',
+          component: '@/pages/BuybackRecollat',
+        },
+      ],
     },
   ],
   fastRefresh: {},

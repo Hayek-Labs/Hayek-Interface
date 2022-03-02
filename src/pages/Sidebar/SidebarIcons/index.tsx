@@ -1,6 +1,6 @@
 import { icons } from '..';
 
-const SidebarIcons: React.FC<{ id: number }> = ({ id }) => {
+const SidebarIcons: React.FC<{ id: string }> = ({ id }) => {
   return (
     <svg
       className="w-8 h-8 xl:w-5 xl:h-5"

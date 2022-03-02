@@ -1,11 +1,7 @@
 import Content from './Content';
 
 const App = () => {
-  return (
-    <div className="flex">
-      <Content />
-    </div>
-  );
+  return <Content />;
 };
 
 export default App;

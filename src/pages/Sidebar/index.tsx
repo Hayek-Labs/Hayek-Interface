@@ -10,21 +10,21 @@ import MenuItem from './MenuItem';
 
 const sidebarItems = [
   [
-    { id: '0', title: 'Dashboard', notifications: false },
-    { id: '1', title: 'Mint', notifications: false },
+    { id: '0', title: 'Dashboard', notifications: null },
+    { id: '1', title: 'Mint', notifications: null },
     { id: '2', title: 'Redeem', notifications: 6 },
-    { id: '3', title: 'Buyback & Recollateralize', notifications: false },
+    { id: '3', title: 'Buyback & Recollateralize', notifications: null },
   ],
   [
-    { id: '4', title: 'veFXS', notifications: false },
-    { id: '5', title: 'Gauge', notifications: false },
-    { id: '6', title: 'Cross Chain', notifications: false },
-    { id: '7', title: 'Staking', notifications: false },
-    { id: '8', title: 'AMOs', notifications: false },
+    { id: '4', title: 'veFXS', notifications: null },
+    { id: '5', title: 'Gauge', notifications: null },
+    { id: '6', title: 'Cross Chain', notifications: null },
+    { id: '7', title: 'Staking', notifications: null },
+    { id: '8', title: 'AMOs', notifications: null },
   ],
 ];
 
-export const icons: Record<number, JSX.Element> = {
+export const icons: Record<string, JSX.Element> = {
   0: (
     <>
       <path d="M12 19C10.067 19 8.31704 18.2165 7.05029 16.9498L12 12V5C15.866 5 19 8.13401 19 12C19 15.866 15.866 19 12 19Z" />
