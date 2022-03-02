@@ -47,7 +47,6 @@ const SidebarShowButton = () => {
       icon="res-react-dash-sidebar-open"
       className="block sm:hidden"
       onClick={() => {
-        console.log('setting');
         setSidebarVisible((prev) => !prev);
       }}
     />
