@@ -12,3 +12,5 @@ declare module '*.svg' {
 declare type OnClickFn<T = Element, E = MouseEvent> = (
   event: React.MouseEvent<T, E>,
 ) => void;
+
+declare type SetState<T> = React.Dispatch<React.SetStateAction<T>>;

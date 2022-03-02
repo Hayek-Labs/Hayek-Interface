@@ -1,3 +1,4 @@
+import { useSidebarContext } from '@/pages/Sidebar';
 import AddComponent from '../AddComponent';
 import Graph from '../Graph';
 import Icon from '../Icon';
@@ -39,11 +40,21 @@ const employeeData = [
   },
 ];
 
-interface Props {
-  onSidebarHide: OnClickFn;
-}
+const SidebarShowButton = () => {
+  const { setSidebarVisible } = useSidebarContext();
+  return (
+    <IconButton
+      icon="res-react-dash-sidebar-open"
+      className="block sm:hidden"
+      onClick={() => {
+        console.log('setting');
+        setSidebarVisible((prev) => !prev);
+      }}
+    />
+  );
+};
 
-const Content: React.FC<Props> = ({ onSidebarHide }) => {
+const Content: React.FC = () => {
   return (
     <div className="flex w-full">
       <div className="w-full h-screen hidden sm:block sm:w-20 xl:w-60 flex-shrink-0">
@@ -68,14 +79,11 @@ const Content: React.FC<Props> = ({ onSidebarHide }) => {
                   path="res-react-dash-date-indicator"
                   className="w-3 h-3"
                 />
+
                 <div className="ml-2">October 26</div>
               </div>
             </div>
-            <IconButton
-              icon="res-react-dash-sidebar-open"
-              className="block sm:hidden"
-              onClick={onSidebarHide}
-            />
+            <SidebarShowButton />
           </div>
           <div className="w-full sm:w-56 mt-4 sm:mt-0 relative">
             <Icon
