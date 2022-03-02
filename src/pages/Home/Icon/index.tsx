@@ -1,4 +1,4 @@
-import clsx from '../clsx';
+import clsx from 'clsx';
 
 const Icon = ({ path = 'options', className = 'w-4 h-4' }) => {
   return (

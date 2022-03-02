@@ -1,4 +1,4 @@
-import clsx from '../clsx';
+import clsx from 'clsx';
 import { useSpring, animated } from 'react-spring';
 import Image from '../Image';
 import Icon from '../Icon';

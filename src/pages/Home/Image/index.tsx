@@ -1,4 +1,4 @@
-import clsx from '../clsx';
+import clsx from 'clsx';
 
 const Image = ({ path = '1', className = 'w-4 h-4' }) => {
   return (

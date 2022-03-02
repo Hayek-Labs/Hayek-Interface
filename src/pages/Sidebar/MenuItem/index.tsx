@@ -1,4 +1,4 @@
-import clsx from '@/pages/Home/clsx';
+import clsx from 'clsx';
 import SidebarIcons from '../SidebarIcons';
 
 const MenuItem = ({

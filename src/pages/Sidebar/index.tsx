@@ -1,4 +1,4 @@
-import clsx from '../Home/clsx';
+import clsx from 'clsx';
 import { useContext } from 'react';
 import { useSpring, animated, config } from 'react-spring';
 import { ReactComponent as LogoSVG } from '@/assets/logo.svg';
