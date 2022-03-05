@@ -24,6 +24,12 @@ const ChainDisplay = () => {
   const ChainIcon = chainId ? chainToLogo[chainId] : undefined;
   const chainInfo = chainId ? chainToInfo[chainId] : undefined;
 
+  useEffect(() => {
+    if (chainId) {
+      connect();
+    }
+  }, [chainId, connect]);
+
   return (
     <div className="w-full p-3 h-18 sm:h-16 xl:h-20 hidden sm:block flex-shrink-0">
       <div
