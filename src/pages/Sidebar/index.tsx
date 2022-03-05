@@ -27,6 +27,9 @@ const sidebarItems = [
   { id: '6', title: 'Cross Chain', notifications: null },
   { id: '7', title: 'Staking', notifications: null },
   { id: '8', title: 'AMOs', notifications: null },
+  { id: '9', title: 'Governance', notifications: null },
+  { id: '10', title: 'Governance Discussion', notifications: null },
+  { id: '11', title: 'Integrations', notifications: null },
 ];
 
 export const icons: Record<string, JSX.Element> = {
@@ -63,6 +66,9 @@ const idToRoute: Record<string, string> = {
   '6': '/cross-chain',
   '7': '/staking',
   '8': '/amos',
+  '9': '/governance',
+  '10': '/governance-discussion',
+  '11': '/integrations',
 };
 
 const routeToId: Record<string, string> = Object.keys(idToRoute).reduce<
