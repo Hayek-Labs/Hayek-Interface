@@ -18,9 +18,9 @@ const Header = () => {
   return (
     <div className="rounded-md bg-card flex flex-row text-center">
       <div className="p-3 header-coin-stat flex items-center justify-center">
-        <span className="text-lg">Mint FRAX</span>
+        <span className="text-lg">Mint USDH</span>
       </div>
-      <CoinStat statName="FRAX PRICE" stat="$0.9992" />
+      <CoinStat statName="USDH PRICE" stat="$0.9992" />
       <CoinStat statName="COLLATERAL RATIO" stat="84.50%" />
       <CoinStat statName="POOL BALANCE / CEILING" stat="15.619M / 75M" />
       <CoinStat statName="AVAILABLE TO MINT" stat="59.381M" />
@@ -70,7 +70,7 @@ const MintExchangeInfo = () => {
         </span>
         <span>{'{arrow-right}'}</span>
         <span>0.3000% MINTING FEE</span>
-        <span>(0.00000 FRAX)</span>
+        <span>(0.00000 USDH)</span>
         <span>Pool (V3){'{icon}'}: 0x2fE0...0729</span>
       </div>
     </ContentPiece>
