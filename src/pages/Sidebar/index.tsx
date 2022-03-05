@@ -16,6 +16,7 @@ import { ReactComponent as LogoSVG } from '@/assets/logo.svg';
 import Icon from '../Home/Icon';
 import MenuItem from './MenuItem';
 import ChainDisplay from './ChainDisplay';
+import { hooks } from '@/connectors/metamask';
 
 const sidebarItems = [
   { id: '0', title: 'Dashboard', notifications: null },
@@ -82,6 +83,19 @@ const routeToId: Record<string, string> = Object.keys(idToRoute).reduce<
 const Sidebar = () => {
   const { sidebarVisible } = useSidebarContext();
 
+  const { useAccount } = hooks;
+  const account = useAccount();
+
+  const formatAccount = (account: string) => {
+    const first = account.substring(0, 6);
+    const last = account.substring(account.length - 4, account.length);
+    return (
+      <span>
+        Connected: {first}...{last}
+      </span>
+    );
+  };
+
   const selected = routeToId[history.location.pathname];
   const setSelected = (id: string) => {
     history.push(idToRoute[id]);
@@ -116,7 +130,7 @@ const Sidebar = () => {
       <div className="flex-shrink-0 overflow-hidden p-2">
         <div className="flex items-center h-full sm:justify-center xl:justify-start p-2 sidebar-separator-bottom">
           <div className="block sm:hidden xl:block font-bold">
-            0x3f5E...BfE9
+            {account && formatAccount(account)}
           </div>
           <div className="flex-grow block sm:hidden xl:block" />
           <Icon
