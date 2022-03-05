@@ -1,3 +1,5 @@
+import { useHover } from '@/util/useHover';
+import { useEffect, useState } from 'react';
 import {
   LineChart,
   Line,
@@ -45,6 +47,13 @@ const CustomTooltip = () => (
 );
 
 const Graph = () => {
+  const [lineStroke, setLineStroke] = useState('url(#paint1_linear)');
+  const [ref, isHovering] = useHover<HTMLDivElement>();
+
+  useEffect(() => {
+    setLineStroke(isHovering ? 'url(#paint0_linear)' : 'url(#paint1_linear)');
+  }, [isHovering]);
+
   return (
     <div className="flex p-4 h-full flex-col">
       <div className="">
@@ -61,7 +70,7 @@ const Graph = () => {
         <div className="font-bold ml-5">Nov - July</div>
       </div>
 
-      <div className="flex-grow">
+      <div className="flex-grow" ref={ref}>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart width={500} height={300} data={graphData}>
             <defs>
@@ -69,10 +78,13 @@ const Graph = () => {
                 <stop stopColor="#6B8DE3" />
                 <stop offset="1" stopColor="#7D1C8D" />
               </linearGradient>
+              <linearGradient id="paint1_linear" x1="0" y1="0" x2="1" y2="0">
+                <stop stopColor="#444" />
+              </linearGradient>
             </defs>
             <CartesianGrid
               horizontal={false}
-              strokeWidth="6"
+              strokeWidth="2"
               stroke="#252525"
             />
             <XAxis
@@ -84,19 +96,10 @@ const Graph = () => {
             <YAxis axisLine={false} tickLine={false} tickMargin={10} />
             <Tooltip content={<CustomTooltip />} cursor={false} />
             <Line
-              activeDot={false}
-              type="monotone"
-              dataKey="expectedRevenue"
-              stroke="#242424"
-              strokeWidth="3"
-              dot={false}
-              strokeDasharray="8 8"
-            />
-            <Line
               type="monotone"
               dataKey="revenue"
-              stroke="url(#paint0_linear)"
-              strokeWidth="4"
+              stroke={lineStroke}
+              strokeWidth={(4.0 / 3.0).toString()}
               dot={false}
             />
           </LineChart>
