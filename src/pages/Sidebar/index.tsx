@@ -32,19 +32,20 @@ const sidebarItems = [
   { id: '11', title: 'Integrations', notifications: null },
 ];
 
+const svgSize = 25;
 export const icons: Record<string, JSX.Element> = {
-  0: <MdDashboard size={25} />,
-  1: <GiMineTruck size={25} />,
-  2: <GiTakeMyMoney size={25} />,
-  3: <FaBalanceScale size={25} />,
-  4: <FaToolbox size={25} />,
-  5: <ImPieChart size={25} />,
-  6: <GiArchBridge size={25} />,
-  7: <GrStakeholder size={25} className="remove-svg-fill" />,
-  8: <AiFillDiff size={25} />,
-  9: <RiGovernmentFill size={25} />,
-  10: <RiDiscussFill size={25} />,
-  11: <BsStack size={25} />,
+  0: <MdDashboard size={svgSize} />,
+  1: <GiMineTruck size={svgSize} />,
+  2: <GiTakeMyMoney size={svgSize} />,
+  3: <FaBalanceScale size={svgSize} />,
+  4: <FaToolbox size={svgSize} />,
+  5: <ImPieChart size={svgSize} />,
+  6: <GiArchBridge size={svgSize} />,
+  7: <GrStakeholder size={svgSize} className="remove-svg-fill" />,
+  8: <AiFillDiff size={svgSize} />,
+  9: <RiGovernmentFill size={svgSize} />,
+  10: <RiDiscussFill size={svgSize} />,
+  11: <BsStack size={svgSize} />,
 };
 
 export const SidebarContext = React.createContext<{
