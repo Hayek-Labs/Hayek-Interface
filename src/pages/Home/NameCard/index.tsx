@@ -84,7 +84,7 @@ const NameCard: React.FC<Props> = ({
           >
             {transactions.interpolate((i) => `$${i.toFixed(2)}`)}
           </animated.div>
-          <div className="text-sm ">Last 6 month</div>
+          <div className="text-sm ">Recent price</div>
         </div>
       </div>
     </div>
