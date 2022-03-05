@@ -64,8 +64,7 @@ const Content: React.FC = () => {
             </div>
             <div className="ml-2 mt-1 flex items-center">
               <Icon path="res-react-dash-date-indicator" className="w-3 h-3" />
-
-              <div className="ml-2">October 26</div>
+              <div className="ml-2">{new Date().toLocaleDateString()}</div>
             </div>
           </div>
           <SidebarShowButton />
