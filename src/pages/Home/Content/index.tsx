@@ -6,7 +6,7 @@ import IconButton from '../IconButton';
 import NameCard from '../NameCard';
 import Satisfication from '../Satisfaction';
 import Segmentation from '../Segmentation';
-import TopCountries from '../TopCountries';
+import TopCoins from '../TopCoins';
 
 const employeeData = [
   {
@@ -134,7 +134,7 @@ const Content: React.FC = () => {
       <div className="w-full flex flex-col lg:w-1/3">
         <div className="w-full p-2">
           <div className="rounded-lg bg-card h-80">
-            <TopCountries />
+            <TopCoins />
           </div>
         </div>
 

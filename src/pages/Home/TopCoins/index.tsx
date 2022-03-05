@@ -1,4 +1,4 @@
-import { Coin, coinToLogo } from '@/constants';
+import { Coin, coinToLogo } from '@/constants/coin';
 import Icon from '../Icon';
 
 const CoinData: { coin: Coin; rise: boolean; value: number; id: number }[] = [
@@ -8,7 +8,7 @@ const CoinData: { coin: Coin; rise: boolean; value: number; id: number }[] = [
   { coin: 'USDC', rise: true, value: 9725.0, id: 4 },
 ];
 
-const TopCountries = () => {
+const TopCoins = () => {
   return (
     <div className="flex p-4 flex-col h-full">
       <div className="flex justify-between items-center">
@@ -45,4 +45,4 @@ const TopCountries = () => {
     </div>
   );
 };
-export default TopCountries;
+export default TopCoins;
