@@ -15,6 +15,7 @@ import { ReactComponent as LogoSVG } from '@/assets/logo.svg';
 
 import Icon from '../Home/Icon';
 import MenuItem from './MenuItem';
+import ChainDisplay from './ChainDisplay';
 
 const sidebarItems = [
   { id: '0', title: 'Dashboard', notifications: null },
@@ -92,20 +93,7 @@ const Sidebar = () => {
         </div>
       </div>
       <div className="flex-grow overflow-x-hidden overflow-y-auto flex flex-col">
-        <div className="w-full p-3 h-24 sm:h-20 xl:h-24 hidden sm:block flex-shrink-0">
-          <div className="bg-sidebar-card-top rounded-xl w-full h-full flex items-center justify-start sm:justify-center xl:justify-start px-3 sm:px-0 xl:px-3">
-            <Icon path="res-react-dash-sidebar-card" className="w-9 h-9 " />
-            <div className="block sm:hidden xl:block ml-3">
-              <div className="text-sm font-bold text-white">Sales House</div>
-              <div className="text-sm">General Item</div>
-            </div>
-            <div className="block sm:hidden xl:block flex-grow" />
-            <Icon
-              path="res-react-dash-sidebar-card-select"
-              className="block sm:hidden xl:block w-5 h-5"
-            />
-          </div>
-        </div>
+        <ChainDisplay />
         {sidebarItems.map((i) => (
           <MenuItem
             key={i.id}
