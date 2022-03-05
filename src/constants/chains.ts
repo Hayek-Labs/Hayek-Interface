@@ -15,7 +15,12 @@ export const supportedChains = Object.keys(Chain).filter(
   (_, index, arr) => index < arr.length / 2,
 );
 
-export const chainToLogo: Record<Chain, SVGComponent> = {
+export const chainToLogo: Record<Chain | number, SVGComponent> = {
   [Chain.BSC]: BSCLogo,
   [Chain.Polygon]: PolygonLogo,
+};
+
+export const chainToInfo: Record<Chain | number, { name: string }> = {
+  [Chain.BSC]: { name: 'BSC' },
+  [Chain.Polygon]: { name: 'Polygon' },
 };
