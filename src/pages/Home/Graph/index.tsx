@@ -1,4 +1,4 @@
-import { Coin, coinToLogo } from '@/constants/coin';
+import { Coin } from '@/constants/coin';
 import { useHover } from '@/util/useHover';
 import { useEffect, useState } from 'react';
 import {
