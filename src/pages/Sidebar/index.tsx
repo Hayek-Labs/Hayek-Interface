@@ -14,7 +14,6 @@ import { BsStack } from 'react-icons/bs';
 import { ReactComponent as LogoSVG } from '@/assets/logo.svg';
 
 import Icon from '../Home/Icon';
-import Image from '../Home/Image';
 import MenuItem from './MenuItem';
 
 const sidebarItems = [
@@ -88,8 +87,8 @@ const Sidebar = () => {
       )}
     >
       <div className="flex-shrink-0 overflow-hidden p-2">
-        <div className="flex items-center h-full sm:justify-center xl:justify-start p-2 sidebar-separator-top">
-          <LogoSVG width="100" viewBox="0 0 512 400" />
+        <div className="flex items-center h-full sm:justify-center xl:justify-start px-2 py-5 sidebar-separator-top">
+          <LogoSVG width="100" height="22.5" />
         </div>
       </div>
       <div className="flex-grow overflow-x-hidden overflow-y-auto flex flex-col">
