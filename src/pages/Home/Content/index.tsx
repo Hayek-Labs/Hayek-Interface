@@ -86,22 +86,22 @@ const Content: React.FC = () => {
       <div className="w-full flex flex-col lg:w-2/3">
         <div className="w-full p-2">
           <div className="rounded-lg bg-card sm:h-80 h-60">
-            <Graph />
+            <Graph coin="USDH" />
           </div>
         </div>
         <div className="w-full p-2">
           <div className="rounded-lg bg-card sm:h-80 h-60">
-            <Graph />
+            <Graph coin="USDT" />
           </div>
         </div>
         <div className="w-full p-2">
           <div className="rounded-lg bg-card sm:h-80 h-60">
-            <Graph />
+            <Graph coin="USDC" />
           </div>
         </div>
         <div className="w-full p-2">
           <div className="rounded-lg bg-card sm:h-80 h-60">
-            <Graph />
+            <Graph coin="BUSD" />
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { Coin, coinToLogo } from '@/constants/coin';
 import { useHover } from '@/util/useHover';
 import { useEffect, useState } from 'react';
 import {
@@ -46,7 +47,7 @@ const CustomTooltip = () => (
   </div>
 );
 
-const Graph = () => {
+const Graph: React.FC<{ coin: Coin }> = ({ coin }) => {
   const [lineStroke, setLineStroke] = useState('url(#paint1_linear)');
   const [ref, isHovering] = useHover<HTMLDivElement>();
 
@@ -58,7 +59,7 @@ const Graph = () => {
     <div className="flex p-4 h-full flex-col">
       <div className="">
         <div className="flex items-center">
-          <div className="font-bold text-white">Your Work Summary</div>
+          <div className="font-bold text-white">{coin} Price</div>
           <div className="flex-grow" />
 
           <Icon path="res-react-dash-graph-range" className="w-4 h-4" />
