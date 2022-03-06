@@ -1,22 +1,23 @@
-import { hooks, metaMask } from '@/connectors/metamask';
 import { chainToInfo, chainToLogo } from '@/constants/chains';
 import Icon from '@/pages/Home/Icon';
+import { useWeb3Connector, useWeb3Hooks } from '@/providers/web3HooksProvider';
 import { useEffect, useCallback } from 'react';
 
-const { useChainId, useAccount } = hooks;
-
 const ChainDisplay = () => {
+  const { useChainId, useAccount } = useWeb3Hooks();
+  const connector = useWeb3Connector();
+
   useEffect(() => {
-    void metaMask.connectEagerly();
-  }, []);
+    void connector.connectEagerly();
+  }, [connector]);
 
   const connect = useCallback(() => {
-    metaMask.activate();
-  }, []);
+    connector.activate();
+  }, [connector]);
 
   const disconnect = useCallback(() => {
-    metaMask.deactivate();
-  }, []);
+    connector.deactivate();
+  }, [connector]);
 
   const account = useAccount();
   const chainId = useChainId();
