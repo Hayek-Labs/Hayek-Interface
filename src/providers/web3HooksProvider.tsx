@@ -15,6 +15,10 @@ const Web3Context = React.createContext<{
   setHooks: SetState<Web3ReactHooks>;
 }>(undefined!);
 
+export const useWeb3Context = () => {
+  return useContext(Web3Context);
+};
+
 export const useWeb3Hooks = () => {
   return useContext(Web3Context).hooks;
 };
