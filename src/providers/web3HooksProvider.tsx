@@ -1,7 +1,7 @@
 import { hooks as metamaskHooks, metaMask } from '@/connectors/metamask';
 import { Web3ReactHooks } from '@web3-react/core';
 import { MetaMask } from '@web3-react/metamask';
-import React, { useMemo, useState, useContext, useEffect } from 'react';
+import React, { useMemo, useState, useContext } from 'react';
 
 type Connector = MetaMask;
 
