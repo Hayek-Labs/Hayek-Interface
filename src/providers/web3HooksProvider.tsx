@@ -41,10 +41,6 @@ const Web3HooksProvider: React.FC = ({ children }) => {
     [hooks, connector],
   );
 
-  useEffect(() => {
-    connector.activate();
-  }, [connector]);
-
   return <Web3Context.Provider value={value}>{children}</Web3Context.Provider>;
 };
 
