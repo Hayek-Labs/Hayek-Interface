@@ -16,15 +16,36 @@ const CoinStat: React.FC<CoinStatProps> = ({ stat, statName }) => {
 
 const Header = () => {
   return (
-    <div className="rounded-md bg-card flex flex-row text-center">
-      <div className="p-3 header-coin-stat flex items-center justify-center">
-        <span className="text-lg">Mint USDH</span>
+    <div className="flex flex-row text-sm text-center w-full">
+      <div className="rounded-lg bg-card flex flex-col items-center justify-center h-20 w-1/6 mr-2 p-2 grow">
+        <span className="text-white font-bold">Mint USDH</span>
       </div>
-      <CoinStat statName="USDH PRICE" stat="$0.9992" />
-      <CoinStat statName="COLLATERAL RATIO" stat="84.50%" />
-      <CoinStat statName="POOL BALANCE / CEILING" stat="15.619M / 75M" />
-      <CoinStat statName="AVAILABLE TO MINT" stat="59.381M" />
+      <div className="rounded-lg bg-card flex flex-col items-center justify-center h-20 w-1/6 mr-2 p-2 grow">
+        <span className="text-white font-bold">USDH PRICE</span>
+        <span>$0.9992</span>
+      </div>
+      <div className="rounded-lg bg-card flex flex-col items-center justify-center h-20 w-1/6 mr-2 p-2 grow">
+        <span className="text-white font-bold">COLLATERAL RATIO</span>
+        <span>84.50%</span>
+      </div>
+      <div className="rounded-lg bg-card flex flex-col items-center justify-center h-20 w-1/6 mr-2 p-2 grow">
+        <span className="text-white font-bold">POOL BALANCE / CEILING</span>
+        <span>15.619M / 75M</span>
+      </div>
+      <div className="rounded-lg bg-card flex flex-col items-center justify-center h-20 w-1/6 mr-2 p-2 grow">
+        <span className="text-white font-bold">POOL AVAILABLE TO MINT</span>
+        <span>59.381M</span>
+      </div>
     </div>
+    // <div className="rounded-md bg-card flex flex-row text-center">
+    //   <div className="p-3 header-coin-stat flex items-center justify-center">
+    //     <span className="text-lg">Mint USDH</span>
+    //   </div>
+    //   <CoinStat statName="USDH PRICE" stat="$0.9992" />
+    //   <CoinStat statName="COLLATERAL RATIO" stat="84.50%" />
+    //   <CoinStat statName="POOL BALANCE / CEILING" stat="15.619M / 75M" />
+    //   <CoinStat statName="AVAILABLE TO MINT" stat="59.381M" />
+    // </div>
   );
 };
 
