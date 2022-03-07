@@ -63,7 +63,7 @@ const idToRoute: Record<string, string> = {
   '1': '/mint',
   '2': '/redeem',
   '3': '/buyback-recollateralize',
-  '4': '/vefxs',
+  '4': '/vehas',
   '5': '/gauge',
   '6': '/cross-chain',
   '7': '/staking',

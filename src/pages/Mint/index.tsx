@@ -60,7 +60,7 @@ const MintOptions = () => {
     <ContentPiece>
       <div className="flex flex-col items-center">
         <span>MINT METHOD</span>
-        <span>Choose normal if you already have USDC and FXS.</span>
+        <span>Choose normal if you already have USDC and HAS.</span>
         <span>Normal</span>
         <span>COLLATERAL POOL</span>
         <select className="text-black">
@@ -70,7 +70,7 @@ const MintOptions = () => {
         <input placeholder="Amount" />
         <span>0 Available</span>
         <div className="border-b-2 border-white" />
-        <span>FXS</span>
+        <span>HAS</span>
         <input placeholder="Amount" />
         <span>0 Available</span>
       </div>
@@ -87,7 +87,7 @@ const MintExchangeInfo = () => {
           {'{icon}'} USDC: <b>$1.000</b>
         </span>
         <span>
-          {'{icon}'} FXS: <b>$22.880</b>
+          {'{icon}'} HAS: <b>$22.880</b>
         </span>
         <span>{'{arrow-right}'}</span>
         <span>0.3000% MINTING FEE</span>
