@@ -4,6 +4,10 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
+  tailwindcss: {
+    tailwindCssFilePath: '@/tailwind.css',
+    tailwindConfigFilePath: 'tailwind.config.js', // Default value: tailwindConfigFilePath || join(process.env.APP_ROOT || api.cwd, 'tailwind.config.js'),
+  },
   routes: [
     {
       path: '/',
