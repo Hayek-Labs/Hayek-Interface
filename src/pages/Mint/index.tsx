@@ -1,3 +1,5 @@
+import { Coin, coinToLogo } from '@/constants/coin';
+import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 import clsx from 'clsx';
 import styles from './index.less';
 
@@ -5,11 +7,12 @@ interface CoinStatProps {
   statName: string;
   stat: string;
 }
+
 const CoinStat: React.FC<CoinStatProps> = ({ stat, statName }) => {
   return (
-    <div className="flex flex-col header-coin-stat">
-      <span className="p-2 text-base border-b-2 border-white">{statName}</span>
-      <span className="p-2 text-sm">{stat}</span>
+    <div className="rounded-lg bg-card flex flex-col items-center justify-center h-20 w-1/6 mr-2 p-2 grow">
+      <span className="text-white font-bold">{statName}</span>
+      <span>{stat}</span>
     </div>
   );
 };
@@ -20,32 +23,11 @@ const Header = () => {
       <div className="rounded-lg bg-card flex flex-col items-center justify-center h-20 w-1/6 mr-2 p-2 grow">
         <span className="text-white font-bold">Mint USDH</span>
       </div>
-      <div className="rounded-lg bg-card flex flex-col items-center justify-center h-20 w-1/6 mr-2 p-2 grow">
-        <span className="text-white font-bold">USDH PRICE</span>
-        <span>$0.9992</span>
-      </div>
-      <div className="rounded-lg bg-card flex flex-col items-center justify-center h-20 w-1/6 mr-2 p-2 grow">
-        <span className="text-white font-bold">COLLATERAL RATIO</span>
-        <span>84.50%</span>
-      </div>
-      <div className="rounded-lg bg-card flex flex-col items-center justify-center h-20 w-1/6 mr-2 p-2 grow">
-        <span className="text-white font-bold">POOL BALANCE / CEILING</span>
-        <span>15.619M / 75M</span>
-      </div>
-      <div className="rounded-lg bg-card flex flex-col items-center justify-center h-20 w-1/6 mr-2 p-2 grow">
-        <span className="text-white font-bold">POOL AVAILABLE TO MINT</span>
-        <span>59.381M</span>
-      </div>
+      <CoinStat statName="USDH PRICE" stat="$0.9992" />
+      <CoinStat statName="COLLATERAL RATIO" stat="84.50%" />
+      <CoinStat statName="POOL BALANCE / CEILING" stat="15.619M / 75M" />
+      <CoinStat statName="POOL AVAILABLE TO MINT" stat="59.381M" />
     </div>
-    // <div className="rounded-md bg-card flex flex-row text-center">
-    //   <div className="p-3 header-coin-stat flex items-center justify-center">
-    //     <span className="text-lg">Mint USDH</span>
-    //   </div>
-    //   <CoinStat statName="USDH PRICE" stat="$0.9992" />
-    //   <CoinStat statName="COLLATERAL RATIO" stat="84.50%" />
-    //   <CoinStat statName="POOL BALANCE / CEILING" stat="15.619M / 75M" />
-    //   <CoinStat statName="AVAILABLE TO MINT" stat="59.381M" />
-    // </div>
   );
 };
 
@@ -59,18 +41,34 @@ const MintOptions = () => {
   return (
     <ContentPiece>
       <div className="flex flex-col items-center">
-        <span>MINT METHOD</span>
+        <span className="text-blue-400">MINT METHOD</span>
         <span>Choose normal if you already have USDC and HAS.</span>
-        <span>Normal</span>
-        <span>COLLATERAL POOL</span>
+
+        <div className="h-2" />
+
+        <div className="flex flex-row items-center">
+          <span className="rounded-full bg-indigo-500 w-5 h-5 mr-1" />
+          <span>Normal</span>
+        </div>
+
+        <div className="h-2" />
+
+        <span className="text-blue-400 mb-1">COLLATERAL POOL</span>
         <select className="text-black">
           <option>USDC</option>
         </select>
-        <span>AMOUNT</span>
+
+        <div className="h-2" />
+
+        <span className="text-blue-400 mb-1">AMOUNT</span>
         <input placeholder="Amount" />
         <span>0 Available</span>
-        <div className="border-b-2 border-white" />
-        <span>HAS</span>
+
+        <div className="h-2" />
+        <div className="border-b-2 border-white w-full" />
+        <div className="h-2" />
+
+        <span className="text-blue-400 mb-1">HAS</span>
         <input placeholder="Amount" />
         <span>0 Available</span>
       </div>
@@ -78,21 +76,38 @@ const MintOptions = () => {
   );
 };
 
-const MintExchangeInfo = () => {
+interface ExchangeProps {
+  coin1: Coin;
+  coin2: Coin;
+}
+const MintExchangeInfo: React.FC<ExchangeProps> = ({ coin1, coin2 }) => {
+  const CoinInfo: React.FC<{ coin: Coin; price: string }> = ({
+    coin,
+    price,
+  }) => {
+    const Icon = coinToLogo[coin];
+    const coinIconSize = 15;
+    return (
+      <span className="inline-flex flex-row items-center">
+        <Icon width={coinIconSize} height={coinIconSize} />
+        <span className="w-1" />
+        <span>
+          {coin}: <b>{price}</b>
+        </span>
+      </span>
+    );
+  };
+
   return (
     <ContentPiece>
       <div className="flex flex-col items-center">
         <span>EXCHANGE RATES</span>
-        <span>
-          {'{icon}'} USDC: <b>$1.000</b>
-        </span>
-        <span>
-          {'{icon}'} HAS: <b>$22.880</b>
-        </span>
-        <span>{'{arrow-right}'}</span>
+        <CoinInfo coin={coin1} price="$1.000" />
+        <CoinInfo coin={coin2} price="$22.880" />
+        <HiOutlineArrowNarrowRight size={30} />
         <span>0.3000% MINTING FEE</span>
-        <span>(0.00000 USDH)</span>
-        <span>Pool (V3){'{icon}'}: 0x2fE0...0729</span>
+        <span>(0.00000 {coin1})</span>
+        <span>Pool (V3) 🌊 : 0x2fE0...0729</span>
       </div>
     </ContentPiece>
   );
@@ -104,7 +119,6 @@ const MintReceiveInfo = () => {
       <div className="flex flex-col items-center">
         <span>YOU RECEIVE</span>
         <div className="flex flex-row items-center">
-          <span>{'{icon}'}</span>
           <div className="ml-2 px-20 py-2 rounded-md bg-gray-800">-</div>
         </div>
       </div>
@@ -116,7 +130,7 @@ const Content = () => {
   return (
     <div className="flex-1 w-full flex flex-row text-center px-2">
       <MintOptions />
-      <MintExchangeInfo />
+      <MintExchangeInfo coin1="USDH" coin2="HAS" />
       <MintReceiveInfo />
     </div>
   );
