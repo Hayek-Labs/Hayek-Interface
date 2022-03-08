@@ -2,6 +2,7 @@ import { Coin, coinToLogo } from '@/constants/coin';
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 import clsx from 'clsx';
 import styles from './index.less';
+import Select, { SelectOption } from '@/components/Select';
 
 interface CoinStatProps {
   statName: string;
@@ -37,6 +38,9 @@ const ContentPiece: React.FC = ({ children }) => {
   );
 };
 
+const selectOptions: SelectOption[] = [
+  { value: 'USDC', label: 'USDC', color: 'rgb(0, 0, 255)' },
+];
 const MintOptions = () => {
   return (
     <ContentPiece>
@@ -54,9 +58,7 @@ const MintOptions = () => {
         <div className="h-2" />
 
         <span className="text-blue-400 mb-1">COLLATERAL POOL</span>
-        <select className="text-black">
-          <option>USDC</option>
-        </select>
+        <Select options={selectOptions} />
 
         <div className="h-2" />
 
