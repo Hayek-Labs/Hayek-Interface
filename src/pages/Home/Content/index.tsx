@@ -48,6 +48,16 @@ const SidebarShowButton = () => {
   );
 };
 
+const CoinGraph: React.FC<{ coin: Coin }> = ({ coin }) => {
+  return (
+    <div className="w-full p-2">
+      <div className="rounded-lg bg-card sm:h-80 h-60">
+        <Graph coin={coin} />
+      </div>
+    </div>
+  );
+};
+
 const Content: React.FC = () => {
   return (
     <>
@@ -94,26 +104,12 @@ const Content: React.FC = () => {
       </div>
 
       <div className="w-full flex flex-col lg:w-2/3">
-        <div className="w-full p-2">
-          <div className="rounded-lg bg-card sm:h-80 h-60">
-            <Graph coin="USDH" />
-          </div>
-        </div>
-        <div className="w-full p-2">
-          <div className="rounded-lg bg-card sm:h-80 h-60">
-            <Graph coin="USDT" />
-          </div>
-        </div>
-        <div className="w-full p-2">
-          <div className="rounded-lg bg-card sm:h-80 h-60">
-            <Graph coin="USDC" />
-          </div>
-        </div>
-        <div className="w-full p-2">
-          <div className="rounded-lg bg-card sm:h-80 h-60">
-            <Graph coin="BUSD" />
-          </div>
-        </div>
+        <CoinGraph coin="USDH" />
+        <CoinGraph coin="EURH" />
+        <CoinGraph coin="JPYH" />
+        <CoinGraph coin="AUDH" />
+        <CoinGraph coin="GBPH" />
+        <CoinGraph coin="CHFH" />
       </div>
 
       <div className="w-full flex flex-col lg:w-1/3">

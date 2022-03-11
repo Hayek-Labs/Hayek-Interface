@@ -1,4 +1,4 @@
-import { Coin } from '@/constants/coin';
+import { Coin, coinToLogo } from '@/constants/coin';
 import { useHover } from '@/util/useHover';
 import { useEffect, useState } from 'react';
 import {
@@ -55,11 +55,17 @@ const Graph: React.FC<{ coin: Coin }> = ({ coin }) => {
     setLineStroke(isHovering ? 'url(#paint0_linear)' : 'url(#paint1_linear)');
   }, [isHovering]);
 
+  const Logo = coinToLogo[coin];
+  const logoSize = 22;
+
   return (
     <div className="flex p-4 h-full flex-col">
       <div className="">
         <div className="flex items-center">
-          <div className="font-bold text-white">{coin} Price</div>
+          <span className="font-bold text-white inline-flex flex-row items-center">
+            <Logo width={logoSize} height={logoSize} className="mr-1" /> {coin}{' '}
+            Price
+          </span>
           <div className="flex-grow" />
 
           <Icon path="res-react-dash-graph-range" className="w-4 h-4" />
