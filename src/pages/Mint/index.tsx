@@ -159,17 +159,28 @@ const MintReceiveInfo = () => {
 };
 
 const Content = () => {
+  const onChangeGen = useNumberInputOnChangeGenerator();
+
   const CoinSelectWithBalance: React.FC<{ coin: Coin }> = ({ coin }) => {
+    const [amount, setAmount] = useState(0);
+    const amountOnChange = useDefaultNumberInputOnChange(
+      onChangeGen,
+      setAmount,
+    );
+
     return (
       <div className="flex flex-col items-start py-1">
         <span>From</span>
-        <div className="flex flex-row w-full">
+        <div className="flex flex-row items-center w-full">
           <span className="mr-2 w-12 text-left">{coin}</span>
-          <input className="text-black w-full" value={0} />
+          <Input
+            className="text-black w-full"
+            val={amount}
+            onChange={amountOnChange}
+          />
         </div>
         <div className="flex flex-row">
-          <span>Balance</span>
-          <span>0</span>
+          <span>Balance: 0</span>
         </div>
       </div>
     );
