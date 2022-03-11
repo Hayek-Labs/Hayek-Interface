@@ -130,6 +130,9 @@ const Content: React.FC<Props> = ({ type }) => {
     );
   };
 
+  const stablecoinHasTitle = type === 'mint' ? 'FROM' : 'TO';
+  const usdhTitle = type === 'mint' ? 'TO' : 'FROM';
+
   return (
     <div className="flex-1 w-full flex flex-col text-center py-2 justify-center items-center">
       <div className="bg-card h-60 w-5/6 flex flex-col justify-center px-4 py-1">
@@ -142,12 +145,12 @@ const Content: React.FC<Props> = ({ type }) => {
         >
           <div className="flex flex-col justify-center w-1/2 h-full">
             <CoinInputWithBalance
-              title="FROM"
+              title={stablecoinHasTitle}
               coin="USDC"
               onChangeGen={onChangeGen}
             />
             <CoinInputWithBalance
-              title="FROM"
+              title={stablecoinHasTitle}
               coin="HAS"
               onChangeGen={onChangeGen}
             />
@@ -157,7 +160,7 @@ const Content: React.FC<Props> = ({ type }) => {
           </div>
           <div className="flex flex-col justify-center w-1/2 h-full">
             <CoinInputWithBalance
-              title="TO"
+              title={usdhTitle}
               coin="USDH"
               onChangeGen={onChangeGen}
             />
