@@ -1,24 +1,23 @@
 import clsx from 'clsx';
 import { ChangeEventHandler, useCallback } from 'react';
 
+export type NumberInputOnChangeGenerator = (
+  e: React.ChangeEvent<HTMLInputElement>,
+  setState: SetState<number>,
+) => void;
+
 export const useNumberInputOnChangeGenerator = () => {
-  return useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>, setState: SetState<number>) => {
-      const value = e.target.value;
-      const numValue = Number(value);
-      if (!isNaN(numValue) && isFinite(numValue)) {
-        setState(numValue);
-      }
-    },
-    [],
-  );
+  return useCallback<NumberInputOnChangeGenerator>((e, setState) => {
+    const value = e.target.value;
+    const numValue = Number(value);
+    if (!isNaN(numValue) && isFinite(numValue)) {
+      setState(numValue);
+    }
+  }, []);
 };
 
 export const useDefaultNumberInputOnChange = (
-  onChangeGen: (
-    e: React.ChangeEvent<HTMLInputElement>,
-    setState: SetState<number>,
-  ) => void,
+  onChangeGen: NumberInputOnChangeGenerator,
   setState: SetState<number>,
 ): ChangeEventHandler<HTMLInputElement> => {
   return useCallback(
