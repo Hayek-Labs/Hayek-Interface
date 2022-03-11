@@ -16,6 +16,7 @@ export default defineConfig({
         { path: '/', component: '@/pages/Home' },
         { path: '/mint', component: '@/pages/Mint' },
         { path: '/redeem', component: '@/pages/Redeem' },
+        { path: '/exchange', component: '@/pages/Exchange' },
         {
           path: '/buyback-recollateralize',
           component: '@/pages/BuybackRecollat',
