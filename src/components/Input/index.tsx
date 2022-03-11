@@ -36,7 +36,7 @@ interface Props<T> {
 
 type AllProps = Props<number> | Props<string>;
 
-export const baseClassName = 'px-4 py-2 text-black';
+export const baseClassName = 'px-2 py-1 text-black rounded-lg';
 
 const Input: React.FC<AllProps & HTML.Input> = ({
   val,
