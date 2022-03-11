@@ -159,11 +159,39 @@ const MintReceiveInfo = () => {
 };
 
 const Content = () => {
+  const CoinSelectWithBalance: React.FC<{ coin: Coin }> = ({ coin }) => {
+    return (
+      <div className="flex flex-col items-start py-1">
+        <span>From</span>
+        <div className="flex flex-row w-full">
+          <span className="mr-2 w-12 text-left">{coin}</span>
+          <input className="text-black w-full" value={0} />
+        </div>
+        <div className="flex flex-row">
+          <span>Balance</span>
+          <span>0</span>
+        </div>
+      </div>
+    );
+  };
   return (
-    <div className="flex-1 w-full flex flex-row text-center px-2">
-      <MintOptions />
-      <MintExchangeInfo coin1="USDH" coin2="HAS" />
-      <MintReceiveInfo />
+    <div className="flex-1 w-full flex flex-col text-center py-2 justify-center items-center">
+      <div className="bg-card h-60 w-5/6 flex flex-col justify-center px-4 py-1">
+        <div className="flex flex-row w-full">
+          <div className="flex flex-col justify-center w-1/2 h-full">
+            <CoinSelectWithBalance coin="USDC" />
+            <CoinSelectWithBalance coin="HAS" />
+          </div>
+          <div className="w-4" />
+          <div className="flex flex-col justify-center w-1/2 h-full">
+            <CoinSelectWithBalance coin="USDH" />
+          </div>
+        </div>
+        <div className="h-2" />
+        <button className="bg-white rounded-md text-black px-4 py-2 w-1/3 self-center">
+          MINT
+        </button>
+      </div>
     </div>
   );
 };
@@ -183,7 +211,6 @@ const Mint = () => {
     >
       <Header />
       <Content />
-      <Footer />
     </div>
   );
 };
