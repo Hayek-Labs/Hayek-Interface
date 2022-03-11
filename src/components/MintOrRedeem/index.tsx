@@ -1,11 +1,6 @@
 import { Coin } from '@/constants/coin';
 import { SelectOption } from '@/components/Select';
-import CoinSelect from '@/components/CoinSelect';
-import Input, {
-  useDefaultNumberInputOnChange,
-  useNumberInputOnChangeGenerator,
-} from '@/components/Input';
-import { useState } from 'react';
+import { useNumberInputOnChangeGenerator } from '@/components/Input';
 import { MdArrowRightAlt } from 'react-icons/md';
 import CoinInputWithBalance from '@/components/CoinInputWithBalance';
 import clsx from 'clsx';
@@ -38,80 +33,10 @@ const Header = () => {
   );
 };
 
-const ContentPiece: React.FC = ({ children }) => {
-  return (
-    <div className="flex-1 flex items-center justify-center">{children}</div>
-  );
-};
-
 const selectOptions: SelectOption<Coin>[] = [
   { value: 'USDC', label: 'USDC' },
   { value: 'USDT', label: 'USDT' },
 ];
-
-const MintOptions = () => {
-  const onChangeGen = useNumberInputOnChangeGenerator();
-
-  const [collateralAmount, setCollateralAmount] = useState(0);
-  const collateralAmountOnChange = useDefaultNumberInputOnChange(
-    onChangeGen,
-    setCollateralAmount,
-  );
-
-  const [hasAmount, setHasAmount] = useState(0);
-  const hasAmountOnChange = useDefaultNumberInputOnChange(
-    onChangeGen,
-    setHasAmount,
-  );
-
-  return (
-    <ContentPiece>
-      <div className="flex flex-col items-center">
-        <span className="text-blue-400">MINT METHOD</span>
-        <span>Choose normal if you already have USDC and HAS.</span>
-
-        <div className="h-2" />
-
-        <div className="flex flex-row items-center">
-          <span className="rounded-full bg-indigo-500 w-5 h-5 mr-1" />
-          <span>Normal</span>
-        </div>
-
-        <div className="h-2" />
-
-        <span className="text-blue-400 mb-1">COLLATERAL POOL</span>
-        <CoinSelect options={selectOptions} />
-
-        <div className="h-2" />
-
-        <span className="text-blue-400 mb-1">AMOUNT</span>
-        <Input
-          placeholder="Amount"
-          val={collateralAmount}
-          onChange={collateralAmountOnChange}
-        />
-        <span>0 Available</span>
-
-        <div className="h-2" />
-        <div className="border-b-2 border-white w-full" />
-        <div className="h-2" />
-
-        <span className="text-blue-400 mb-1">HAS</span>
-        <Input
-          placeholder="Amount"
-          val={hasAmount}
-          onChange={hasAmountOnChange}
-        />
-        <span>0 Available</span>
-      </div>
-    </ContentPiece>
-  );
-};
-
-interface ExchangeProps {
-  coin1: Coin;
-  coin2: Coin;
-}
 
 interface Props {
   type: 'mint' | 'redeem';
@@ -173,14 +98,6 @@ const Content: React.FC<Props> = ({ type }) => {
           <Button>{pageText}</Button>
         </div>
       </div>
-    </div>
-  );
-};
-
-const Footer = () => {
-  return (
-    <div className="text-center mt-auto py-2">
-      <button className="bg-white rounded-md text-black px-4 py-2">MINT</button>
     </div>
   );
 };
