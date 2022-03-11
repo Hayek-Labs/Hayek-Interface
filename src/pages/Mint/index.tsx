@@ -4,6 +4,11 @@ import clsx from 'clsx';
 import styles from './index.less';
 import { SelectOption } from '@/components/Select';
 import CoinSelect from '@/components/CoinSelect';
+import Input, {
+  useDefaultNumberInputOnChange,
+  useNumberInputOnChangeGenerator,
+} from '@/components/Input';
+import { useState } from 'react';
 
 interface CoinStatProps {
   statName: string;
@@ -45,6 +50,20 @@ const selectOptions: SelectOption<Coin>[] = [
 ];
 
 const MintOptions = () => {
+  const onChangeGen = useNumberInputOnChangeGenerator();
+
+  const [collateralAmount, setCollateralAmount] = useState(0);
+  const collateralAmountOnChange = useDefaultNumberInputOnChange(
+    onChangeGen,
+    setCollateralAmount,
+  );
+
+  const [hasAmount, setHasAmount] = useState(0);
+  const hasAmountOnChange = useDefaultNumberInputOnChange(
+    onChangeGen,
+    setHasAmount,
+  );
+
   return (
     <ContentPiece>
       <div className="flex flex-col items-center">
@@ -66,7 +85,11 @@ const MintOptions = () => {
         <div className="h-2" />
 
         <span className="text-blue-400 mb-1">AMOUNT</span>
-        <input placeholder="Amount" />
+        <Input
+          placeholder="Amount"
+          val={collateralAmount}
+          onChange={collateralAmountOnChange}
+        />
         <span>0 Available</span>
 
         <div className="h-2" />
@@ -74,7 +97,11 @@ const MintOptions = () => {
         <div className="h-2" />
 
         <span className="text-blue-400 mb-1">HAS</span>
-        <input placeholder="Amount" />
+        <Input
+          placeholder="Amount"
+          val={hasAmount}
+          onChange={hasAmountOnChange}
+        />
         <span>0 Available</span>
       </div>
     </ContentPiece>

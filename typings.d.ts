@@ -22,3 +22,10 @@ declare type Option<T> = T | undefined;
 declare type Ok<T> = T;
 declare type Err<E> = E;
 declare type Result<T, E> = Ok<T> | Err<E>;
+
+declare namespace HTML {
+  type Input = React.DetailedHTMLProps<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+  >;
+}
