@@ -1,13 +1,9 @@
 import ReactSelect, { StylesConfig } from 'react-select';
 import chroma from 'chroma-js';
-import { Coin } from '@/constants/coin';
 
-export interface SelectOption {
-  readonly value: Coin;
+export interface SelectOption<T> {
+  readonly value: T;
   readonly label: string;
-  readonly color: string;
-  readonly isFixed?: boolean;
-  readonly isDisabled?: boolean;
 }
 
 const dot = (color = 'transparent') => ({
@@ -25,16 +21,17 @@ const dot = (color = 'transparent') => ({
   },
 });
 
-const selectStyles: StylesConfig<SelectOption> = {
+const rgb = 'rgb(0, 0, 255)';
+const selectStyles: StylesConfig<SelectOption<unknown>> = {
   control: (styles) => ({ ...styles, backgroundColor: 'white' }),
-  option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-    const color = chroma(data.color);
+  option: (styles, { isDisabled, isFocused, isSelected }) => {
+    const color = chroma(rgb);
     return {
       ...styles,
       backgroundColor: isDisabled
         ? undefined
         : isSelected
-        ? data.color
+        ? rgb
         : isFocused
         ? color.alpha(0.1).css()
         : undefined,
@@ -44,14 +41,14 @@ const selectStyles: StylesConfig<SelectOption> = {
         ? chroma.contrast(color, 'white') > 2
           ? 'white'
           : 'black'
-        : data.color,
+        : rgb,
       cursor: isDisabled ? 'not-allowed' : 'default',
 
       ':active': {
         ...styles[':active'],
         backgroundColor: !isDisabled
           ? isSelected
-            ? data.color
+            ? rgb
             : color.alpha(0.3).css()
           : undefined,
       },
@@ -59,14 +56,14 @@ const selectStyles: StylesConfig<SelectOption> = {
   },
   input: (styles) => ({ ...styles, ...dot() }),
   placeholder: (styles) => ({ ...styles, ...dot('#ccc') }),
-  singleValue: (styles, { data }) => ({ ...styles, ...dot(data.color) }),
+  singleValue: (styles) => ({ ...styles, ...dot(rgb) }),
 };
 
-interface SelectProps {
-  options: SelectOption[];
+interface SelectProps<T> {
+  options: SelectOption<T>[];
 }
 
-const Select: React.FC<SelectProps> = ({ options }) => (
+const Select: React.FC<SelectProps<unknown>> = ({ options }) => (
   <ReactSelect options={options} className="text-black" styles={selectStyles} />
 );
 
