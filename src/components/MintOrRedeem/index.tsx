@@ -60,7 +60,7 @@ const Content: React.FC<Props> = ({ type }) => {
 
   return (
     <div className="flex-1 w-full flex flex-col text-center py-2 justify-center items-center">
-      <div className="bg-card h-60 w-5/6 flex flex-col justify-center px-4 py-1">
+      <div className="bg-card h-80 w-5/6 flex flex-col justify-center px-4 py-1">
         <span className="font-bold text-center text-2xl pt-2">{pageText}</span>
         <div
           className={clsx(
