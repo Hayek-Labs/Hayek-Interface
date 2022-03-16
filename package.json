@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "start": "concurrently \"npx tailwindcss -i ./src/tailwind-input.css -o ./src/tailwind.css --watch\" \"umi dev\"",
-    "build": "umi build",
+    "build": "npx tailwindcss -i ./src/tailwind-input.css -o ./src/tailwind.css && umi build",
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
