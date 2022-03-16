@@ -30,8 +30,9 @@ const CoinInputWithBalance: React.FC<{
           onChange={amountOnChange}
         />
       </div>
-      <div className="flex flex-row">
-        <span>Balance: 0</span>
+      <div className="flex flex-row justify-start w-full mt-1">
+        <span>Balance</span>
+        <span className="ml-auto">~$1250</span>
       </div>
     </div>
   );
