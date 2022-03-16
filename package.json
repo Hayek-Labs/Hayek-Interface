@@ -27,6 +27,7 @@
     "chroma-js": "^2.4.2",
     "clsx": "^1.1.1",
     "ethers": "^5.5.4",
+    "lightweight-charts": "^3.8.0",
     "react": "17.x",
     "react-dom": "17.x",
     "react-icons": "^4.3.1",
