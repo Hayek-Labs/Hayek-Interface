@@ -1,7 +1,8 @@
 import CoinInputWithBalance from '@/components/CoinInputWithBalance';
 import { useNumberInputOnChangeGenerator } from '@/components/Input';
+import KChart from '@/components/KChart';
 import clsx from 'clsx';
-import { MdArrowRightAlt } from 'react-icons/md';
+import { MdArrowDownward } from 'react-icons/md';
 
 const Content = () => {
   const onChangeGen = useNumberInputOnChangeGenerator();
@@ -18,8 +19,8 @@ const Content = () => {
     <div className="flex-1 w-full flex flex-col text-center py-2 justify-center items-center">
       <div className="bg-card h-60 w-5/6 flex flex-col justify-center px-4 py-1">
         <span className="font-bold text-center text-2xl pt-2">Exchange</span>
-        <div className={clsx('flex flex-row w-full')}>
-          <div className="flex flex-col justify-center w-1/2 h-full">
+        <div className={clsx('flex flex-col w-full items-center')}>
+          <div className="flex flex-col justify-center w-full py-1">
             <CoinInputWithBalance
               title="FROM"
               coin="USDT"
@@ -27,9 +28,9 @@ const Content = () => {
             />
           </div>
           <div className="flex flex-col justify-center">
-            <MdArrowRightAlt size={80} />
+            <MdArrowDownward size={30} />
           </div>
-          <div className="flex flex-col justify-center w-1/2 h-full">
+          <div className="flex flex-col justify-center w-full py-1">
             <CoinInputWithBalance
               title="TO"
               coin="DAI"
@@ -50,7 +51,8 @@ const Content = () => {
 
 const Exchange = () => {
   return (
-    <div className="flex flex-col w-full h-full text-white">
+    <div className="flex flex-row items-center w-full h-full text-white">
+      <KChart />
       <Content />
     </div>
   );
