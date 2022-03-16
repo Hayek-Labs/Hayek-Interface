@@ -93,13 +93,16 @@ const Content: React.FC = () => {
       ))}
 
       <div className="w-full lg:w-1/3 flex flex-col justify-between p-2">
-        <div className="rounded-lg bg-card flex flex-col items-center justify-center h-10 md:mb-2 p-2 text-xs">
-          <span className="text-white font-bold">COLLATERAL RATIO</span>
-          <span>85.00%</span>
-        </div>
-        <div className="rounded-lg bg-card flex flex-col items-center justify-center h-10 md:mt-2 p-2 text-xs">
-          <span className="text-white font-bold">DECENTRALIZATION RATIO</span>
-          <span>27.84%</span>
+        <div className="rounded-lg bg-card flex flex-row items-center justify-center h-24 p-2 text-xs text-white">
+          <div className="flex flex-col items-center">
+            <span className="">TOTAL MARKET CAP</span>
+            <span className="font-bold">$12.21M</span>
+          </div>
+          <span className="w-5" />
+          <div className="flex flex-col items-center">
+            <span className="">TOTAL COLLATERAL</span>
+            <span className="font-bold">$8.90M</span>
+          </div>
         </div>
       </div>
 
