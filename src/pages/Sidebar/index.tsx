@@ -45,9 +45,9 @@ const sidebarItems = [
     route: '/redeem',
   },
   {
-    title: 'Buyback & Recollateralize',
+    title: 'Swap',
     icon: <FaBalanceScale size={svgSize} />,
-    route: '/buyback-recollateralize',
+    route: '/swap',
   },
   {
     title: 'veHAS',
