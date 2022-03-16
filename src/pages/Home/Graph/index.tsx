@@ -63,8 +63,7 @@ const Graph: React.FC<{ coin: Coin }> = ({ coin }) => {
       <div className="">
         <div className="flex items-center">
           <span className="font-bold text-white inline-flex flex-row items-center">
-            <Logo width={logoSize} height={logoSize} className="mr-1" /> {coin}{' '}
-            Price
+            <Logo width={logoSize} height={logoSize} className="mr-1" /> {coin}
           </span>
           <div className="flex-grow" />
 
