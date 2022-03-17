@@ -1,6 +1,6 @@
 import { Coin } from '@/constants/coin';
 import { SelectOption } from '@/components/Select';
-import { BsArrowDownCircle } from 'react-icons/bs';
+import { BsArrowDownCircle, BsPlusCircle } from 'react-icons/bs';
 import clsx from 'clsx';
 import CoinCard from '../CoinCard';
 import { useState } from 'react';
@@ -76,7 +76,7 @@ const Content: React.FC<Props> = ({ type }) => {
                 canInput: isMint,
               }}
             />
-            <div className="h-2" />
+            <BsPlusCircle size={30} className="self-center my-2" />
             <CoinCard
               coin="HAS"
               input={{
