@@ -25,16 +25,20 @@ const SwapCoinDisplay: React.FC<{
     <div className="w-full flex-1 flex flex-col justify-center items-center">
       <CoinCard
         coin={coinToSell}
-        value={coinToSellValue}
-        setValue={setCoinToSellValue}
-        canInput={true}
+        input={{
+          value: coinToSellValue,
+          setValue: setCoinToSellValue,
+          canInput: true,
+        }}
       />
       <BsArrowDownCircle size={30} className="my-4" />
       <CoinCard
         coin={coinToBuy}
-        value={coinToBuyValue}
-        setValue={setCoinToBuyValue}
-        canInput={false}
+        input={{
+          value: coinToBuyValue,
+          setValue: setCoinToBuyValue,
+          canInput: false,
+        }}
       />
       <div className="h-4" />
     </div>

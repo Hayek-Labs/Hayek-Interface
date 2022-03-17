@@ -1,19 +1,34 @@
 import { Coin, coinToLogo } from '@/constants/coin';
 
-const CoinCard: React.FC<{
-  coin: Coin;
-  value: string;
-  setValue: SetState<string>;
-  canInput: boolean;
-}> = ({ coin, value, setValue, canInput }) => {
+const CoinDisplay: React.FC<{ coin: Coin }> = ({ coin }) => {
   const Logo = coinToLogo[coin];
   const logoSize = 30;
   return (
+    <>
+      <Logo width={logoSize} height={logoSize} className="min-w-min" />
+      <div className="w-2" />
+      <span className="text-lg">{coin}</span>
+    </>
+  );
+};
+
+const CoinCard: React.FC<{
+  coin: Coin;
+  input: {
+    value: string;
+    setValue: SetState<string>;
+    canInput: boolean;
+  };
+  select?: {
+    selectFrom: Coin[];
+    setCoin: SetState<Coin>;
+    canSelect: boolean;
+  };
+}> = ({ coin, input: { value, setValue, canInput } }) => {
+  return (
     <div className="rounded-lg w-full bg-hblack-1 flex flex-col justify-start px-4 py-3 border border-transparent hover:border-hyellow-1">
       <div className="flex flex-row items-center">
-        <Logo width={logoSize} height={logoSize} className="min-w-min" />
-        <div className="w-2" />
-        <span className="text-lg">{coin}</span>
+        <CoinDisplay coin={coin} />
         <input
           className="ml-4 bg-transparent outline-none text-right w-20 text-lg flex-1"
           value={value}
