@@ -28,4 +28,9 @@ declare namespace HTML {
     React.InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
   >;
+
+  type Button = React.DetailedHTMLProps<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  >;
 }
