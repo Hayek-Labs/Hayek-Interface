@@ -13,6 +13,8 @@ declare type OnClickFn<T = Element, E = MouseEvent> = (
   event: React.MouseEvent<T, E>,
 ) => void;
 
+declare type OnChangeFn = React.ChangeEventHandler<HTMLInputElement>;
+
 declare type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
 declare type SVGComponent = React.FC<React.SVGProps<SVGSVGElement>>;
