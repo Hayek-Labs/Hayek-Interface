@@ -1,5 +1,5 @@
+import LineChart from '@/components/LineChart';
 import { Coin } from '@/constants/coin';
-import { LineChart } from 'recharts';
 import StableCoinSelect from '../StableCoinSelect';
 
 const Graph: React.FC<{ stableCoin: Coin; setStableCoin: SetState<Coin> }> = ({
