@@ -4,7 +4,7 @@ import { history } from 'umi';
 
 import { MdDashboard } from 'react-icons/md';
 import { GiMineTruck, GiTakeMyMoney, GiArchBridge } from 'react-icons/gi';
-import { FaBalanceScale, FaToolbox } from 'react-icons/fa';
+import { FaToolbox } from 'react-icons/fa';
 import { ImPieChart } from 'react-icons/im';
 import { GrStakeholder } from 'react-icons/gr';
 import { AiFillDiff } from 'react-icons/ai';
@@ -30,11 +30,6 @@ const sidebarItems = [
     route: '/',
   },
   {
-    title: 'Exchange',
-    icon: <RiExchangeBoxLine size={svgSize} />,
-    route: '/exchange',
-  },
-  {
     title: 'Mint',
     icon: <GiMineTruck size={svgSize} />,
     route: '/mint',
@@ -46,7 +41,7 @@ const sidebarItems = [
   },
   {
     title: 'Swap',
-    icon: <FaBalanceScale size={svgSize} />,
+    icon: <RiExchangeBoxLine size={svgSize} />,
     route: '/swap',
   },
   {
