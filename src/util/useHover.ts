@@ -1,14 +1,25 @@
 import { MutableRefObject, useState, useRef, useEffect } from 'react';
 
 // hook returns tuple(array) with type [any, boolean]
-export const useHover = <T>(): [MutableRefObject<T>, boolean] => {
+export const useHover = <T extends HTMLElement>(): [
+  MutableRefObject<T | null>,
+  boolean,
+] => {
+  const ref = useRef<T | null>(null);
+  const [value] = useHoverWithRef(ref);
+  return [ref, value];
+};
+
+// hook returns tuple(array) with type [any, boolean]
+export const useHoverWithRef = <T extends HTMLElement>(
+  ref: MutableRefObject<T | null>,
+): [boolean] => {
   const [value, setValue] = useState<boolean>(false);
-  const ref: any = useRef<T | null>(null);
   const handleMouseOver = (): void => setValue(true);
   const handleMouseOut = (): void => setValue(false);
   useEffect(
     () => {
-      const node: any = ref.current;
+      const node = ref.current;
       if (node) {
         node.addEventListener('mouseover', handleMouseOver);
         node.addEventListener('mouseout', handleMouseOut);
@@ -18,7 +29,7 @@ export const useHover = <T>(): [MutableRefObject<T>, boolean] => {
         };
       }
     },
-    [], // Recall only if ref changes
+    [ref], // Recall only if ref changes
   );
-  return [ref, value];
+  return [value];
 };

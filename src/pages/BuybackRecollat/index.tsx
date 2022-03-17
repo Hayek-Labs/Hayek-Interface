@@ -1,3 +1,4 @@
+import LineChart from '@/components/LineChart';
 import { Coin, coinToLogo } from '@/constants/coin';
 import clsx from 'clsx';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -12,10 +13,6 @@ const supportedStableCoins: Coin[] = [
   'CHFH',
 ];
 
-const Title = () => {
-  return <span className="font-bold text-3xl">Swap</span>;
-};
-
 const StableCoinOption: React.FC<{
   coin: Coin;
   onClick: OnClickFn;
@@ -24,8 +21,9 @@ const StableCoinOption: React.FC<{
   return (
     <div
       className={clsx(
-        'rounded-lg bg-[#2C2B2B] px-4 py-2 text-lg border-2 border-solid cursor-pointer m-1',
+        'rounded-lg px-4 py-2 text-xs border-2 border-solid cursor-pointer m-1',
         selected ? 'border-slate-50' : 'border-transparent',
+        selected ? 'text-white' : '',
       )}
       onClick={onClick}
     >
@@ -54,7 +52,7 @@ const StableCoinSelect: React.FC<{
   }, [onCoinClick]);
 
   return (
-    <div className="w-full flex flex-row flex-wrap justify-evenly">
+    <div className="w-full flex flex-row flex-wrap justify-start">
       {supportedStableCoins.map((coin, i) => (
         <StableCoinOption
           coin={coin}
@@ -76,13 +74,13 @@ const CoinCard: React.FC<{
   const Logo = coinToLogo[coin];
   const logoSize = 30;
   return (
-    <div className="rounded-lg w-1/2 bg-[#2C2B2B] flex flex-col justify-start px-4 py-3">
+    <div className="rounded-lg w-full bg-hblack-1 flex flex-col justify-start px-4 py-3 border border-transparent hover:border-hyellow-1">
       <div className="flex flex-row items-center">
         <Logo width={logoSize} height={logoSize} className="min-w-min" />
         <div className="w-2" />
-        <span className="text-2xl">{coin}</span>
+        <span className="text-lg">{coin}</span>
         <input
-          className="ml-4 bg-transparent outline-none text-right w-20 text-2xl flex-1"
+          className="ml-4 bg-transparent outline-none text-right w-20 text-lg flex-1"
           value={value}
           type="number"
           onChange={(e) => {
@@ -92,7 +90,7 @@ const CoinCard: React.FC<{
         />
       </div>
       <div className="h-1" />
-      <div className="flex flex-row items-center">
+      <div className="flex flex-row items-center text-hblack-4">
         <span>Balance</span>
         <span className="ml-auto">$0.00</span>
       </div>
@@ -126,7 +124,7 @@ const SwapCoinDisplay: React.FC<{
         setValue={setCoinToSellValue}
         canInput={true}
       />
-      <BsArrowDownCircle size={30} className="my-2" />
+      <BsArrowDownCircle size={30} className="my-4" />
       <CoinCard
         coin={coinToBuy}
         value={coinToBuyValue}
@@ -148,7 +146,7 @@ const SubmitButtons = () => {
     return (
       <button
         {...props}
-        className="bg-[#2C2B2B] rounded-md px-4 py-2 w-1/3 self-center text-lg"
+        className="bg-[#2C2B2B] rounded-md px-4 py-4 w-full self-center text-xl"
       >
         {children}
       </button>
@@ -171,25 +169,18 @@ const SubmitButtons = () => {
 
   return (
     <div className="flex flex-row w-full justify-evenly">
-      <Button disabled={isApproved} onClick={onApprove}>
-        APPROVE
-      </Button>{' '}
-      <Button disabled={!isApproved || isSwapped} onClick={onSwap}>
-        SWAP
-      </Button>
+      <Button onClick={onSwap}>Connect Wallet</Button>
     </div>
   );
 };
 
-const SwapCard = () => {
-  const [stableCoin, setStableCoin] = useState(supportedStableCoins[0]);
-  const needsCollateral = true;
-
+const SwapCard: React.FC<{
+  stableCoin: Coin;
+  setStableCoin: SetState<Coin>;
+  needsCollateral: boolean;
+}> = ({ stableCoin, needsCollateral }) => {
   return (
-    <div className="bg-card rounded-2xl w-3/4 min-h-[66.66666666666667%] flex flex-col py-4 px-8 text-white text-center">
-      <Title />
-      <div className="h-8" />
-      <StableCoinSelect stableCoin={stableCoin} setStableCoin={setStableCoin} />
+    <div className="bg-card rounded-2xl w-64 md:w-72 lg:w-80 h-60 sm:h-full flex flex-col pt-4 py-12 px-4 text-white text-center">
       <SwapCoinDisplay
         stableCoin={stableCoin}
         needsCollateral={needsCollateral}
@@ -199,10 +190,41 @@ const SwapCard = () => {
   );
 };
 
+const Graph: React.FC<{ stableCoin: Coin; setStableCoin: SetState<Coin> }> = ({
+  stableCoin,
+  setStableCoin,
+}) => {
+  return (
+    <div className="rounded-lg bg-card w-full sm:w-2/5 md:w-3/5 h-60 sm:h-full sm:mr-5">
+      <div className="flex flex-col p-4 h-full">
+        <div className="flex flex-row items-center">
+          <span className="text-white">Collateral Ratio</span>
+        </div>
+        <StableCoinSelect
+          stableCoin={stableCoin}
+          setStableCoin={setStableCoin}
+        />
+        <div className="h-3" />
+        <LineChart />
+      </div>
+    </div>
+  );
+};
+
 const BuybackRecollat = () => {
+  const [stableCoin, setStableCoin] = useState(supportedStableCoins[0]);
+  const needsCollateral = true;
+
   return (
     <div className="w-full h-full flex items-center justify-center">
-      <SwapCard />
+      <div className="w-full flex flex-col sm:flex-row items-center justify-center sm:min-h-[66.66666666666667%] sm:h-80 h-full">
+        <Graph stableCoin={stableCoin} setStableCoin={setStableCoin} />
+        <SwapCard
+          stableCoin={stableCoin}
+          setStableCoin={setStableCoin}
+          needsCollateral={needsCollateral}
+        />
+      </div>
     </div>
   );
 };
