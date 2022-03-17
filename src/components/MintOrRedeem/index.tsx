@@ -1,9 +1,10 @@
 import { Coin } from '@/constants/coin';
 import { SelectOption } from '@/components/Select';
-import { useNumberInputOnChangeGenerator } from '@/components/Input';
-import { MdArrowRightAlt } from 'react-icons/md';
-import CoinInputWithBalance from '@/components/CoinInputWithBalance';
+import { BsArrowDownCircle } from 'react-icons/bs';
 import clsx from 'clsx';
+import CoinCard from '../CoinCard';
+import { useState } from 'react';
+import Button from '../Button';
 
 interface CoinStatProps {
   statName: string;
@@ -43,61 +44,65 @@ interface Props {
 }
 
 const Content: React.FC<Props> = ({ type }) => {
-  const pageText = type === 'mint' ? 'MINT' : 'REDEEM';
+  const isMint = type === 'mint';
+  const pageText = isMint ? 'MINT' : 'REDEEM';
 
-  const onChangeGen = useNumberInputOnChangeGenerator();
+  const [foreignStableCoin] = useState<Coin>('USDC');
+  const [foreignStableCoinValue, setForeignStableCoinValue] = useState('0');
 
-  const Button: React.FC = ({ children }) => {
-    return (
-      <button className="bg-white rounded-md text-black px-4 py-2 w-1/3 self-center">
-        {children}
-      </button>
-    );
-  };
+  const [HASCoinValue, setHASCoinValue] = useState('0');
 
-  const stablecoinHasTitle = type === 'mint' ? 'FROM' : 'TO';
-  const usdhTitle = type === 'mint' ? 'TO' : 'FROM';
+  const [nativeStableCoin] = useState<Coin>('USDH');
+  const [nativeStableCoinValue, setNativeStableCoinValue] = useState('0');
 
   return (
     <div className="flex-1 w-full flex flex-col text-center py-2 justify-center items-center">
-      <div className="bg-card h-80 w-5/6 flex flex-col justify-center px-4 py-1">
-        <span className="font-bold text-center text-2xl pt-2">
-          {pageText} USDH
+      <div className="bg-card w-96 flex flex-col justify-center px-4 pt-2 pb-6">
+        <span className="font-bold text-center text-2xl pt-2 mb-2">
+          {pageText}
         </span>
         <div
           className={clsx(
             'flex w-full',
-            type === 'mint' ? 'flex-row' : 'flex-row-reverse',
+            isMint ? 'flex-col' : 'flex-col-reverse',
           )}
         >
-          <div className="flex flex-col justify-center w-1/2 h-full">
-            <CoinInputWithBalance
-              title={stablecoinHasTitle}
-              coin="USDC"
-              onChangeGen={onChangeGen}
+          <div className="flex flex-col justify-center w-full">
+            <CoinCard
+              coin={foreignStableCoin}
+              input={{
+                value: foreignStableCoinValue,
+                setValue: setForeignStableCoinValue,
+                canInput: isMint,
+              }}
             />
-            <CoinInputWithBalance
-              title={stablecoinHasTitle}
+            <div className="h-2" />
+            <CoinCard
               coin="HAS"
-              onChangeGen={onChangeGen}
+              input={{
+                value: HASCoinValue,
+                setValue: setHASCoinValue,
+                canInput: isMint,
+              }}
             />
           </div>
-          <div className="flex flex-col justify-center">
-            <MdArrowRightAlt size={80} />
+          <div className="flex flex-col items-center">
+            <BsArrowDownCircle size={30} className="my-4" />
           </div>
-          <div className="flex flex-col justify-center w-1/2 h-full">
-            <CoinInputWithBalance
-              title={usdhTitle}
-              coin="USDH"
-              onChangeGen={onChangeGen}
+          <div className="flex flex-col justify-center w-full">
+            <CoinCard
+              coin={nativeStableCoin}
+              input={{
+                value: nativeStableCoinValue,
+                setValue: setNativeStableCoinValue,
+                canInput: !isMint,
+              }}
             />
           </div>
         </div>
         <div className="h-2" />
         <div className="w-full flex flex-row justify-center">
-          <Button>APPROVE</Button>
-          <div className="w-2" />
-          <Button>{pageText}</Button>
+          <Button>Connect Wallet</Button>
         </div>
       </div>
     </div>
@@ -107,7 +112,7 @@ const Content: React.FC<Props> = ({ type }) => {
 const MintOrRedeem: React.FC<Props> = ({ type }) => {
   return (
     <div className="flex flex-col w-full h-full text-white">
-      <Header />
+      {/* <Header /> */}
       <Content type={type} />
     </div>
   );
