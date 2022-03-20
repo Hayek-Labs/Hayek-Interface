@@ -44,42 +44,42 @@ const sidebarItems = [
     icon: <RiExchangeBoxLine size={svgSize} />,
     route: '/swap',
   },
-  {
-    title: 'veHAS',
-    icon: <FaToolbox size={svgSize} />,
-    route: '/vehas',
-  },
-  {
-    title: 'Gauge',
-    icon: <ImPieChart size={svgSize} />,
-    route: '/gauge',
-  },
-  {
-    title: 'Cross Chain',
-    icon: <GiArchBridge size={svgSize} />,
-    route: '/cross-chain',
-  },
-  {
-    title: 'Staking',
-    icon: <GrStakeholder size={svgSize} className="remove-svg-fill" />,
-    route: '/staking',
-  },
-  { title: 'AMOs', icon: <AiFillDiff size={svgSize} />, route: '/amos' },
-  {
-    title: 'Governance',
-    icon: <RiGovernmentFill size={svgSize} />,
-    route: '/governance',
-  },
-  {
-    title: 'Governance Discussion',
-    icon: <RiDiscussFill size={svgSize} />,
-    route: '/governance-discussion',
-  },
-  {
-    title: 'Integrations',
-    icon: <BsStack size={svgSize} />,
-    route: '/integrations',
-  },
+  // {
+  //   title: 'veHAS',
+  //   icon: <FaToolbox size={svgSize} />,
+  //   route: '/vehas',
+  // },
+  // {
+  //   title: 'Gauge',
+  //   icon: <ImPieChart size={svgSize} />,
+  //   route: '/gauge',
+  // },
+  // {
+  //   title: 'Cross Chain',
+  //   icon: <GiArchBridge size={svgSize} />,
+  //   route: '/cross-chain',
+  // },
+  // {
+  //   title: 'Staking',
+  //   icon: <GrStakeholder size={svgSize} className="remove-svg-fill" />,
+  //   route: '/staking',
+  // },
+  // { title: 'AMOs', icon: <AiFillDiff size={svgSize} />, route: '/amos' },
+  // {
+  //   title: 'Governance',
+  //   icon: <RiGovernmentFill size={svgSize} />,
+  //   route: '/governance',
+  // },
+  // {
+  //   title: 'Governance Discussion',
+  //   icon: <RiDiscussFill size={svgSize} />,
+  //   route: '/governance-discussion',
+  // },
+  // {
+  //   title: 'Integrations',
+  //   icon: <BsStack size={svgSize} />,
+  //   route: '/integrations',
+  // },
 ].map<{
   id: string;
   title: string;
