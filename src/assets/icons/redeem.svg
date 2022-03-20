@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="446" height="481" xml:space="preserve">
+  <g transform="translate(223.17 241) scale(34.29)" clip-path="url(#a)">
+    <clipPath id="a">
+      <rect transform="translate(.68) scale(.03)" x="-342.8575" y="-241.7" rx="0" ry="0" width="685.7149" height="483.4"/>
+    </clipPath>
+    <rect x="-10" y="-10" rx="0" ry="0" width="20" height="20" fill="none"/>
+  </g>
+  <g transform="translate(223.17 241) scale(34.29)" clip-path="url(#b)">
+    <clipPath id="b">
+      <rect transform="translate(.68) scale(.03)" x="-342.8575" y="-241.7" rx="0" ry="0" width="685.7149" height="483.4"/>
+    </clipPath>
+    <path d="m-1.6235-.5908-.71.71c-.47-.5-.93-1.1-1.25-1.96l.98-.25c.26.63.6 1.1.98 1.5zm1.12-3.41-3-3-3 3h2.53c.02.43.07.83.14 1.19l.97-.24c-.06-.29-.1-.61-.12-.95h2.48zm7 0-3-3-3 3h2.48c-.12 2.22-1.02 3.11-1.9 3.96-.39.37-.78.75-1.08 1.23-.26-.41-.58-.75-.91-1.07l-.71.71c.65.64 1.12 1.16 1.12 2.17v4h1v-4c0-1.1.53-1.61 1.27-2.32.94-.9 2.07-2.03 2.21-4.68h2.52z"/>
+  </g>
+  <g transform="matrix(-34.29 0 0 34.29 223.05 241)" clip-path="url(#c)">
+    <clipPath id="c">
+      <rect transform="matrix(-.03 0 0 .03 -.68 0)" x="-342.8575" y="-241.7" rx="0" ry="0" width="685.7149" height="483.4"/>
+    </clipPath>
+    <rect x="-10" y="-10" rx="0" ry="0" width="20" height="20" fill="none"/>
+  </g>
+  <g transform="matrix(-34.29 0 0 34.29 223.05 241)" clip-path="url(#d)">
+    <clipPath id="d">
+      <rect transform="matrix(-.03 0 0 .03 -.68 0)" x="-342.8575" y="-241.7" rx="0" ry="0" width="685.7149" height="483.4"/>
+    </clipPath>
+    <path d="m-1.6167-.5908-.71.71c-.47-.5-.93-1.1-1.25-1.96l.98-.25c.26.63.6 1.1.98 1.5zm1.12-3.41-3-3-3 3h2.53c.02.43.07.83.14 1.19l.97-.24c-.06-.29-.1-.61-.12-.95h2.48zm7 0-3-3-3 3h2.48c-.12 2.22-1.02 3.11-1.9 3.96-.39.37-.78.75-1.08 1.23-.26-.41-.58-.75-.91-1.07l-.71.71c.65.64 1.12 1.16 1.12 2.17v4h1v-4c0-1.1.53-1.61 1.27-2.32.94-.9 2.07-2.03 2.21-4.68h2.52z"/>
+  </g>
+  <g transform="translate(246.5 241)" clip-path="url(#e)">
+    <clipPath id="e">
+      <rect x="-342.8575" y="-241.7" rx="0" ry="0" width="685.7149" height="483.4"/>
+    </clipPath>
+  </g>
+</svg>

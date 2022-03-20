@@ -1,10 +1,13 @@
 import { Coin } from '@/constants/coin';
-import { BsArrowDownCircle, BsPlusLg } from 'react-icons/bs';
+import { BsPlusLg } from 'react-icons/bs';
 import clsx from 'clsx';
 import CoinCard from '../CoinCard';
 import { useState } from 'react';
 import Button from '../Button';
 import { supportedStableCoins } from '@/pages/BuybackRecollat';
+import { ReactComponent as RedeemIcon } from '@/assets/icons/redeem-original.svg';
+import { ReactComponent as MintIcon } from '@/assets/icons/mint-original.svg';
+import styles from './styles.less';
 
 interface CoinStatProps {
   statName: string;
@@ -50,6 +53,9 @@ const Content: React.FC<Props> = ({ type }) => {
   const [nativeStableCoin, setNativeStableCoin] = useState<Coin>('USDH');
   const [nativeStableCoinValue, setNativeStableCoinValue] = useState('0');
 
+  const ConversionIcon = isMint ? MintIcon : RedeemIcon;
+  const conversionIconSize = 30;
+
   return (
     <div className="flex-1 w-full flex flex-col text-center py-2 justify-center items-center">
       <div className="bg-card w-96 flex flex-col justify-center px-4 pt-2 pb-6 rounded-lg">
@@ -88,7 +94,13 @@ const Content: React.FC<Props> = ({ type }) => {
             />
           </div>
           <div className="flex flex-col items-center">
-            <BsArrowDownCircle size={20} className="my-2 fill-hblack-4" />
+            <div className={styles['icon-container']}>
+              <ConversionIcon
+                width={conversionIconSize}
+                height={conversionIconSize}
+                className="self-center my-2 fill-hblack-4 rotate-180"
+              />
+            </div>
           </div>
           <div className="flex flex-col justify-center w-full">
             <CoinCard

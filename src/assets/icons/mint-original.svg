@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="343" height="481" viewBox="0 0 343 481" xml:space="preserve">
+<desc>Created with Fabric.js 3.6.3</desc>
+<defs>
+</defs>
+<g transform="matrix(1 0 0 1 177.5 241)"  >
+<g style=""   >
+		<g transform="matrix(1 0 0 1 0 0)" id="bound_0"  >
+<path style="stroke: rgb(0,100,0); stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: null; fill: none; fill-rule: nonzero; opacity: 1; visibility: hidden;"  transform=" translate(-477.5, -313)" d="M 134.64253859348207 71.30000000000001 L 820.3574614065179 71.30000000000001 L 820.3574614065179 554.7 L 134.64253859348207 554.7 Z" stroke-linecap="round" />
+</g>
+		<g transform="matrix(34.29 0 0 34.29 -5.56 0)" id="xe_w47z6q" clip-path="url(#CLIPPATH_6)"  >
+<clipPath id="CLIPPATH_6" >
+	<rect transform="matrix(0.03 0 0 0.03 0.16 0)" id="xe_d5f660" x="-342.8574614065179" y="-241.7" rx="0" ry="0" width="685.7149228130359" height="483.4" />
+</clipPath>
+<rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: none; fill-rule: nonzero; opacity: 1;"  x="-10" y="-10" rx="0" ry="0" width="20" height="20" />
+</g>
+		<g transform="matrix(34.29 0 0 34.29 -5.56 0)" id="xe_2wn6vu" clip-path="url(#CLIPPATH_7)"  >
+<clipPath id="CLIPPATH_7" >
+	<rect transform="matrix(0.03 0 0 0.03 0.16 0)" id="xe_d5f660" x="-342.8574614065179" y="-241.7" rx="0" ry="0" width="685.7149228130359" height="483.4" />
+</clipPath>
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(0,0,0); fill-rule: nonzero; opacity: 1;"  transform=" translate(-13.77, -9.13)" d="M 13.015032783150673 9.579157602787017 C 13.015032783150673 10.379157602787018 12.695032783150673 11.139157602787018 12.135032783150672 11.699157602787018 L 8.765032783150673 15.069157602787017 L 9.825032783150672 16.129157602787018 L 13.765032783150673 12.189157602787018 L 17.70503278315067 16.129157602787018 L 18.765032783150673 15.069157602787017 L 15.395032783150674 11.699157602787018 C 14.835032783150673 11.139157602787018 14.515032783150673 10.369157602787018 14.515032783150673 9.579157602787017 L 14.515032783150673 4.999157602787018 L 15.705032783150672 6.1891576027870165 L 16.765032783150673 5.129157602787018 L 13.765032783150673 2.129157602787018 L 10.765032783150673 5.129157602787018 L 11.825032783150673 6.1891576027870165 L 13.015032783150673 4.999157602787018 L 13.015032783150673 9.579157602787017 z" stroke-linecap="round" />
+</g>
+		<g transform="matrix(1 0 0 1 0 0)" id="border" clip-path="url(#CLIPPATH_8)"  >
+<clipPath id="CLIPPATH_8" >
+	<rect transform="matrix(1 0 0 1 0 0)" id="xe_d5f660" x="-342.8574614065179" y="-241.7" rx="0" ry="0" width="685.7149228130359" height="483.4" />
+</clipPath>
+<rect style="stroke: rgb(0,0,0); stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: none; fill-rule: nonzero; opacity: 1; visibility: hidden;"  x="-342.8574614065179" y="-241.7" rx="0" ry="0" width="685.7149228130359" height="483.4" />
+</g>
+</g>
+</g>
+</svg>

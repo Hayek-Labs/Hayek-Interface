@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="343" height="481" xml:space="preserve">
+  <g transform="translate(171.94 241) scale(34.29)" clip-path="url(#a)">
+    <clipPath id="a">
+      <rect transform="translate(.16) scale(.03)" x="-342.8575" y="-241.7" rx="0" ry="0" width="685.7149" height="483.4"/>
+    </clipPath>
+    <rect x="-10" y="-10" rx="0" ry="0" width="20" height="20" fill="none"/>
+  </g>
+  <g transform="translate(171.94 241) scale(34.29)" clip-path="url(#b)">
+    <clipPath id="b">
+      <rect transform="translate(.16) scale(.03)" x="-342.8575" y="-241.7" rx="0" ry="0" width="685.7149" height="483.4"/>
+    </clipPath>
+    <path d="M-.755.4492c0 .8-.32 1.56-.88 2.12l-3.37 3.37 1.06 1.06 3.94-3.94 3.94 3.94 1.06-1.06-3.37-3.37c-.56-.56-.88-1.33-.88-2.12v-4.58l1.19 1.19 1.06-1.06-3-3-3 3 1.06 1.06 1.19-1.19v4.58z"/>
+  </g>
+  <g transform="translate(177.5 241)" clip-path="url(#c)">
+    <clipPath id="c">
+      <rect x="-342.8575" y="-241.7" rx="0" ry="0" width="685.7149" height="483.4"/>
+    </clipPath>
+  </g>
+</svg>
