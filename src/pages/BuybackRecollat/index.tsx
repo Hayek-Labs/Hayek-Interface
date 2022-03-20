@@ -23,6 +23,7 @@ const BuybackRecollat = () => {
         <SwapCard
           stableCoin={stableCoin}
           setStableCoin={setStableCoin}
+          stableCoinOptions={supportedStableCoins}
           needsCollateral={needsCollateral}
         />
       </div>

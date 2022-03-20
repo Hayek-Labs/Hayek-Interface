@@ -5,8 +5,10 @@ import { BsArrowDownCircle } from 'react-icons/bs';
 
 const SwapCoinDisplay: React.FC<{
   stableCoin: Coin;
+  setStableCoin: SetState<Coin>;
+  stableCoinOptions: Coin[];
   needsCollateral: boolean;
-}> = ({ stableCoin, needsCollateral }) => {
+}> = ({ stableCoin, setStableCoin, stableCoinOptions, needsCollateral }) => {
   const [coinToSell, coinToBuy]: Coin[] = needsCollateral
     ? [stableCoin, 'HAS'] // recollateralize
     : ['HAS', stableCoin]; // buyback
@@ -21,6 +23,21 @@ const SwapCoinDisplay: React.FC<{
     }
   }, [coinToSellValue]);
 
+  const coinToSellSelect = needsCollateral
+    ? {
+        selectFrom: stableCoinOptions,
+        setCoin: setStableCoin,
+        canSelect: true,
+      }
+    : undefined;
+
+  const coinToBuySelect = needsCollateral
+    ? {
+        selectFrom: ['HAS'] as Coin[],
+        canSelect: false,
+      }
+    : undefined;
+
   return (
     <div className="w-full flex-1 flex flex-col justify-center items-center">
       <CoinCard
@@ -30,6 +47,7 @@ const SwapCoinDisplay: React.FC<{
           setValue: setCoinToSellValue,
           canInput: true,
         }}
+        select={coinToSellSelect}
       />
       <BsArrowDownCircle size={30} className="my-4" />
       <CoinCard
@@ -39,6 +57,7 @@ const SwapCoinDisplay: React.FC<{
           setValue: setCoinToBuyValue,
           canInput: false,
         }}
+        select={coinToBuySelect}
       />
       <div className="h-4" />
     </div>

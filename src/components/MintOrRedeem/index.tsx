@@ -1,10 +1,10 @@
 import { Coin } from '@/constants/coin';
-import { SelectOption } from '@/components/Select';
-import { BsArrowDownCircle, BsPlusCircle } from 'react-icons/bs';
+import { BsArrowDownCircle, BsPlusLg } from 'react-icons/bs';
 import clsx from 'clsx';
 import CoinCard from '../CoinCard';
 import { useState } from 'react';
 import Button from '../Button';
+import { supportedStableCoins } from '@/pages/BuybackRecollat';
 
 interface CoinStatProps {
   statName: string;
@@ -34,11 +34,6 @@ const Header = () => {
   );
 };
 
-const selectOptions: SelectOption<Coin>[] = [
-  { value: 'USDC', label: 'USDC' },
-  { value: 'USDT', label: 'USDT' },
-];
-
 interface Props {
   type: 'mint' | 'redeem';
 }
@@ -52,13 +47,13 @@ const Content: React.FC<Props> = ({ type }) => {
 
   const [HASCoinValue, setHASCoinValue] = useState('0');
 
-  const [nativeStableCoin] = useState<Coin>('USDH');
+  const [nativeStableCoin, setNativeStableCoin] = useState<Coin>('USDH');
   const [nativeStableCoinValue, setNativeStableCoinValue] = useState('0');
 
   return (
     <div className="flex-1 w-full flex flex-col text-center py-2 justify-center items-center">
-      <div className="bg-card w-96 flex flex-col justify-center px-4 pt-2 pb-6">
-        <span className="font-bold text-center text-2xl pt-2 mb-2">
+      <div className="bg-card w-96 flex flex-col justify-center px-4 pt-2 pb-6 rounded-lg">
+        <span className="font-bold text-center text-md mb-2 text-hblack-4">
           {pageText}
         </span>
         <div
@@ -67,16 +62,7 @@ const Content: React.FC<Props> = ({ type }) => {
             isMint ? 'flex-col' : 'flex-col-reverse',
           )}
         >
-          <div className="flex flex-col justify-center w-full">
-            <CoinCard
-              coin={foreignStableCoin}
-              input={{
-                value: foreignStableCoinValue,
-                setValue: setForeignStableCoinValue,
-                canInput: isMint,
-              }}
-            />
-            <BsPlusCircle size={30} className="self-center my-2" />
+          <div className="flex flex-col justify-center w-full border border-[#444444] p-2 rounded-lg">
             <CoinCard
               coin="HAS"
               input={{
@@ -84,10 +70,25 @@ const Content: React.FC<Props> = ({ type }) => {
                 setValue: setHASCoinValue,
                 canInput: isMint,
               }}
+              select={{
+                selectFrom: ['HAS'],
+                canSelect: false,
+              }}
+              size="md"
+            />
+            <BsPlusLg size={15} className="self-center my-2 fill-hblack-4" />
+            <CoinCard
+              coin={foreignStableCoin}
+              input={{
+                value: foreignStableCoinValue,
+                setValue: setForeignStableCoinValue,
+                canInput: isMint,
+              }}
+              size="md"
             />
           </div>
           <div className="flex flex-col items-center">
-            <BsArrowDownCircle size={30} className="my-4" />
+            <BsArrowDownCircle size={20} className="my-2 fill-hblack-4" />
           </div>
           <div className="flex flex-col justify-center w-full">
             <CoinCard
@@ -97,10 +98,16 @@ const Content: React.FC<Props> = ({ type }) => {
                 setValue: setNativeStableCoinValue,
                 canInput: !isMint,
               }}
+              size="lg"
+              select={{
+                selectFrom: supportedStableCoins,
+                setCoin: setNativeStableCoin,
+                canSelect: true,
+              }}
             />
           </div>
         </div>
-        <div className="h-2" />
+        <div className="h-6" />
         <div className="w-full flex flex-row justify-center">
           <Button>Connect Wallet</Button>
         </div>

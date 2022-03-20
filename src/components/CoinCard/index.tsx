@@ -1,14 +1,33 @@
-import { Coin, coinToLogo } from '@/constants/coin';
+import { Coin } from '@/constants/coin';
+import clsx from 'clsx';
+import CoinSelect from '../CoinSelect';
 
-const CoinDisplay: React.FC<{ coin: Coin }> = ({ coin }) => {
-  const Logo = coinToLogo[coin];
-  const logoSize = 30;
+const CoinDisplay: React.FC<{
+  coin: Coin;
+  select?: {
+    selectFrom: Coin[];
+    setCoin?: SetState<Coin>;
+    canSelect: boolean;
+  };
+}> = ({ coin, select }) => {
+  const options: Coin[] = select ? select.selectFrom : [coin];
+
   return (
-    <>
-      <Logo width={logoSize} height={logoSize} className="min-w-min" />
-      <div className="w-2" />
-      <span className="text-lg">{coin}</span>
-    </>
+    <div className="flex flex-col">
+      <CoinSelect
+        options={options}
+        value={coin}
+        canSelect={select?.canSelect}
+        setValue={
+          select &&
+          ((val) => {
+            if (select.setCoin) {
+              select.setCoin(val.value);
+            }
+          })
+        }
+      />
+    </div>
   );
 };
 
@@ -21,14 +40,20 @@ const CoinCard: React.FC<{
   };
   select?: {
     selectFrom: Coin[];
-    setCoin: SetState<Coin>;
+    setCoin?: SetState<Coin>;
     canSelect: boolean;
   };
-}> = ({ coin, input: { value, setValue, canInput } }) => {
+  size?: 'md' | 'lg';
+}> = ({ coin, input: { value, setValue, canInput }, size = 'lg', select }) => {
   return (
-    <div className="rounded-lg w-full bg-hblack-1 flex flex-col justify-start px-4 py-3 border border-transparent hover:border-hyellow-1">
+    <div
+      className={clsx(
+        'rounded-lg w-full bg-hblack-1 flex flex-col justify-start px-4 border border-transparent hover:border-hyellow-1',
+        size === 'lg' ? 'py-3' : 'py-1',
+      )}
+    >
       <div className="flex flex-row items-center">
-        <CoinDisplay coin={coin} />
+        <CoinDisplay coin={coin} select={select} />
         <input
           className="ml-4 bg-transparent outline-none text-right w-20 text-lg flex-1"
           value={value}
