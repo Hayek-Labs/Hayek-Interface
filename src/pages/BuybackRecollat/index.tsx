@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Graph from './Graph';
 import SwapCard from './SwapCard';
 
-export const supportedStableCoins: Coin[] = [
+export const supportedNativeStableCoins: Coin[] = [
   'USDH',
   'EURH',
   'JPYH',
@@ -12,8 +12,10 @@ export const supportedStableCoins: Coin[] = [
   'CHFH',
 ];
 
+export const supportedForiegnStableCoins: Coin[] = ['USDC', 'USDT'];
+
 const BuybackRecollat = () => {
-  const [stableCoin, setStableCoin] = useState(supportedStableCoins[0]);
+  const [stableCoin, setStableCoin] = useState(supportedNativeStableCoins[0]);
   const needsCollateral = true;
 
   return (
@@ -23,7 +25,7 @@ const BuybackRecollat = () => {
         <SwapCard
           stableCoin={stableCoin}
           setStableCoin={setStableCoin}
-          stableCoinOptions={supportedStableCoins}
+          stableCoinOptions={supportedNativeStableCoins}
           needsCollateral={needsCollateral}
         />
       </div>

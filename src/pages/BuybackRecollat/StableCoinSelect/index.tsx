@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { Coin } from '@/constants/coin';
-import { supportedStableCoins } from '..';
+import { supportedNativeStableCoins } from '..';
 import StableCoinOption from '../StableCoinOption';
 
 const StableCoinSelect: React.FC<{
@@ -15,7 +15,7 @@ const StableCoinSelect: React.FC<{
   );
 
   const onClickFns: OnClickFn[] = useMemo(() => {
-    return supportedStableCoins.map((coin) => {
+    return supportedNativeStableCoins.map((coin) => {
       return () => {
         onCoinClick(coin);
       };
@@ -24,7 +24,7 @@ const StableCoinSelect: React.FC<{
 
   return (
     <div className="w-full flex flex-row flex-wrap justify-start">
-      {supportedStableCoins.map((coin, i) => (
+      {supportedNativeStableCoins.map((coin, i) => (
         <StableCoinOption
           coin={coin}
           key={coin}

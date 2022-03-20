@@ -4,7 +4,10 @@ import clsx from 'clsx';
 import CoinCard from '../CoinCard';
 import { useState } from 'react';
 import Button from '../Button';
-import { supportedStableCoins } from '@/pages/BuybackRecollat';
+import {
+  supportedForiegnStableCoins,
+  supportedNativeStableCoins,
+} from '@/pages/BuybackRecollat';
 import { ReactComponent as RedeemIcon } from '@/assets/icons/redeem-original.svg';
 import { ReactComponent as MintIcon } from '@/assets/icons/mint-original.svg';
 import styles from './styles.less';
@@ -45,7 +48,7 @@ const Content: React.FC<Props> = ({ type }) => {
   const isMint = type === 'mint';
   const pageText = isMint ? 'MINT' : 'REDEEM';
 
-  const [foreignStableCoin] = useState<Coin>('USDC');
+  const [foreignStableCoin, setForeignStableCoin] = useState<Coin>('USDC');
   const [foreignStableCoinValue, setForeignStableCoinValue] = useState('0');
 
   const [HASCoinValue, setHASCoinValue] = useState('0');
@@ -91,6 +94,11 @@ const Content: React.FC<Props> = ({ type }) => {
                 canInput: isMint,
               }}
               size="md"
+              select={{
+                selectFrom: supportedForiegnStableCoins,
+                setCoin: setForeignStableCoin,
+                canSelect: true,
+              }}
             />
           </div>
           <div className="flex flex-col items-center">
@@ -112,7 +120,7 @@ const Content: React.FC<Props> = ({ type }) => {
               }}
               size="lg"
               select={{
-                selectFrom: supportedStableCoins,
+                selectFrom: supportedNativeStableCoins,
                 setCoin: setNativeStableCoin,
                 canSelect: true,
               }}
