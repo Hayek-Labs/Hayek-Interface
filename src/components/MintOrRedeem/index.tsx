@@ -61,7 +61,7 @@ const Content: React.FC<Props> = ({ type }) => {
 
   return (
     <div className="flex-1 w-full flex flex-col text-center py-2 justify-center items-center">
-      <div className="bg-card w-96 flex flex-col justify-center px-4 pt-2 pb-6 rounded-lg">
+      <div className="bg-card w-96 flex flex-col justify-center px-4 pt-2 pb-6 rounded-lg border border-hblack-3">
         <span className="font-bold text-center text-md mb-2 text-hblack-4">
           {pageText}
         </span>
