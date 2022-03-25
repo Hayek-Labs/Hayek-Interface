@@ -2,16 +2,16 @@ import { useCallback, useMemo } from 'react';
 import { Coin } from '@/constants/coin';
 import { supportedNativeStableCoins } from '..';
 import StableCoinOption from '../StableCoinOption';
+import { useSwapState } from '@/providers/StateProvider';
 
-const StableCoinSelect: React.FC<{
-  stableCoin: Coin;
-  setStableCoin: SetState<Coin>;
-}> = ({ stableCoin, setStableCoin }) => {
+const StableCoinSelect: React.FC = () => {
+  const { nativeStableCoin, setNativeStableCoin } = useSwapState();
+
   const onCoinClick = useCallback(
     (coin: Coin) => {
-      setStableCoin(coin);
+      setNativeStableCoin(coin);
     },
-    [setStableCoin],
+    [setNativeStableCoin],
   );
 
   const onClickFns: OnClickFn[] = useMemo(() => {
@@ -29,7 +29,7 @@ const StableCoinSelect: React.FC<{
           coin={coin}
           key={coin}
           onClick={onClickFns[i]}
-          selected={stableCoin === coin}
+          selected={nativeStableCoin === coin}
         />
       ))}
     </div>

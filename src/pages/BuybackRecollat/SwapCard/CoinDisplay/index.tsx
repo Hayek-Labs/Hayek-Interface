@@ -1,32 +1,56 @@
 import CoinCard from '@/components/CoinCard';
 import { Coin } from '@/constants/coin';
-import { useState, useEffect } from 'react';
+import { useSwapState } from '@/providers/StateProvider';
+import { useEffect } from 'react';
 import { BsArrowDownCircle } from 'react-icons/bs';
 
 const SwapCoinDisplay: React.FC<{
-  stableCoin: Coin;
-  setStableCoin: SetState<Coin>;
   stableCoinOptions: Coin[];
-  needsCollateral: boolean;
-}> = ({ stableCoin, setStableCoin, stableCoinOptions, needsCollateral }) => {
-  const [coinToSell, coinToBuy]: Coin[] = needsCollateral
-    ? [stableCoin, 'HAS'] // recollateralize
-    : ['HAS', stableCoin]; // buyback
+}> = ({ stableCoinOptions }) => {
+  const {
+    nativeStableCoin,
+    setNativeStableCoin,
+    needsCollateral,
+    nativeStableCoinValue,
+    setNativeStableCoinValue,
+    HASCoinValue,
+    setHASCoinValue,
+  } = useSwapState();
 
-  const [coinToSellValue, setCoinToSellValue] = useState('0');
-  const [coinToBuyValue, setCoinToBuyValue] = useState('0');
+  const [coinToSell, coinToBuy]: Coin[] = needsCollateral
+    ? [nativeStableCoin, 'HAS'] // recollateralize
+    : ['HAS', nativeStableCoin]; // buyback
+
+  const [
+    coinToSellValue,
+    setCoinToSellValue,
+    coinToBuyValue,
+    setCoinToBuyValue,
+  ] = needsCollateral
+    ? [
+        nativeStableCoinValue,
+        setNativeStableCoinValue,
+        HASCoinValue,
+        setHASCoinValue,
+      ]
+    : [
+        HASCoinValue,
+        setHASCoinValue,
+        nativeStableCoinValue,
+        setNativeStableCoinValue,
+      ];
 
   useEffect(() => {
     const coinToSellNum = Number(coinToSellValue);
     if (!isNaN(coinToSellNum) && isFinite(coinToSellNum)) {
       setCoinToBuyValue((coinToSellNum * 4.212).toFixed(2));
     }
-  }, [coinToSellValue]);
+  }, [coinToSellValue, setCoinToBuyValue]);
 
   const coinToSellSelect = needsCollateral
     ? {
         selectFrom: stableCoinOptions,
-        setCoin: setStableCoin,
+        setCoin: setNativeStableCoin,
         canSelect: true,
       }
     : undefined;

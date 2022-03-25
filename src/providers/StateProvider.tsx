@@ -1,5 +1,6 @@
 import { AppState, useCreateAppState } from '@/state';
 import { MintRedeemState } from '@/state/mintOrRedeem';
+import { SwapState } from '@/state/swap';
 import React from 'react';
 import { useContext } from 'react';
 
@@ -11,6 +12,10 @@ export const useAppState = (): AppState => {
 
 export const useMintOrRedeemState = (): MintRedeemState => {
   return useAppState().mintRedeem;
+};
+
+export const useSwapState = (): SwapState => {
+  return useAppState().swap;
 };
 
 const StateProvider: React.FC = ({ children }) => {
