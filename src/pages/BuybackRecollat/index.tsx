@@ -1,5 +1,4 @@
 import { Coin } from '@/constants/coin';
-import { useState } from 'react';
 import Graph from './Graph';
 import SwapCard from './SwapCard';
 

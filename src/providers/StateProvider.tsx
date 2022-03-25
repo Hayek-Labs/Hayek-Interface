@@ -1,8 +1,7 @@
+import React, { useContext } from 'react';
 import { AppState, useCreateAppState } from '@/state';
 import { MintRedeemState } from '@/state/mintOrRedeem';
 import { SwapState } from '@/state/swap';
-import React from 'react';
-import { useContext } from 'react';
 
 const StateContext = React.createContext<AppState>(undefined!);
 

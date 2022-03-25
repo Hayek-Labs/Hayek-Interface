@@ -21,24 +21,24 @@ const SwapCoinDisplay: React.FC<{
     ? [nativeStableCoin, 'HAS'] // recollateralize
     : ['HAS', nativeStableCoin]; // buyback
 
+  const nativeStableCoinState: [string, SetState<string>] = [
+    nativeStableCoinValue,
+    setNativeStableCoinValue,
+  ];
+
+  const HASCoinState: [string, SetState<string>] = [
+    HASCoinValue,
+    setHASCoinValue,
+  ];
+
   const [
     coinToSellValue,
     setCoinToSellValue,
     coinToBuyValue,
     setCoinToBuyValue,
   ] = needsCollateral
-    ? [
-        nativeStableCoinValue,
-        setNativeStableCoinValue,
-        HASCoinValue,
-        setHASCoinValue,
-      ]
-    : [
-        HASCoinValue,
-        setHASCoinValue,
-        nativeStableCoinValue,
-        setNativeStableCoinValue,
-      ];
+    ? [...nativeStableCoinState, ...HASCoinState]
+    : [...HASCoinState, ...nativeStableCoinState];
 
   useEffect(() => {
     const coinToSellNum = Number(coinToSellValue);
