@@ -55,7 +55,7 @@ const CoinCard: React.FC<{
       <div className="flex flex-row items-center">
         <CoinDisplay coin={coin} select={select} />
         <input
-          className="ml-4 bg-transparent outline-none text-right w-20 text-lg flex-1"
+          className="ml-1 lg:ml-4 bg-transparent outline-none text-right w-12 lg:w-20 text-lg flex-1"
           value={value}
           type="number"
           onChange={(e) => {
