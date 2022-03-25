@@ -19,9 +19,9 @@ const Card: React.FC<Props> = ({ type }) => {
   const pageText = isMint ? 'MINT' : 'REDEEM';
 
   const ConversionIcon = isMint ? MintIcon : RedeemIcon;
-  const conversionIconSize = 30;
+  const conversionIconSize = 20;
   return (
-    <div className="bg-card w-96 flex flex-col justify-center px-4 pt-2 pb-6 rounded-lg border border-hblack-3">
+    <div className="bg-card w-96 flex flex-col justify-center px-4 pt-2 pb-6 rounded-lg">
       <span className="font-bold text-center text-md mb-2 text-hblack-4">
         {pageText}
       </span>
@@ -31,10 +31,20 @@ const Card: React.FC<Props> = ({ type }) => {
           isMint ? 'flex-col' : 'flex-col-reverse',
         )}
       >
-        <div className="flex flex-col justify-center w-full border border-[#444444] p-2 rounded-lg">
-          <HASCoinCard isMint={isMint} />
-          <BsPlusLg size={15} className="self-center my-2 fill-hblack-4" />
-          <ForeignStableCoinCard isMint={isMint} />
+        <div className="flex flex-col justify-center w-full p-2 rounded-lg">
+          {!isMint ? (
+            <>
+              <HASCoinCard isMint={isMint} />
+              <BsPlusLg size={15} className="self-center my-2 fill-hblack-4" />
+              <ForeignStableCoinCard isMint={isMint} />
+            </>
+          ) : (
+            <>
+              <ForeignStableCoinCard isMint={isMint} />
+              <BsPlusLg size={15} className="self-center my-2 fill-hblack-4" />
+              <HASCoinCard isMint={isMint} />
+            </>
+          )}
         </div>
         <div className="flex flex-col items-center">
           <div className={styles['icon-container']}>

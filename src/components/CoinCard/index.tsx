@@ -48,7 +48,7 @@ const CoinCard: React.FC<{
   return (
     <div
       className={clsx(
-        'rounded-lg w-full bg-hblack-1 flex flex-col justify-start px-4 border border-transparent hover:border-hyellow-1',
+        'rounded-lg w-full bg-hblack-1 flex flex-col justify-start px-4',
         size === 'lg' ? 'py-3' : 'py-1',
       )}
     >
