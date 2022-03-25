@@ -1,6 +1,11 @@
 import { Coin, coinToLogo } from '@/constants/coin';
-import ReactSelect, { components, SingleValueProps } from 'react-select';
+import ReactSelect, {
+  components,
+  DropdownIndicatorProps,
+  SingleValueProps,
+} from 'react-select';
 import styles from './styles.less';
+import { ReactComponent as Dropdown } from '@/assets/icons/dropdown.svg';
 
 const SingleValue = ({
   children,
@@ -15,6 +20,16 @@ const SingleValue = ({
         {children}
       </div>
     </components.SingleValue>
+  );
+};
+
+const DropdownIndicator = ({
+  ...props
+}: DropdownIndicatorProps<CoinOption, false>) => {
+  return (
+    <components.DropdownIndicator {...props} isMulti={false}>
+      <Dropdown className="w-4 h-4 stroke-hblack-4" />
+    </components.DropdownIndicator>
   );
 };
 
@@ -52,7 +67,7 @@ const CoinSelect: React.FC<Props> = ({
         components={{
           SingleValue,
           IndicatorSeparator: () => null,
-          ...(canSelect ? {} : { DropdownIndicator: () => null }),
+          DropdownIndicator: canSelect ? DropdownIndicator : () => null,
         }}
         onChange={(newValue) => {
           if (newValue && setValue) {

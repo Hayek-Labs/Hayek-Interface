@@ -8,14 +8,15 @@
     // indicator
     .custom-select__indicator {
       padding-left: 4px;
-      &:hover {
-        color: hsl(0, 0%, 60%);
-      }
     }
 
     .custom-select__control--is-focused {
       .custom-select__indicator {
         color: hsl(0, 0%, 60%);
+
+        path {
+          stroke: hsl(0, 0%, 60%);
+        }
       }
     }
 
@@ -30,6 +31,16 @@
       transition: all ease-in-out 200ms;
       &:hover {
         background-color: #353535;
+      }
+
+      &:hover {
+        path {
+          stroke: hsl(0, 0%, 60%);
+        }
+        color: hsl(0, 0%, 60%);
+      }
+      path {
+        transition: stroke linear 200ms;
       }
     }
 
