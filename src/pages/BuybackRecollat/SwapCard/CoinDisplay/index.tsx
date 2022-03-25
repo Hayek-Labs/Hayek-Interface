@@ -2,7 +2,7 @@ import CoinCard from '@/components/CoinCard';
 import { Coin } from '@/constants/coin';
 import { useSwapState } from '@/providers/StateProvider';
 import { useEffect } from 'react';
-import { BsArrowDownCircle } from 'react-icons/bs';
+import { MdArrowDownward } from 'react-icons/md';
 
 const SwapCoinDisplay: React.FC<{
   stableCoinOptions: Coin[];
@@ -73,7 +73,7 @@ const SwapCoinDisplay: React.FC<{
         }}
         select={coinToSellSelect}
       />
-      <BsArrowDownCircle size={30} className="my-4" />
+      <MdArrowDownward size={30} className="my-4" />
       <CoinCard
         coin={coinToBuy}
         input={{
