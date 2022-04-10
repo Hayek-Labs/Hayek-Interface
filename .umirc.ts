@@ -5,6 +5,9 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
+  history: {
+    type: 'hash',
+  },
   tailwindcss: {
     tailwindCssFilePath: '@/tailwind.css',
     tailwindConfigFilePath: 'tailwind.config.js',
