@@ -16,6 +16,8 @@ import {
 import { BsStack } from 'react-icons/bs';
 
 import { ReactComponent as LogoSVG } from '@/assets/logo.svg';
+import { ReactComponent as MintSVG } from '@/assets/icons/mint_sidebar.svg';
+import { ReactComponent as RedeemSVG } from '@/assets/icons/redeem_sidebar.svg';
 
 import Icon from '../Home/Icon';
 import MenuItem from './MenuItem';
@@ -31,12 +33,12 @@ const sidebarItems = [
   },
   {
     title: 'Mint',
-    icon: <GiMineTruck size={svgSize} />,
+    icon: <MintSVG width={svgSize} height={svgSize} />,
     route: '/mint',
   },
   {
     title: 'Redeem',
-    icon: <GiTakeMyMoney size={svgSize} />,
+    icon: <RedeemSVG width={svgSize} height={svgSize} />,
     route: '/redeem',
   },
   {
