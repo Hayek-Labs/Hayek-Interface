@@ -2,6 +2,7 @@ import { Coin, coinToLogo } from '@/constants/coin';
 import ReactSelect, {
   components,
   DropdownIndicatorProps,
+  OptionProps,
   SingleValueProps,
 } from 'react-select';
 import styles from './styles.less';
@@ -20,6 +21,19 @@ const SingleValue = ({
         {children}
       </div>
     </components.SingleValue>
+  );
+};
+
+const Option = ({ children, ...props }: OptionProps<CoinOption, false>) => {
+  const Logo = coinToLogo[props.data.value];
+  const size = 30;
+  return (
+    <components.Option {...props} isMulti={false}>
+      <div className="flex flex-row items-center">
+        <Logo width={size} height={size} className="mr-2" />
+        {children}
+      </div>
+    </components.Option>
   );
 };
 
@@ -66,6 +80,7 @@ const CoinSelect: React.FC<Props> = ({
         getOptionLabel={({ value }) => value}
         components={{
           SingleValue,
+          Option,
           IndicatorSeparator: () => null,
           DropdownIndicator: canSelect ? DropdownIndicator : () => null,
         }}
