@@ -8,13 +8,13 @@ const MainLayout: React.FC = ({ children }) => {
   return (
     <Providers>
       <SidebarContext.Provider value={{ sidebarVisible, setSidebarVisible }}>
-        <div className="flex flex-row">
+        <div className="flex flex-col sm:flex-row">
           <Sidebar />
-          <div className="flex w-full">
+          <div className="flex w-full overflow-auto">
             <div className="w-full h-screen hidden sm:block sm:w-20 xl:w-60 flex-shrink-0">
               .
             </div>
-            <div className="h-screen flex-grow overflow-x-hidden overflow-auto flex flex-wrap content-start p-2">
+            <div className="h-max sm:h-screen flex-grow overflow-x-hidden overflow-auto flex flex-wrap content-start p-2">
               {children}
             </div>
           </div>
