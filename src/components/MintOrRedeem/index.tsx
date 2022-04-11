@@ -70,7 +70,7 @@ const Card: React.FC<Props> = ({ type }) => {
 const MintOrRedeem: React.FC<Props> = ({ type }) => {
   return (
     <div className="flex flex-col w-full h-full text-white">
-      <div className="flex-1 w-full flex flex-col text-center py-4 sm:py-2 justify-center items-center">
+      <div className="flex-1 w-full flex flex-col text-center p-4 sm:p-2 justify-center items-center">
         <Card type={type} />
       </div>
     </div>
