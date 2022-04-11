@@ -8,22 +8,22 @@ const SwapCoinDisplay: React.FC<{
   stableCoinOptions: Coin[];
 }> = ({ stableCoinOptions }) => {
   const {
-    nativeStableCoin,
-    setNativeStableCoin,
+    collateralCoin,
+    setCollateralCoin,
     needsCollateral,
-    nativeStableCoinValue,
-    setNativeStableCoinValue,
+    collateralCoinValue,
+    setCollateralCoinValue,
     HASCoinValue,
     setHASCoinValue,
   } = useSwapState();
 
   const [coinToSell, coinToBuy]: Coin[] = needsCollateral
-    ? [nativeStableCoin, 'HAS'] // recollateralize
-    : ['HAS', nativeStableCoin]; // buyback
+    ? [collateralCoin, 'HAS'] // recollateralize
+    : ['HAS', collateralCoin]; // buyback
 
-  const nativeStableCoinState: [string, SetState<string>] = [
-    nativeStableCoinValue,
-    setNativeStableCoinValue,
+  const collateralStableCoinState: [string, SetState<string>] = [
+    collateralCoinValue,
+    setCollateralCoinValue,
   ];
 
   const HASCoinState: [string, SetState<string>] = [
@@ -37,8 +37,8 @@ const SwapCoinDisplay: React.FC<{
     coinToBuyValue,
     setCoinToBuyValue,
   ] = needsCollateral
-    ? [...nativeStableCoinState, ...HASCoinState]
-    : [...HASCoinState, ...nativeStableCoinState];
+    ? [...collateralStableCoinState, ...HASCoinState]
+    : [...HASCoinState, ...collateralStableCoinState];
 
   useEffect(() => {
     const coinToSellNum = Number(coinToSellValue);
@@ -50,7 +50,7 @@ const SwapCoinDisplay: React.FC<{
   const coinToSellSelect = needsCollateral
     ? {
         selectFrom: stableCoinOptions,
-        setCoin: setNativeStableCoin,
+        setCoin: setCollateralCoin,
         canSelect: true,
       }
     : undefined;

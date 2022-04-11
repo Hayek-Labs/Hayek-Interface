@@ -11,14 +11,16 @@ export const supportedNativeStableCoins: Coin[] = [
   'CHFH',
 ];
 
+export const supportedCollateralCoins: Coin[] = ['USDT', 'USDC'];
+
 export const supportedForiegnStableCoins: Coin[] = ['USDC', 'USDT'];
 
 const BuybackRecollat = () => {
   return (
     <div className="w-full h-full flex items-center justify-center">
       <div className="w-full flex flex-col sm:flex-row items-center justify-center h-96">
-        <Graph />
-        <SwapCard stableCoinOptions={supportedNativeStableCoins} />
+        <Graph stableCoinOptions={supportedCollateralCoins} />
+        <SwapCard stableCoinOptions={supportedCollateralCoins} />
       </div>
     </div>
   );

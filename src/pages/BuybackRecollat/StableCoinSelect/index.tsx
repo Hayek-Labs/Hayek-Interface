@@ -1,35 +1,37 @@
 import { useCallback, useMemo } from 'react';
 import { Coin } from '@/constants/coin';
-import { supportedNativeStableCoins } from '..';
 import StableCoinOption from '../StableCoinOption';
 import { useSwapState } from '@/providers/StateProvider';
 
-const StableCoinSelect: React.FC = () => {
-  const { nativeStableCoin, setNativeStableCoin } = useSwapState();
+interface Props {
+  options: Coin[];
+}
+const StableCoinSelect: React.FC<Props> = ({ options }) => {
+  const { collateralCoin, setCollateralCoin } = useSwapState();
 
   const onCoinClick = useCallback(
     (coin: Coin) => {
-      setNativeStableCoin(coin);
+      setCollateralCoin(coin);
     },
-    [setNativeStableCoin],
+    [setCollateralCoin],
   );
 
   const onClickFns: OnClickFn[] = useMemo(() => {
-    return supportedNativeStableCoins.map((coin) => {
+    return options.map((coin) => {
       return () => {
         onCoinClick(coin);
       };
     });
-  }, [onCoinClick]);
+  }, [onCoinClick, options]);
 
   return (
     <div className="w-full flex flex-row flex-wrap justify-start">
-      {supportedNativeStableCoins.map((coin, i) => (
+      {options.map((coin, i) => (
         <StableCoinOption
           coin={coin}
           key={coin}
           onClick={onClickFns[i]}
-          selected={nativeStableCoin === coin}
+          selected={collateralCoin === coin}
         />
       ))}
     </div>

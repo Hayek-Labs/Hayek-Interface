@@ -6,18 +6,18 @@ export const useCreateSwapState = (): SwapState => {
 
   const [HASCoinValue, setHASCoinValue] = useState('0');
 
-  const [nativeStableCoin, setNativeStableCoin] = useState<Coin>('USDH');
-  const [nativeStableCoinValue, setNativeStableCoinValue] = useState('0');
+  const [collateralCoin, setCollateralCoin] = useState<Coin>('USDT');
+  const [collateralCoinValue, setCollateralCoinValue] = useState('0');
 
   return {
     needsCollateral,
     setNeedsCollateral,
     HASCoinValue,
     setHASCoinValue,
-    nativeStableCoin,
-    setNativeStableCoin,
-    nativeStableCoinValue,
-    setNativeStableCoinValue,
+    collateralCoin,
+    setCollateralCoin,
+    collateralCoinValue,
+    setCollateralCoinValue,
   };
 };
 
@@ -26,8 +26,8 @@ export interface SwapState {
   setNeedsCollateral: SetState<boolean>;
   HASCoinValue: string;
   setHASCoinValue: SetState<string>;
-  nativeStableCoin: Coin;
-  setNativeStableCoin: SetState<Coin>;
-  nativeStableCoinValue: string;
-  setNativeStableCoinValue: SetState<string>;
+  collateralCoin: Coin;
+  setCollateralCoin: SetState<Coin>;
+  collateralCoinValue: string;
+  setCollateralCoinValue: SetState<string>;
 }
