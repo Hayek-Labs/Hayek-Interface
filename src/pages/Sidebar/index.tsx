@@ -25,25 +25,41 @@ import ChainDisplay from './ChainDisplay';
 import { useWeb3Hooks } from '@/providers/web3HooksProvider';
 
 const svgSize = 25;
+const smallerSvgSize = 22;
 const sidebarItems = [
   {
     title: 'Dashboard',
-    icon: <MdDashboard size={svgSize} />,
+
+    icon: <MdDashboard viewBox="0 0 24 24" size={svgSize} />,
     route: '/',
   },
   {
     title: 'Mint',
-    icon: <MintSVG width={svgSize} height={svgSize} />,
+    icon: (
+      <MintSVG
+        className="ml-[2px]"
+        fill="currentColor"
+        width={smallerSvgSize}
+        height={smallerSvgSize}
+      />
+    ),
     route: '/mint',
   },
   {
     title: 'Redeem',
-    icon: <RedeemSVG width={svgSize} height={svgSize} />,
+    icon: (
+      <RedeemSVG
+        className="ml-[2px]"
+        fill="currentColor"
+        width={smallerSvgSize}
+        height={smallerSvgSize}
+      />
+    ),
     route: '/redeem',
   },
   {
     title: 'Swap',
-    icon: <RiExchangeBoxLine size={svgSize} />,
+    icon: <RiExchangeBoxLine viewBox="0 0 24 24" size={svgSize} />,
     route: '/swap',
   },
   // {
