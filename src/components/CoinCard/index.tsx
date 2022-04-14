@@ -1,4 +1,5 @@
 import { Coin } from '@/constants/coin';
+import BigNumber from 'bignumber.js';
 import clsx from 'clsx';
 import CoinSelect from '../CoinSelect';
 
@@ -34,8 +35,9 @@ const CoinDisplay: React.FC<{
 const CoinCard: React.FC<{
   coin: Coin;
   input: {
-    value: string;
-    setValue: SetState<string>;
+    value: BigNumber;
+    setValue: SetState<BigNumber>;
+    onChange?: (value: BigNumber) => void;
     canInput: boolean;
   };
   select?: {
@@ -44,7 +46,12 @@ const CoinCard: React.FC<{
     canSelect: boolean;
   };
   size?: 'md' | 'lg';
-}> = ({ coin, input: { value, setValue, canInput }, size = 'lg', select }) => {
+}> = ({
+  coin,
+  input: { value, setValue, onChange, canInput },
+  size = 'lg',
+  select,
+}) => {
   return (
     <div
       className={clsx(
@@ -56,10 +63,12 @@ const CoinCard: React.FC<{
         <CoinDisplay coin={coin} select={select} />
         <input
           className="ml-1 lg:ml-4 bg-transparent outline-none text-right w-12 lg:w-20 text-lg flex-1"
-          value={value}
+          value={value.toString()}
           type="number"
           onChange={(e) => {
-            setValue(e.target.value);
+            const number = new BigNumber(e.target.value);
+            onChange && onChange(number);
+            setValue(number);
           }}
           disabled={!canInput}
         />

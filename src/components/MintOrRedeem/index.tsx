@@ -9,6 +9,189 @@ import {
   ForeignStableCoinCard,
   NativeStableCoinCard,
 } from './CoinDisplay';
+import { useMintOrRedeemState } from '@/providers/StateProvider';
+import { useEffect, useState } from 'react';
+import BigNumber from 'bignumber.js';
+
+const mappingFromHas = (
+  hasValue: BigNumber,
+  hasPrice: BigNumber,
+  nativePrice: BigNumber,
+  foreignPrice: BigNumber,
+  collateralRatio: BigNumber,
+) => {
+  const hasValueFiat = hasValue.times(hasPrice);
+
+  const nativeValueFiat = hasValueFiat.div(
+    new BigNumber(1.0).minus(collateralRatio),
+  );
+  const native = nativeValueFiat.div(nativePrice);
+
+  const foreignValueFiat = nativeValueFiat.times(collateralRatio);
+  const foreign = foreignValueFiat.div(foreignPrice);
+
+  return {
+    foreign,
+    native,
+    has: hasValue,
+  };
+};
+
+const mappingFromNative = (
+  nativeValue: BigNumber,
+  nativePrice: BigNumber,
+  foreignPrice: BigNumber,
+  hasPrice: BigNumber,
+  collateralRatio: BigNumber,
+) => {
+  const nativeValueFiat = nativeValue.times(nativePrice);
+
+  const foreignValueFiat = nativeValueFiat.times(collateralRatio);
+  const foreign = foreignValueFiat.div(foreignPrice);
+
+  const has = nativeValueFiat
+    .times(new BigNumber(1.0).minus(collateralRatio))
+    .div(hasPrice);
+
+  return {
+    foreign,
+    has,
+    native: nativeValue,
+  };
+};
+
+const mappingFromForeign = (
+  foreignValue: BigNumber,
+  foreignPrice: BigNumber,
+  nativePrice: BigNumber,
+  hasPrice: BigNumber,
+  collateralRatio: BigNumber,
+) => {
+  const foreignValueFiat = foreignValue.times(foreignPrice);
+
+  const nativeValueFiat = foreignValueFiat.div(collateralRatio);
+  const native = nativeValueFiat.div(nativePrice);
+
+  const has = nativeValueFiat
+    .times(new BigNumber(1.0).minus(collateralRatio))
+    .div(hasPrice);
+
+  return {
+    native,
+    has,
+    foreign: foreignValue,
+  };
+};
+
+// const getMapping = (
+//   independentCoin: 'has' | 'native' | 'foreign',
+//   independentCoinValue: string,
+// ) => {
+//   if (independentCoin === 'has') {
+//     return mappingFromHas(independentCoinValue);
+//   } else if (independentCoin === 'native') {
+//     return mappingFromNative(independentCoinValue);
+//   } else if (independentCoin === 'foreign') {
+//     return mappingFromForeign(independentCoinValue);
+//   } else {
+//     throw new Error('unreachable');
+//   }
+// };
+
+const useCoinValueMapping = (isMint: boolean) => {
+  const {
+    independentCoin,
+    setIndependentCoin,
+    foreignStableCoin,
+    nativeStableCoin,
+    HASCoinValue,
+    foreignStableCoinValue,
+    nativeStableCoinValue,
+    setHASCoinValue,
+    setForeignStableCoinValue,
+    setNativeStableCoinValue,
+  } = useMintOrRedeemState();
+
+  useEffect(() => {
+    setIndependentCoin(isMint ? 'foreign' : 'native');
+  }, [isMint, setIndependentCoin]);
+
+  const [nativePrice] = useState(new BigNumber('1.01'));
+  const [foreignPrice] = useState(new BigNumber('0.99'));
+  const [hasPrice] = useState(new BigNumber('1.5'));
+  const [collateralRatio] = useState(new BigNumber(0.8));
+
+  useEffect(() => {
+    if (independentCoin === 'has') {
+      const mapping = mappingFromHas(
+        HASCoinValue,
+        hasPrice,
+        nativePrice,
+        foreignPrice,
+        collateralRatio,
+      );
+      setForeignStableCoinValue(mapping.foreign);
+      setNativeStableCoinValue(mapping.native);
+    }
+  }, [
+    HASCoinValue,
+    hasPrice,
+    independentCoin,
+    setForeignStableCoinValue,
+    setNativeStableCoinValue,
+    collateralRatio,
+    nativePrice,
+    foreignPrice,
+  ]);
+
+  useEffect(() => {
+    if (independentCoin === 'native') {
+      const mapping = mappingFromNative(
+        nativeStableCoinValue,
+        nativePrice,
+        foreignPrice,
+        hasPrice,
+        collateralRatio,
+      );
+      setForeignStableCoinValue(mapping.foreign);
+      setHASCoinValue(mapping.has);
+    }
+  }, [
+    independentCoin,
+    nativePrice,
+    nativeStableCoinValue,
+    setForeignStableCoinValue,
+    setHASCoinValue,
+    collateralRatio,
+    foreignPrice,
+    hasPrice,
+  ]);
+
+  useEffect(() => {
+    if (independentCoin === 'foreign') {
+      const mapping = mappingFromForeign(
+        foreignStableCoinValue,
+        foreignPrice,
+        nativePrice,
+        hasPrice,
+        collateralRatio,
+      );
+      setNativeStableCoinValue(mapping.native);
+      setHASCoinValue(mapping.has);
+    }
+  }, [
+    foreignPrice,
+    foreignStableCoinValue,
+    independentCoin,
+    setHASCoinValue,
+    setNativeStableCoinValue,
+    collateralRatio,
+    nativePrice,
+    hasPrice,
+  ]);
+
+  return null;
+};
 
 interface Props {
   type: 'mint' | 'redeem';
@@ -17,6 +200,8 @@ interface Props {
 const Card: React.FC<Props> = ({ type }) => {
   const isMint = type === 'mint';
   const pageText = isMint ? 'MINT' : 'REDEEM';
+
+  useCoinValueMapping(isMint);
 
   const ConversionIcon = isMint ? MintIcon : RedeemIcon;
   const conversionIconSize = 20;

@@ -7,15 +7,19 @@ import CoinCard from '../CoinCard';
 
 export const HASCoinCard: React.FC<{
   isMint: boolean;
-}> = ({ isMint }) => {
-  const { HASCoinValue, setHASCoinValue } = useMintOrRedeemState();
+}> = () => {
+  const { HASCoinValue, setHASCoinValue, setIndependentCoin } =
+    useMintOrRedeemState();
   return (
     <CoinCard
       coin="HAS"
       input={{
         value: HASCoinValue,
         setValue: setHASCoinValue,
-        canInput: isMint,
+        onChange: () => {
+          setIndependentCoin('has');
+        },
+        canInput: true,
       }}
       select={{
         selectFrom: ['HAS'],
@@ -28,12 +32,13 @@ export const HASCoinCard: React.FC<{
 
 export const ForeignStableCoinCard: React.FC<{
   isMint: boolean;
-}> = ({ isMint }) => {
+}> = () => {
   const {
     foreignStableCoin,
     setForeignStableCoin,
     foreignStableCoinValue,
     setForeignStableCoinValue,
+    setIndependentCoin,
   } = useMintOrRedeemState();
 
   return (
@@ -42,7 +47,10 @@ export const ForeignStableCoinCard: React.FC<{
       input={{
         value: foreignStableCoinValue,
         setValue: setForeignStableCoinValue,
-        canInput: isMint,
+        onChange: () => {
+          setIndependentCoin('foreign');
+        },
+        canInput: true,
       }}
       size="md"
       select={{
@@ -56,12 +64,13 @@ export const ForeignStableCoinCard: React.FC<{
 
 export const NativeStableCoinCard: React.FC<{
   isMint: boolean;
-}> = ({ isMint }) => {
+}> = () => {
   const {
     nativeStableCoin,
     setNativeStableCoin,
     nativeStableCoinValue,
     setNativeStableCoinValue,
+    setIndependentCoin,
   } = useMintOrRedeemState();
 
   return (
@@ -70,7 +79,10 @@ export const NativeStableCoinCard: React.FC<{
       input={{
         value: nativeStableCoinValue,
         setValue: setNativeStableCoinValue,
-        canInput: !isMint,
+        onChange: () => {
+          setIndependentCoin('native');
+        },
+        canInput: true,
       }}
       size="lg"
       select={{
