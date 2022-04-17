@@ -11,9 +11,9 @@ export enum Chain {
 // numerical values of the enum variants, and the second n
 // are the string names of the variants. To get the supported
 // chains, we just take the first n elements
-export const supportedChains = Object.keys(Chain).filter(
-  (_, index, arr) => index < arr.length / 2,
-);
+export const supportedChains = Object.keys(Chain)
+  .filter((_, index, arr) => index < arr.length / 2)
+  .map((chainStr) => Number.parseInt(chainStr));
 
 export const chainToLogo: Record<Chain | number, SVGComponent> = {
   [Chain.BSC]: BSCLogo,
