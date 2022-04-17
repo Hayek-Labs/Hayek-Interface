@@ -87,7 +87,7 @@ const ChainSelect: React.FC<Props> = ({
         isMulti={false}
         isDisabled={!canSelect}
         getOptionLabel={({ value }) =>
-          value ? chainToInfo[value].name : 'Connect'
+          value ? chainToInfo[value].name : 'Connect Wallet'
         }
         components={{
           SingleValue,

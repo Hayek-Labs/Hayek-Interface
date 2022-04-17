@@ -4,8 +4,9 @@ import { useWeb3Connector, useWeb3Hooks } from '@/providers/web3HooksProvider';
 import { useEffect, useCallback } from 'react';
 
 const ChainDisplay = () => {
-  const { useChainId } = useWeb3Hooks();
+  const { useChainId, useIsActivating } = useWeb3Hooks();
   const connector = useWeb3Connector();
+  const isActivating = useIsActivating();
 
   useEffect(() => {
     void connector.connectEagerly();
@@ -13,9 +14,11 @@ const ChainDisplay = () => {
 
   const connect = useCallback(
     (chainId?: Chain) => {
-      connector.activate(chainId);
+      if (!isActivating) {
+        connector.activate(chainId);
+      }
     },
-    [connector],
+    [connector, isActivating],
   );
 
   const disconnect = useCallback(() => {
@@ -42,23 +45,6 @@ const ChainDisplay = () => {
             }
           }}
         />
-        {/* {ChainIcon && <ChainIcon width={30} />}
-        <div className="block sm:hidden xl:block ml-3 text-white">
-          {account ? (
-            chainInfo !== undefined && ChainIcon !== undefined ? (
-              <span>{chainInfo && chainInfo.name}</span>
-            ) : (
-              <span>Chain Unsupported</span>
-            )
-          ) : (
-            <span>Connect</span>
-          )}
-        </div>
-        <div className="block sm:hidden xl:block flex-grow" />
-        <Icon
-          path="res-react-dash-sidebar-card-select"
-          className="block sm:hidden xl:block w-5 h-5"
-        /> */}
       </div>
     </div>
   );
