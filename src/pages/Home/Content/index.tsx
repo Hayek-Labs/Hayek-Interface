@@ -8,6 +8,7 @@ import TopCoins from '../TopCoins';
 import TVGraph from '../TVGraph';
 import CRGraph from '../CRGraph';
 import CoinGraph from '../CoinGraph';
+import Satisfication from '../Satisfaction';
 
 const coinData: {
   id: number;
@@ -109,6 +110,12 @@ const Content: React.FC = () => {
         <div className="w-full p-2">
           <div className="rounded-lg bg-card h-80">
             <TopCoins />
+          </div>
+        </div>
+
+        <div className="w-full p-2">
+          <div className="rounded-lg bg-card h-80">
+            <Satisfication />
           </div>
         </div>
 
