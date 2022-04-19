@@ -7,7 +7,7 @@ export const useCreateMintOrRedeemState = (): MintRedeemState => {
     'has' | 'native' | 'foreign'
   >('native');
 
-  const [foreignStableCoin, setForeignStableCoin] = useState<Coin>('USDC');
+  const [foreignStableCoin, setForeignStableCoin] = useState<Coin>('USDT');
   const [foreignStableCoinValue, setForeignStableCoinValue] = useState(
     new BigNumber('0'),
   );

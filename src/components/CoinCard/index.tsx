@@ -46,11 +46,13 @@ const CoinCard: React.FC<{
     canSelect: boolean;
   };
   size?: 'md' | 'lg';
+  balance: BigNumber | undefined;
 }> = ({
   coin,
   input: { value, setValue, onChange, canInput },
   size = 'lg',
   select,
+  balance,
 }) => {
   return (
     <div
@@ -76,7 +78,9 @@ const CoinCard: React.FC<{
       <div className="h-1" />
       <div className="flex flex-row items-center text-hblack-4">
         <span>Balance</span>
-        <span className="ml-auto">$0.00</span>
+        <span className="ml-auto">
+          {balance ? balance.toFixed(2) : 'Fetching...'}
+        </span>
       </div>
     </div>
   );
