@@ -1,13 +1,13 @@
 import { Coin, coinToLogo } from '@/constants/coin';
 import { useSidebarContext } from '@/pages/Sidebar';
 import AddComponent from '../AddComponent';
-import Graph from '../Graph';
 import Icon from '../Icon';
 import IconButton from '../IconButton';
 import CoinCard from '../CoinCard';
-import Satisfication from '../Satisfaction';
-import Segmentation from '../Segmentation';
 import TopCoins from '../TopCoins';
+import TVGraph from '../TVGraph';
+import CRGraph from '../CRGraph';
+import CoinGraph from '../CoinGraph';
 
 const coinData: {
   id: number;
@@ -45,16 +45,6 @@ const SidebarShowButton = () => {
         setSidebarVisible((prev) => !prev);
       }}
     />
-  );
-};
-
-const CoinGraph: React.FC<{ coin: Coin }> = ({ coin }) => {
-  return (
-    <div className="w-full p-2">
-      <div className="rounded-lg bg-card sm:h-80 h-60">
-        <Graph coin={coin} />
-      </div>
-    </div>
   );
 };
 
@@ -122,16 +112,10 @@ const Content: React.FC = () => {
           </div>
         </div>
 
-        <div className="w-full p-2">
-          <div className="rounded-lg bg-card h-80">
-            <Segmentation />
-          </div>
-        </div>
-        <div className="w-full p-2">
-          <div className="rounded-lg bg-card h-80">
-            <Satisfication />
-          </div>
-        </div>
+        <CRGraph />
+
+        <TVGraph />
+
         <div className="w-full p-2">
           <div className="rounded-lg bg-card overflow-hidden h-80">
             <AddComponent />
