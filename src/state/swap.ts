@@ -1,13 +1,17 @@
-import { Coin } from '@/constants/coin';
+import BigNumber from 'bignumber.js';
 import { useState } from 'react';
 
+type CollateralCoin = 'USDT' | 'USDC';
+
 export const useCreateSwapState = (): SwapState => {
-  const [needsCollateral, setNeedsCollateral] = useState(true);
+  const [needsCollateral, setNeedsCollateral] = useState(false);
 
-  const [HASCoinValue, setHASCoinValue] = useState('0');
+  const [HASCoinValue, setHASCoinValue] = useState(new BigNumber(0));
 
-  const [collateralCoin, setCollateralCoin] = useState<Coin>('USDT');
-  const [collateralCoinValue, setCollateralCoinValue] = useState('0');
+  const [collateralCoin, setCollateralCoin] = useState<CollateralCoin>('USDT');
+  const [collateralCoinValue, setCollateralCoinValue] = useState(
+    new BigNumber(0),
+  );
 
   return {
     needsCollateral,
@@ -24,10 +28,10 @@ export const useCreateSwapState = (): SwapState => {
 export interface SwapState {
   needsCollateral: boolean;
   setNeedsCollateral: SetState<boolean>;
-  HASCoinValue: string;
-  setHASCoinValue: SetState<string>;
-  collateralCoin: Coin;
-  setCollateralCoin: SetState<Coin>;
-  collateralCoinValue: string;
-  setCollateralCoinValue: SetState<string>;
+  HASCoinValue: BigNumber;
+  setHASCoinValue: SetState<BigNumber>;
+  collateralCoin: CollateralCoin;
+  setCollateralCoin: SetState<CollateralCoin>;
+  collateralCoinValue: BigNumber;
+  setCollateralCoinValue: SetState<BigNumber>;
 }

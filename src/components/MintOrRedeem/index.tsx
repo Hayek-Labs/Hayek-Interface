@@ -12,6 +12,8 @@ import {
 import { useMintOrRedeemState } from '@/providers/StateProvider';
 import { useEffect, useState } from 'react';
 import BigNumber from 'bignumber.js';
+import { useWeb3React } from '@web3-react/core';
+import { useWeb3Connector } from '@/providers/web3HooksProvider';
 
 const mappingFromHas = (
   hasValue: BigNumber,
@@ -205,6 +207,10 @@ const Card: React.FC<Props> = ({ type }) => {
 
   const ConversionIcon = isMint ? MintIcon : RedeemIcon;
   const conversionIconSize = 20;
+
+  const { account } = useWeb3React();
+  const connector = useWeb3Connector();
+
   return (
     <div className="bg-card w-96 flex flex-col justify-center px-4 pt-2 pb-6 rounded-lg">
       <span className="font-bold text-center text-md mb-2 text-hblack-4">
@@ -246,7 +252,11 @@ const Card: React.FC<Props> = ({ type }) => {
       </div>
       <div className="h-6" />
       <div className="w-full flex flex-row justify-center">
-        <Button>Connect Wallet</Button>
+        {account ? (
+          <Button>{isMint ? 'Mint' : 'Redeem'}</Button>
+        ) : (
+          <Button onClick={() => connector.activate()}>Connect Wallet</Button>
+        )}
       </div>
     </div>
   );

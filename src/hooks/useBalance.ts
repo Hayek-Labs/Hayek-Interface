@@ -1,8 +1,11 @@
 import { Chain } from '@/constants/chains';
-import { chainCoinToAddress, Coin } from '@/constants/coin';
+import {
+  chainCoinToAddress,
+  chainToCoinInterface,
+  Coin,
+} from '@/constants/coin';
 import { useWeb3Hooks } from '@/providers/web3HooksProvider';
 import { useCallback, useEffect, useState } from 'react';
-import IBEP20 from '../abi/ibep20.json';
 import BigNumber from 'bignumber.js';
 import { utils } from 'ethers';
 import { useContract } from './useContract';
@@ -13,7 +16,7 @@ const useBalance = (coin: Coin) => {
   const account = useAccount();
 
   const contractAddress = chainId && chainCoinToAddress[chainId][coin];
-  const coinAbi = chainId === Chain.BSC ? IBEP20 : undefined;
+  const coinAbi = chainId && chainToCoinInterface[chainId];
   const contract = useContract(contractAddress, coinAbi as any);
   const [balance, setBalance] = useState<BigNumber>();
   const [decimals, setDecimals] = useState<BigNumber>();

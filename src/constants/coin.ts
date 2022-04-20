@@ -10,6 +10,8 @@ import { ReactComponent as JPYHLogo } from '@/assets/logos/coins/JPYH-01.svg';
 import { ReactComponent as EURHLogo } from '@/assets/logos/coins/EURH-01.svg';
 import { ReactComponent as CHFHLogo } from '@/assets/logos/coins/CHFH-01.svg';
 import { Chain } from './chains';
+import IBEP20 from '../abi/ibep20.json';
+import UChildERC20 from '../abi/UChildERC20.json';
 
 const coins = [
   'USDT',
@@ -58,6 +60,11 @@ export const coinToCoinGeckoId: Record<Coin, string | undefined> = {
   JPYH: undefined,
   EURH: undefined,
   CHFH: undefined,
+};
+
+export const chainToCoinInterface: Record<Chain, any> = {
+  [Chain.BSC]: IBEP20,
+  [Chain.Polygon]: UChildERC20,
 };
 
 export const chainCoinToAddress: Record<
