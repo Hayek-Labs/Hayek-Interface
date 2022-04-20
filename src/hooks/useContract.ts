@@ -22,7 +22,7 @@ export function useContract<Contract = any>(
 
   const signerOrProvider = useMemo(() => {
     if (provider && 'getSigner' in provider) {
-      return provider.getSigner() as any;
+      return provider.getSigner();
     } else {
       return provider;
     }
@@ -33,7 +33,10 @@ export function useContract<Contract = any>(
   }
 
   const contract = useMemo(
-    () => address && getContract<Contract>(address, abi, signerOrProvider),
+    () =>
+      address &&
+      signerOrProvider &&
+      getContract<Contract>(address, abi, signerOrProvider),
     [address, abi, signerOrProvider],
   );
 

@@ -1,8 +1,10 @@
+import { useBalance } from '@/hooks/useBalance';
 import {
   supportedForiegnStableCoins,
   supportedNativeStableCoins,
 } from '@/pages/BuybackRecollat';
 import { useMintOrRedeemState } from '@/providers/StateProvider';
+import BigNumber from 'bignumber.js';
 import CoinCard from '../CoinCard';
 
 export const HASCoinCard: React.FC<{
@@ -10,6 +12,10 @@ export const HASCoinCard: React.FC<{
 }> = () => {
   const { HASCoinValue, setHASCoinValue, setIndependentCoin } =
     useMintOrRedeemState();
+
+  // const balance = useBalance('HAS');
+  const balance = new BigNumber(0);
+
   return (
     <CoinCard
       coin="HAS"
@@ -26,6 +32,7 @@ export const HASCoinCard: React.FC<{
         canSelect: false,
       }}
       size="md"
+      balance={balance}
     />
   );
 };
@@ -40,6 +47,9 @@ export const ForeignStableCoinCard: React.FC<{
     setForeignStableCoinValue,
     setIndependentCoin,
   } = useMintOrRedeemState();
+
+  const balance = useBalance(foreignStableCoin);
+  // const balance = new BigNumber(0);
 
   return (
     <CoinCard
@@ -58,6 +68,7 @@ export const ForeignStableCoinCard: React.FC<{
         setCoin: setForeignStableCoin,
         canSelect: true,
       }}
+      balance={balance}
     />
   );
 };
@@ -72,6 +83,9 @@ export const NativeStableCoinCard: React.FC<{
     setNativeStableCoinValue,
     setIndependentCoin,
   } = useMintOrRedeemState();
+
+  // const balance = useBalance(nativeStableCoin);
+  const balance = new BigNumber(0);
 
   return (
     <CoinCard
@@ -90,6 +104,7 @@ export const NativeStableCoinCard: React.FC<{
         setCoin: setNativeStableCoin,
         canSelect: true,
       }}
+      balance={balance}
     />
   );
 };
