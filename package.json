@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "start": "concurrently \"npx tailwindcss -i ./src/tailwind-input.css -o ./src/tailwind.css --watch\" \"umi dev\"",
+    "start": "concurrently --kill-others \"npx tailwindcss -i ./src/tailwind-input.css -o ./src/tailwind.css --watch\" \"umi dev\"",
     "build": "npx tailwindcss -i ./src/tailwind-input.css -o ./src/tailwind.css && umi build",
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
@@ -36,6 +36,7 @@
     "react-spring": "^9.4.3",
     "recharts": "^2.1.9",
     "three": "^0.137.5",
+    "tw-elements": "^1.0.0-alpha12",
     "umi": "^3.5.20",
     "web3": "^1.7.1"
   },
