@@ -33,19 +33,17 @@ const ChainDisplay = () => {
 
   return (
     <div className="w-full p-3 h-18 sm:h-16 xl:h-20 hidden sm:block flex-shrink-0">
-      <div className="bg-sidebar-card-top rounded-xl w-full h-full flex items-center justify-start sm:justify-center xl:justify-start px-3 sm:px-0 xl:px-3 hover:cursor-pointer">
-        <ChainSelect
-          options={selectOptions}
-          value={chainId}
-          setValue={(newChainId) => {
-            if (newChainId.value === undefined || newChainId.value === null) {
-              disconnect();
-            } else {
-              connect(newChainId.value);
-            }
-          }}
-        />
-      </div>
+      <ChainSelect
+        options={selectOptions}
+        value={chainId}
+        setValue={(newChainId) => {
+          if (newChainId.value === undefined || newChainId.value === null) {
+            disconnect();
+          } else {
+            connect(newChainId.value);
+          }
+        }}
+      />
     </div>
   );
 };

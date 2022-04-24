@@ -163,7 +163,7 @@ const Sidebar = () => {
   return (
     <div
       className={clsx(
-        'sm:fixed inset-y-0 left-0 bg-card w-full sm:w-20 xl:w-60 sm:flex flex-col z-10',
+        'sm:fixed inset-y-0 left-0 bg-card w-full sm:w-24 xl:w-60 sm:flex flex-col z-10',
         sidebarVisible ? 'flex' : 'hidden',
       )}
     >

@@ -5,7 +5,8 @@ import ReactSelect, {
   OptionProps,
   SingleValueProps,
 } from 'react-select';
-import styles from '../CoinSelect/styles.less';
+import selectStyles from '../CoinSelect/styles.less';
+import specialStyles from './styles.less';
 import { ReactComponent as Dropdown } from '@/assets/icons/dropdown.svg';
 import { VscDebugDisconnect } from 'react-icons/vsc';
 import clsx from 'clsx';
@@ -93,10 +94,16 @@ const ChainSelect: React.FC<Props> = ({
   canSelect = true,
 }) => {
   return (
-    <div className={clsx(styles['select-wrapper'], 'w-full')}>
+    <div
+      className={clsx(
+        selectStyles['select-wrapper'],
+        specialStyles['select-wrapper'],
+        'bg-hblack-3 rounded-xl py-2 w-full h-full flex items-center justify-start sm:justify-center xl:justify-start px-3 sm:px-0 xl:px-3 hover:cursor-pointer',
+      )}
+    >
       <ReactSelect
         options={options.map((chain) => chainToObject(chain))}
-        className="text-black"
+        className="text-black w-full"
         classNamePrefix="custom-select"
         defaultValue={chainToObject(value)}
         value={chainToObject(value)}

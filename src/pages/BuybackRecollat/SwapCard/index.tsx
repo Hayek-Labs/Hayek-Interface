@@ -6,7 +6,10 @@ const SwapCard: React.FC<{
   stableCoinOptions: Coin[];
 }> = ({ stableCoinOptions }) => {
   return (
-    <div className="bg-card rounded-2xl w-96 sm:w-64 md:w-72 lg:w-80 sm:h-full flex flex-col pt-4 py-12 px-4 text-white text-center">
+    <div className="bg-card w-96 flex flex-col justify-center px-4 pt-2 pb-6 rounded-lg text-white text-center">
+      <span className="font-bold text-center text-md mb-2 text-hblack-4">
+        SWAP
+      </span>
       <SwapCoinDisplay stableCoinOptions={stableCoinOptions} />
       <SubmitButtons />
     </div>
