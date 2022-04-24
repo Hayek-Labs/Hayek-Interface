@@ -1,4 +1,5 @@
 import { hooks as metamaskHooks, metaMask } from '@/connectors/metamask';
+import { supportedChains } from '@/constants/chains';
 import { Web3ReactHooks } from '@web3-react/core';
 import { MetaMask } from '@web3-react/metamask';
 import React, { useMemo, useState, useContext } from 'react';
@@ -20,7 +21,20 @@ export const useWeb3Context = () => {
 };
 
 export const useWeb3Hooks = () => {
-  return useContext(Web3Context).hooks;
+  const hooks = useContext(Web3Context).hooks;
+  const useChainId = hooks.useChainId;
+  const newHooks = Object.assign(hooks, {
+    useChainId: () => {
+      const actualChainId = useChainId();
+      if (actualChainId === undefined) {
+        return undefined;
+      } else if (supportedChains.includes(actualChainId)) {
+        return actualChainId;
+      }
+      return null;
+    },
+  });
+  return newHooks;
 };
 
 export const useWeb3Connector = () => {

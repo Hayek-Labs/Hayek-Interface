@@ -7,6 +7,7 @@ import ReactSelect, {
 } from 'react-select';
 import styles from '../CoinSelect/styles.less';
 import { ReactComponent as Dropdown } from '@/assets/icons/dropdown.svg';
+import { VscDebugDisconnect } from 'react-icons/vsc';
 import clsx from 'clsx';
 
 const SingleValue = ({
@@ -19,7 +20,12 @@ const SingleValue = ({
     <components.SingleValue {...props} isMulti={false}>
       <div className="flex flex-row items-center">
         {Logo && <Logo width={size} height={size} />}
-        <span className="hidden lg:inline ml-2">{children}</span>
+        <span className="hidden xl:inline ml-2 text-md">{children}</span>
+        {!props.data.value && (
+          <div className="block xl:hidden">
+            <VscDebugDisconnect size={size} />
+          </div>
+        )}
       </div>
     </components.SingleValue>
   );
@@ -31,14 +37,24 @@ const Option = ({ children, ...props }: OptionProps<ChainOption, false>) => {
   return (
     <components.Option {...props} isMulti={false}>
       <div className="flex flex-row items-center">
-        {Logo && <Logo width={size} height={size} />}
-        <div className="hidden lg:block ml-2" />
+        {Logo && (
+          <>
+            <Logo width={size} height={size} />
+            <div className="hidden xl:block ml-2" />
+          </>
+        )}
         {props.data.value === undefined ? (
-          <div className="min-h-[30px] flex flex-row items-center">
-            <span className="text-ellipsis w-full">Disconnect</span>
-          </div>
+          <>
+            <VscDebugDisconnect size={size} />
+            <div className="hidden xl:block ml-2" />
+            <div className="min-h-[30px] flex flex-row items-center">
+              <span className="text-ellipsis w-full hidden xl:inline">
+                Disconnect
+              </span>
+            </div>
+          </>
         ) : (
-          <span className="hidden lg:inline">{children}</span>
+          <span className="hidden xl:inline">{children}</span>
         )}
       </div>
     </components.Option>

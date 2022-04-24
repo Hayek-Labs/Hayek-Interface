@@ -1,4 +1,5 @@
 import { Coin } from '@/constants/coin';
+import { useWeb3React } from '@web3-react/core';
 import BigNumber from 'bignumber.js';
 import clsx from 'clsx';
 import CoinSelect from '../CoinSelect';
@@ -54,6 +55,8 @@ const CoinCard: React.FC<{
   select,
   balance,
 }) => {
+  const { isActive, account } = useWeb3React();
+  const balanceIsVisible = isActive && !!account;
   return (
     <div
       className={clsx(
@@ -76,7 +79,12 @@ const CoinCard: React.FC<{
         />
       </div>
       <div className="h-1" />
-      <div className="flex flex-row items-center text-hblack-4">
+      <div
+        className={clsx(
+          'flex flex-row items-center text-hblack-4',
+          balanceIsVisible ? '' : 'opacity-0',
+        )}
+      >
         <span>Balance</span>
         <span className="ml-auto">
           {balance ? balance.toFixed(2) : 'Fetching...'}

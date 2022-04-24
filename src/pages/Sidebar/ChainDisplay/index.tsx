@@ -38,7 +38,7 @@ const ChainDisplay = () => {
           options={selectOptions}
           value={chainId}
           setValue={(newChainId) => {
-            if (newChainId.value === undefined) {
+            if (newChainId.value === undefined || newChainId.value === null) {
               disconnect();
             } else {
               connect(newChainId.value);
