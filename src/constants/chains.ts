@@ -1,7 +1,9 @@
+import { ReactComponent as ETHLogo } from '@/assets/logos/chains/ethereum-eth-logo.svg';
 import { ReactComponent as BSCLogo } from '@/assets/logos/chains/bnb-bnb-logo.svg';
 import { ReactComponent as PolygonLogo } from '@/assets/logos/chains/polygon-matic-logo.svg';
 
 export enum Chain {
+  Ethereum = 1,
   BSC = 56,
   Polygon = 137,
 }
@@ -16,11 +18,13 @@ export const supportedChains = Object.keys(Chain)
   .map((chainStr) => Number.parseInt(chainStr));
 
 export const chainToLogo: Record<Chain | number, SVGComponent> = {
+  [Chain.Ethereum]: ETHLogo,
   [Chain.BSC]: BSCLogo,
   [Chain.Polygon]: PolygonLogo,
 };
 
 export const chainToInfo: Record<Chain | number, { name: string }> = {
+  [Chain.Ethereum]: { name: 'Ethereum' },
   [Chain.BSC]: { name: 'BSC' },
   [Chain.Polygon]: { name: 'Polygon' },
 };
