@@ -22,7 +22,7 @@ const useBalance = (coin: Coin) => {
   const [decimals, setDecimals] = useState<BigNumber>();
 
   const getBalance = useCallback(() => {
-    if (contract === undefined || account === undefined) {
+    if (!contract || !account) {
       return;
     }
 
@@ -32,7 +32,7 @@ const useBalance = (coin: Coin) => {
   }, [account, contract]);
 
   const getDecimals = useCallback(() => {
-    if (contract === undefined) {
+    if (!contract) {
       return;
     }
     contract.decimals().then((newDecimals: any) => {
