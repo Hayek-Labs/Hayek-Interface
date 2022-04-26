@@ -1,8 +1,8 @@
-import { useBalance } from '@/hooks/useBalance';
 import {
   supportedForiegnStableCoins,
   supportedNativeStableCoins,
-} from '@/pages/BuybackRecollat';
+} from '@/constants/coin';
+import { useBalance } from '@/hooks/useBalance';
 import { useMintOrRedeemState } from '@/providers/StateProvider';
 import BigNumber from 'bignumber.js';
 import CoinCard from '../CoinCard';

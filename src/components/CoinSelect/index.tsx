@@ -52,7 +52,7 @@ export interface CoinOption {
 }
 
 interface Props {
-  options: Coin[];
+  options: readonly Coin[];
   value: Coin;
   setValue?: (val: CoinOption) => void;
   canSelect?: boolean;

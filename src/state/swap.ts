@@ -1,19 +1,29 @@
+import { ForeignStableCoin, NativeStableCoin } from '@/constants/coin';
 import BigNumber from 'bignumber.js';
 import { useState } from 'react';
 
-type CollateralCoin = 'USDT' | 'USDC';
+export type SwapMode = 'recollat' | 'decollat' | 'cross';
 
 export const useCreateSwapState = (): SwapState => {
   const [needsCollateral, setNeedsCollateral] = useState(false);
+  const [mode, setMode] = useState<SwapMode>(
+    needsCollateral ? 'recollat' : 'decollat',
+  );
 
   const [HASCoinValue, setHASCoinValue] = useState(new BigNumber(0));
 
-  const [collateralCoin, setCollateralCoin] = useState<CollateralCoin>('USDT');
+  const [collateralCoin, setCollateralCoin] =
+    useState<ForeignStableCoin>('USDT');
   const [collateralCoinValue, setCollateralCoinValue] = useState(
     new BigNumber(0),
   );
 
+  const [nativeStableCoinPool, setNativeStableCoinPool] =
+    useState<NativeStableCoin>('USDH');
+
   return {
+    mode,
+    setMode,
     needsCollateral,
     setNeedsCollateral,
     HASCoinValue,
@@ -22,16 +32,22 @@ export const useCreateSwapState = (): SwapState => {
     setCollateralCoin,
     collateralCoinValue,
     setCollateralCoinValue,
+    nativeStableCoinPool,
+    setNativeStableCoinPool,
   };
 };
 
 export interface SwapState {
+  mode: SwapMode;
+  setMode: SetState<SwapMode>;
   needsCollateral: boolean;
   setNeedsCollateral: SetState<boolean>;
   HASCoinValue: BigNumber;
   setHASCoinValue: SetState<BigNumber>;
-  collateralCoin: CollateralCoin;
-  setCollateralCoin: SetState<CollateralCoin>;
+  collateralCoin: ForeignStableCoin;
+  setCollateralCoin: SetState<ForeignStableCoin>;
   collateralCoinValue: BigNumber;
   setCollateralCoinValue: SetState<BigNumber>;
+  nativeStableCoinPool: NativeStableCoin;
+  setNativeStableCoinPool: SetState<NativeStableCoin>;
 }

@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 import { MdArrowDownward } from 'react-icons/md';
 
 const SwapCoinDisplay: React.FC<{
-  stableCoinOptions: Coin[];
+  stableCoinOptions: readonly Coin[];
 }> = ({ stableCoinOptions }) => {
   const {
     collateralCoin,

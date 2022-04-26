@@ -7,12 +7,12 @@ import CoinSelect from '../CoinSelect';
 const CoinDisplay: React.FC<{
   coin: Coin;
   select?: {
-    selectFrom: Coin[];
+    selectFrom: readonly Coin[];
     setCoin?: SetState<Coin>;
     canSelect: boolean;
   };
 }> = ({ coin, select }) => {
-  const options: Coin[] = select ? select.selectFrom : [coin];
+  const options: readonly Coin[] = select ? select.selectFrom : [coin];
 
   return (
     <div className="flex flex-col">
@@ -42,7 +42,7 @@ const CoinCard: React.FC<{
     canInput: boolean;
   };
   select?: {
-    selectFrom: Coin[];
+    selectFrom: readonly Coin[];
     setCoin?: SetState<Coin>;
     canSelect: boolean;
   };
