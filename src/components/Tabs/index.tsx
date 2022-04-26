@@ -2,28 +2,42 @@ import clsx from 'clsx';
 
 interface LabelProps {
   label: JSX.Element | string;
+  className?: string;
   selected: boolean;
+  selectedClass?: string;
   disabled: boolean;
+  disabledClass?: string;
   tab: number;
-  setCurrentTab: SetState<number>;
+  onChange: (val: number) => void;
 }
 const Label: React.FC<LabelProps> = ({
   label,
   tab,
+  className,
   selected,
+  selectedClass,
   disabled,
-  setCurrentTab,
+  disabledClass,
+  onChange,
 }) => {
   return (
     <div
       className={clsx(
-        'border-x border-t border-x-transparent border-t-transparent rounded-t-lg px-2 py-1 select-none',
+        clsx(
+          'border-x border-t border-x-transparent border-t-transparent rounded-t-lg px-2 py-1 select-none',
+          className,
+        ),
         selected && !disabled
-          ? 'border-x-hyellow-1 border-t-hyellow-1 text-hyellow-1 '
+          ? clsx(
+              'border-x-hyellow-1 border-t-hyellow-1 text-hyellow-1',
+              selectedClass,
+            )
           : '',
-        disabled ? 'text-hblack-3 cursor-not-allowed' : 'cursor-pointer',
+        disabled
+          ? clsx('text-hblack-3 cursor-not-allowed', disabledClass)
+          : 'cursor-pointer',
       )}
-      onClick={!disabled ? () => setCurrentTab(tab) : undefined}
+      onClick={!disabled ? () => onChange(tab) : undefined}
     >
       {label}
     </div>
@@ -38,13 +52,20 @@ interface TabsProps {
   }[];
   className?: string;
   currentTab: number;
-  setCurrentTab: SetState<number>;
+  onChange: (val: number) => void;
+
+  labelClassName?: string;
+  labelSelectedClassName?: string;
+  labelDisabledClassName?: string;
 }
 const Tabs: React.FC<TabsProps> = ({
   tabs,
   className,
   currentTab,
-  setCurrentTab,
+  onChange,
+  labelClassName,
+  labelSelectedClassName,
+  labelDisabledClassName,
 }) => {
   const [labels, comps, disabled] = tabs.reduce<
     [(JSX.Element | string)[], (JSX.Element | null)[], (boolean | undefined)[]]
@@ -72,7 +93,10 @@ const Tabs: React.FC<TabsProps> = ({
               disabled={thisIsDisabled === undefined ? false : thisIsDisabled}
               key={i}
               tab={i}
-              setCurrentTab={setCurrentTab}
+              onChange={onChange}
+              className={labelClassName}
+              selectedClass={labelSelectedClassName}
+              disabledClass={labelDisabledClassName}
             />
           );
         })}
