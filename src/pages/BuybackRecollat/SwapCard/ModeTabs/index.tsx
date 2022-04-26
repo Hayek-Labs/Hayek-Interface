@@ -11,6 +11,12 @@ const modeToTab: Record<SwapMode, number> = {
   cross: 2,
 };
 
+const modeTabToMode: Record<number, SwapMode> = {
+  0: 'recollat',
+  1: 'decollat',
+  2: 'cross',
+};
+
 const nativeStableCoinToTab: Record<NativeStableCoin, number> = {
   USDH: 0,
   EURH: 1,
@@ -18,6 +24,15 @@ const nativeStableCoinToTab: Record<NativeStableCoin, number> = {
   GBPH: 3,
   AUDH: 4,
   CHFH: 5,
+};
+
+const nativeStableCoinTabToCoin: Record<number, NativeStableCoin> = {
+  0: 'USDH',
+  1: 'EURH',
+  2: 'JPYH',
+  3: 'GBPH',
+  4: 'AUDH',
+  5: 'CHFH',
 };
 
 const nativeStableCoinTabs = [
@@ -48,15 +63,29 @@ const nativeStableCoinTabs = [
 ];
 
 const ModeTabs: React.FC = () => {
-  const { mode, nativeStableCoinPool, needsCollateral } = useSwapState();
+  const {
+    mode,
+    setMode,
+    nativeStableCoin,
+    setNativeStableCoin,
+    needsCollateral,
+  } = useSwapState();
 
   const [currentTabMode, setCurrentTabMode] = useState<number>(modeToTab[mode]);
   const [currentTabNativeStableCoin, setCurrentTabNativeStableCoin] =
-    useState<number>(nativeStableCoinToTab[nativeStableCoinPool]);
+    useState<number>(nativeStableCoinToTab[nativeStableCoin]);
+
+  //   useEffect(() => {
+  //     setCurrentTabMode(modeToTab[mode]);
+  //   }, [mode]);
 
   useEffect(() => {
-    setCurrentTabMode(modeToTab[mode]);
-  }, [mode]);
+    setMode(modeTabToMode[currentTabMode]);
+  }, [currentTabMode, setMode]);
+
+  useEffect(() => {
+    setNativeStableCoin(nativeStableCoinTabToCoin[currentTabNativeStableCoin]);
+  }, [currentTabNativeStableCoin, setNativeStableCoin]);
 
   const modeTabs = [
     {

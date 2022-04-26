@@ -18,12 +18,25 @@ export const useCreateSwapState = (): SwapState => {
     new BigNumber(0),
   );
 
-  const [nativeStableCoinPool, setNativeStableCoinPool] =
+  const [nativeStableCoin, setNativeStableCoin] =
     useState<NativeStableCoin>('USDH');
+  const [nativeStableCoinValue, setNativeStableCoinValue] = useState(
+    new BigNumber(0),
+  );
+
+  const [independentCoin, setIndependentCoin] = useState<'buy' | 'sell'>(
+    'sell',
+  );
+
+  const [crossSellHAS, setCrossSellHAS] = useState(false);
 
   return {
     mode,
     setMode,
+    independentCoin,
+    setIndependentCoin,
+    crossSellHAS,
+    setCrossSellHAS,
     needsCollateral,
     setNeedsCollateral,
     HASCoinValue,
@@ -32,22 +45,36 @@ export const useCreateSwapState = (): SwapState => {
     setCollateralCoin,
     collateralCoinValue,
     setCollateralCoinValue,
-    nativeStableCoinPool,
-    setNativeStableCoinPool,
+    nativeStableCoin,
+    setNativeStableCoin,
+    nativeStableCoinValue,
+    setNativeStableCoinValue,
   };
 };
 
 export interface SwapState {
   mode: SwapMode;
   setMode: SetState<SwapMode>;
+
+  independentCoin: 'buy' | 'sell';
+  setIndependentCoin: SetState<'buy' | 'sell'>;
+
+  crossSellHAS: boolean;
+  setCrossSellHAS: SetState<boolean>;
+
   needsCollateral: boolean;
   setNeedsCollateral: SetState<boolean>;
+
   HASCoinValue: BigNumber;
   setHASCoinValue: SetState<BigNumber>;
+
   collateralCoin: ForeignStableCoin;
   setCollateralCoin: SetState<ForeignStableCoin>;
   collateralCoinValue: BigNumber;
   setCollateralCoinValue: SetState<BigNumber>;
-  nativeStableCoinPool: NativeStableCoin;
-  setNativeStableCoinPool: SetState<NativeStableCoin>;
+
+  nativeStableCoin: NativeStableCoin;
+  setNativeStableCoin: SetState<NativeStableCoin>;
+  nativeStableCoinValue: BigNumber;
+  setNativeStableCoinValue: SetState<BigNumber>;
 }
