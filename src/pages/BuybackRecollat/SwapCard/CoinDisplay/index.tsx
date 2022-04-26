@@ -48,6 +48,8 @@ const SwapCoinDisplay: React.FC<{
     setCollateralCoin,
 
     nativeStableCoin,
+
+    needsCollateral,
   } = useSwapState();
 
   const [coinToSell, coinToBuy]: Coin[] =
@@ -110,7 +112,7 @@ const SwapCoinDisplay: React.FC<{
 
   useEffect(() => {
     setSellCoinPerBuyCoin((prev) => new BigNumber(1).div(prev));
-  }, [crossSellHAS]);
+  }, [crossSellHAS, needsCollateral]);
 
   useMapCoinPrice(
     independentCoin,

@@ -69,19 +69,12 @@ const ModeTabs: React.FC = () => {
     nativeStableCoin,
     setNativeStableCoin,
     needsCollateral,
+    // setNeedsCollateral,
   } = useSwapState();
 
-  const [currentTabMode, setCurrentTabMode] = useState<number>(modeToTab[mode]);
-  const [currentTabNativeStableCoin, setCurrentTabNativeStableCoin] =
-    useState<number>(nativeStableCoinToTab[nativeStableCoin]);
-
-  useEffect(() => {
-    setMode(modeTabToMode[currentTabMode]);
-  }, [currentTabMode, setMode]);
-
-  useEffect(() => {
-    setNativeStableCoin(nativeStableCoinTabToCoin[currentTabNativeStableCoin]);
-  }, [currentTabNativeStableCoin, setNativeStableCoin]);
+  // useEffect(() => {
+  //   setNeedsCollateral(Math.random() > 0.5);
+  // }, [setNeedsCollateral, nativeStableCoin]);
 
   const modeTabs = [
     {
@@ -100,18 +93,26 @@ const ModeTabs: React.FC = () => {
     },
   ];
 
+  useEffect(() => {
+    if (needsCollateral && mode === 'decollat') {
+      setMode('recollat');
+    } else if (!needsCollateral && mode === 'recollat') {
+      setMode('decollat');
+    }
+  }, [mode, needsCollateral, setMode]);
+
   return (
     <>
       <Tabs
         tabs={modeTabs}
-        currentTab={currentTabMode}
-        setCurrentTab={setCurrentTabMode}
+        currentTab={modeToTab[mode]}
+        onChange={(val) => setMode(modeTabToMode[val])}
       />
       <div className="text-center text-hblack-4">Select Stablecoin Pool</div>
       <Tabs
         tabs={nativeStableCoinTabs}
-        currentTab={currentTabNativeStableCoin}
-        setCurrentTab={setCurrentTabNativeStableCoin}
+        currentTab={nativeStableCoinToTab[nativeStableCoin]}
+        onChange={(val) => setNativeStableCoin(nativeStableCoinTabToCoin[val])}
       />
     </>
   );
