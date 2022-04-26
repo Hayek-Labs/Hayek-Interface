@@ -2,8 +2,7 @@ import Tabs from '@/components/Tabs';
 import { NativeStableCoin } from '@/constants/coin';
 import { useSwapState } from '@/providers/StateProvider';
 import { SwapMode } from '@/state/swap';
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useCallback, useEffect } from 'react';
 
 const modeToTab: Record<SwapMode, number> = {
   recollat: 0,
@@ -101,18 +100,27 @@ const ModeTabs: React.FC = () => {
     }
   }, [mode, needsCollateral, setMode]);
 
+  const modeTabsOnChange = useCallback(
+    (val) => setMode(modeTabToMode[val]),
+    [setMode],
+  );
+  const nativeStableCoinTabsOnChange = useCallback(
+    (val) => setNativeStableCoin(nativeStableCoinTabToCoin[val]),
+    [setNativeStableCoin],
+  );
+
   return (
     <>
       <Tabs
         tabs={modeTabs}
         currentTab={modeToTab[mode]}
-        onChange={(val) => setMode(modeTabToMode[val])}
+        onChange={modeTabsOnChange}
       />
       <div className="text-center text-hblack-4">Select Stablecoin Pool</div>
       <Tabs
         tabs={nativeStableCoinTabs}
         currentTab={nativeStableCoinToTab[nativeStableCoin]}
-        onChange={(val) => setNativeStableCoin(nativeStableCoinTabToCoin[val])}
+        onChange={nativeStableCoinTabsOnChange}
       />
     </>
   );
