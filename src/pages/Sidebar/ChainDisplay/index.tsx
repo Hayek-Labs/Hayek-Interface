@@ -9,7 +9,7 @@ const ChainDisplay = () => {
   const isActivating = useIsActivating();
 
   useEffect(() => {
-    void connector.connectEagerly();
+    connector.connectEagerly();
   }, [connector]);
 
   const connect = useCallback(
@@ -26,6 +26,12 @@ const ChainDisplay = () => {
   }, [connector]);
 
   const chainId = useChainId();
+
+  useEffect(() => {
+    if (chainId !== undefined && chainId !== null) {
+      connector.activate();
+    }
+  }, [chainId, connector]);
 
   const selectOptions = chainId
     ? [undefined, ...supportedChains]
