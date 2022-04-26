@@ -1,5 +1,5 @@
 import Tabs from '@/components/Tabs';
-import { NativeStableCoin } from '@/constants/coin';
+import { Coin, coinToLogo, NativeStableCoin } from '@/constants/coin';
 import { useSwapState } from '@/providers/StateProvider';
 import { SwapMode } from '@/state/swap';
 import { useCallback, useEffect } from 'react';
@@ -34,29 +34,39 @@ const nativeStableCoinTabToCoin: Record<number, NativeStableCoin> = {
   5: 'CHFH',
 };
 
+const CoinTab: React.FC<{ coin: Coin }> = ({ coin }) => {
+  const Logo = coinToLogo[coin];
+  return (
+    <div className="flex flex-row items-center">
+      <Logo width={20} height={20} className="mr-1" />
+      {coin}
+    </div>
+  );
+};
+
 const nativeStableCoinTabs = [
   {
-    label: 'USDH',
+    label: <CoinTab coin="USDH" />,
     render: null,
   },
   {
-    label: 'EURH',
+    label: <CoinTab coin="EURH" />,
     render: null,
   },
   {
-    label: 'JPYH',
+    label: <CoinTab coin="JPYH" />,
     render: null,
   },
   {
-    label: 'GBPH',
+    label: <CoinTab coin="GBPH" />,
     render: null,
   },
   {
-    label: 'AUDH',
+    label: <CoinTab coin="AUDH" />,
     render: null,
   },
   {
-    label: 'CHFH',
+    label: <CoinTab coin="CHFH" />,
     render: null,
   },
 ];
@@ -121,6 +131,8 @@ const ModeTabs: React.FC = () => {
         tabs={nativeStableCoinTabs}
         currentTab={nativeStableCoinToTab[nativeStableCoin]}
         onChange={nativeStableCoinTabsOnChange}
+        labelClassName="rounded-b-lg border-b border-transparent"
+        labelSelectedClassName="border-b-hyellow-1"
       />
     </>
   );
