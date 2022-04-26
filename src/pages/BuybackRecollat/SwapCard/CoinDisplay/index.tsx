@@ -1,11 +1,36 @@
 import CoinCard from '@/components/CoinCard';
 import { Coin } from '@/constants/coin';
-import { useBalance } from '@/hooks/useBalance';
 import { useSwapState } from '@/providers/StateProvider';
-import BigNumber from 'bignumber.js';
 import { useEffect, useState } from 'react';
 import { MdArrowDownward } from 'react-icons/md';
 import { CgArrowsExchangeAltV } from 'react-icons/cg';
+import {
+  useCollateralStableCoinState,
+  useHASCoinState,
+  useNativeStableCoinState,
+} from '@/state/swap';
+import BigNumber from 'bignumber.js';
+
+const useMapCoinPrice = (
+  independentCoin: 'buy' | 'sell',
+  sellCoinPerBuyCoin: BigNumber,
+  coinToSellValue: BigNumber,
+  setCoinToSellValue: SetState<BigNumber>,
+  coinToBuyValue: BigNumber,
+  setCoinToBuyValue: SetState<BigNumber>,
+) => {
+  useEffect(() => {
+    if (independentCoin === 'buy') {
+      setCoinToSellValue(coinToBuyValue.times(sellCoinPerBuyCoin));
+    }
+  }, [coinToBuyValue, independentCoin, sellCoinPerBuyCoin, setCoinToSellValue]);
+
+  useEffect(() => {
+    if (independentCoin === 'sell') {
+      setCoinToBuyValue(coinToSellValue.div(sellCoinPerBuyCoin));
+    }
+  }, [coinToSellValue, independentCoin, sellCoinPerBuyCoin, setCoinToBuyValue]);
+};
 
 const SwapCoinDisplay: React.FC<{
   stableCoinOptions: readonly Coin[];
@@ -22,16 +47,7 @@ const SwapCoinDisplay: React.FC<{
     collateralCoin,
     setCollateralCoin,
 
-    collateralCoinValue,
-    setCollateralCoinValue,
-
     nativeStableCoin,
-    nativeStableCoinValue,
-
-    setNativeStableCoinValue,
-
-    HASCoinValue,
-    setHASCoinValue,
   } = useSwapState();
 
   const [coinToSell, coinToBuy]: Coin[] =
@@ -43,28 +59,9 @@ const SwapCoinDisplay: React.FC<{
       ? ['HAS', nativeStableCoin]
       : [nativeStableCoin, 'HAS'];
 
-  const collateralBalance = useBalance(collateralCoin);
-  const HASBalance = new BigNumber(0);
-  const nativeStableCoinBalance = new BigNumber(0);
-
-  const collateralStableCoinState: [
-    BigNumber,
-    SetState<BigNumber>,
-    BigNumber | undefined,
-  ] = [collateralCoinValue, setCollateralCoinValue, collateralBalance];
-
-  const nativeStableCoinState: [
-    BigNumber,
-    SetState<BigNumber>,
-    BigNumber | undefined,
-  ] = [
-    nativeStableCoinValue,
-    setNativeStableCoinValue,
-    nativeStableCoinBalance,
-  ];
-
-  const HASCoinState: [BigNumber, SetState<BigNumber>, BigNumber | undefined] =
-    [HASCoinValue, setHASCoinValue, HASBalance];
+  const collateralStableCoinState = useCollateralStableCoinState();
+  const nativeStableCoinState = useNativeStableCoinState();
+  const HASCoinState = useHASCoinState();
 
   const [
     coinToSellValue,
@@ -107,23 +104,22 @@ const SwapCoinDisplay: React.FC<{
       ? [HASSelect, nativeSelect]
       : [nativeSelect, HASSelect];
 
-  const [sellCoinPerBuyCoin, setSellCoinPerBuyCoin] = useState(2);
+  const [sellCoinPerBuyCoin, setSellCoinPerBuyCoin] = useState(
+    new BigNumber(2),
+  );
 
   useEffect(() => {
-    setSellCoinPerBuyCoin((prev) => 1 / prev);
+    setSellCoinPerBuyCoin((prev) => new BigNumber(1).div(prev));
   }, [crossSellHAS]);
 
-  useEffect(() => {
-    if (independentCoin === 'buy') {
-      setCoinToSellValue(coinToBuyValue.times(sellCoinPerBuyCoin));
-    }
-  }, [coinToBuyValue, independentCoin, sellCoinPerBuyCoin, setCoinToSellValue]);
-
-  useEffect(() => {
-    if (independentCoin === 'sell') {
-      setCoinToBuyValue(coinToSellValue.div(sellCoinPerBuyCoin));
-    }
-  }, [coinToSellValue, independentCoin, sellCoinPerBuyCoin, setCoinToBuyValue]);
+  useMapCoinPrice(
+    independentCoin,
+    sellCoinPerBuyCoin,
+    coinToSellValue,
+    setCoinToSellValue,
+    coinToBuyValue,
+    setCoinToBuyValue,
+  );
 
   return (
     <div className="w-full flex-1 flex flex-col justify-center items-center">

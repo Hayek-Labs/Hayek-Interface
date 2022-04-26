@@ -75,10 +75,6 @@ const ModeTabs: React.FC = () => {
   const [currentTabNativeStableCoin, setCurrentTabNativeStableCoin] =
     useState<number>(nativeStableCoinToTab[nativeStableCoin]);
 
-  //   useEffect(() => {
-  //     setCurrentTabMode(modeToTab[mode]);
-  //   }, [mode]);
-
   useEffect(() => {
     setMode(modeTabToMode[currentTabMode]);
   }, [currentTabMode, setMode]);
