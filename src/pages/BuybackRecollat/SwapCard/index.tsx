@@ -1,4 +1,6 @@
-import { Coin } from '@/constants/coin';
+import { Coin, NativeStableCoin } from '@/constants/coin';
+import { useSwapState } from '@/providers/StateProvider';
+import { useMemo } from 'react';
 import SwapCoinDisplay from './CoinDisplay';
 import ModeTabs from './ModeTabs';
 import SubmitButtons from './SubmitButtons';
@@ -6,14 +8,54 @@ import SubmitButtons from './SubmitButtons';
 const SwapCard: React.FC<{
   stableCoinOptions: readonly Coin[];
 }> = ({ stableCoinOptions }) => {
+  const rebalanceData: Record<
+    NativeStableCoin,
+    'surplus' | 'deficit' | 'balanced'
+  > = useMemo(
+    () => ({
+      USDH: 'surplus',
+      EURH: 'surplus',
+      AUDH: 'deficit',
+      CHFH: 'balanced',
+      GBPH: 'balanced',
+      JPYH: 'balanced',
+    }),
+    [],
+  );
+
+  const { mode, nativeStableCoin } = useSwapState();
+
+  const nativeStableCoinCanSwap =
+    rebalanceData[nativeStableCoin] === 'surplus' ||
+    rebalanceData[nativeStableCoin] === 'deficit';
+
+  const balancedCoinPrompt = (() => {
+    const modeRecollatDecollat = mode === 'recollat' || mode === 'decollat';
+    if (modeRecollatDecollat && !nativeStableCoinCanSwap) {
+      return (
+        <div className="px-3 absolute z-10 opacity-80 w-full h-full bg-black text-white flex items-center justify-center">
+          The selected stablecoin pool ({nativeStableCoin}) is balanced so you
+          currently cannot swap in this coin&apos;s pool. Please select another
+          coin.
+        </div>
+      );
+    } else {
+      return null;
+    }
+  })();
+
   return (
     <div className="bg-card w-96 flex flex-col justify-center px-4 pt-2 pb-6 rounded-lg text-white text-center">
       <span className="font-bold text-center text-md mb-2 text-hblack-4">
         SWAP
       </span>
-      <ModeTabs />
-      <SwapCoinDisplay stableCoinOptions={stableCoinOptions} />
-      <SubmitButtons />
+      <ModeTabs rebalanceData={rebalanceData} />
+      <div className="h-2" />
+      <div className="relative">
+        {balancedCoinPrompt}
+        <SwapCoinDisplay stableCoinOptions={stableCoinOptions} />{' '}
+        <SubmitButtons />
+      </div>
     </div>
   );
 };
