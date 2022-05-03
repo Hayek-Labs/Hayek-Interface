@@ -1,0 +1,15 @@
+.styles {
+  :global {
+    .selected {
+      .underline-text(@color) {
+        span {
+          text-decoration-color: @color;
+          text-decoration: underline;
+          text-underline-offset: 2px;
+        }
+      }
+
+      .underline-text(#f7b91c);
+    }
+  }
+}

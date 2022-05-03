@@ -1,29 +1,76 @@
-import { Coin, NativeStableCoin } from '@/constants/coin';
+import {
+  Coin,
+  NativeStableCoin,
+  supportedNativeStableCoins,
+} from '@/constants/coin';
 import { useSwapState } from '@/providers/StateProvider';
-import { useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import SwapCoinDisplay from './CoinDisplay';
 import ModeTabs from './ModeTabs';
 import SubmitButtons from './SubmitButtons';
 
+const useSimulateCRChange = (
+  setRebalanceData: SetState<
+    Record<NativeStableCoin, 'surplus' | 'deficit' | 'balanced'>
+  >,
+) => {
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRebalanceData((prevRebalanceData) => {
+        return (supportedNativeStableCoins as NativeStableCoin[]).reduce(
+          (newRebalanceData, coin) => {
+            if (Math.random() > 0.9) {
+              const num = Math.random();
+              newRebalanceData[coin] =
+                num < 0.3333333333
+                  ? 'balanced'
+                  : num > 0.6666666666
+                  ? 'surplus'
+                  : 'deficit';
+            }
+            return newRebalanceData;
+          },
+          {
+            ...prevRebalanceData,
+          },
+        );
+      });
+    }, 5000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [setRebalanceData]);
+};
+
+const BalancedCoinDisplay: React.FC<{ nativeStableCoin: NativeStableCoin }> = ({
+  nativeStableCoin,
+}) => {
+  return (
+    <div className="px-3 absolute z-10 opacity-80 w-full h-full bg-black text-white flex items-center justify-center">
+      The selected stablecoin pool ({nativeStableCoin}) is balanced so you
+      currently cannot swap in this coin&apos;s pool. Please select another
+      coin.
+    </div>
+  );
+};
+
 const SwapCard: React.FC<{
   stableCoinOptions: readonly Coin[];
 }> = ({ stableCoinOptions }) => {
-  const rebalanceData: Record<
-    NativeStableCoin,
-    'surplus' | 'deficit' | 'balanced'
-  > = useMemo(
-    () => ({
-      USDH: 'surplus',
-      EURH: 'surplus',
-      AUDH: 'deficit',
-      CHFH: 'balanced',
-      GBPH: 'balanced',
-      JPYH: 'balanced',
-    }),
-    [],
-  );
-
   const { mode, nativeStableCoin } = useSwapState();
+
+  const [rebalanceData, setRebalanceData] = useState<
+    Record<NativeStableCoin, 'surplus' | 'deficit' | 'balanced'>
+  >({
+    USDH: 'surplus',
+    EURH: 'surplus',
+    AUDH: 'deficit',
+    CHFH: 'balanced',
+    GBPH: 'balanced',
+    JPYH: 'deficit',
+  });
+
+  useSimulateCRChange(setRebalanceData);
 
   const nativeStableCoinCanSwap =
     rebalanceData[nativeStableCoin] === 'surplus' ||
@@ -32,13 +79,7 @@ const SwapCard: React.FC<{
   const balancedCoinPrompt = (() => {
     const modeRecollatDecollat = mode === 'recollat' || mode === 'decollat';
     if (modeRecollatDecollat && !nativeStableCoinCanSwap) {
-      return (
-        <div className="px-3 absolute z-10 opacity-80 w-full h-full bg-black text-white flex items-center justify-center">
-          The selected stablecoin pool ({nativeStableCoin}) is balanced so you
-          currently cannot swap in this coin&apos;s pool. Please select another
-          coin.
-        </div>
-      );
+      return <BalancedCoinDisplay nativeStableCoin={nativeStableCoin} />;
     } else {
       return null;
     }

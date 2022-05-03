@@ -6,13 +6,7 @@
           fill: #10b981;
         }
       }
-      color: #10b981;
       font-size: 1rem;
-
-      .selected {
-        text-decoration-color: #10b981;
-        text-decoration: underline;
-      }
     }
 
     .deficit {
@@ -21,33 +15,29 @@
           fill: #ef4444;
         }
       }
-      color: #ef4444;
       font-size: 1rem;
     }
 
     .selected {
-      .deficit {
+      .underline-text(@color) {
         span {
-          text-decoration-color: #ef4444;
+          text-decoration-color: @color;
           text-decoration: underline;
-          font-weight: bold;
+          text-underline-offset: 2px;
+          color: @color;
         }
+      }
+
+      .deficit {
+        .underline-text(#ef4444);
       }
 
       .surplus {
-        span {
-          text-decoration-color: #10b981;
-          text-decoration: underline;
-          font-weight: bold;
-        }
+        .underline-text(#10b981);
       }
 
       .balanced {
-        span {
-          text-decoration-color: #f7b91c;
-          text-decoration: underline;
-          font-weight: bold;
-        }
+        .underline-text(#f7b91c);
       }
     }
 
@@ -61,7 +51,6 @@
           fill: #f7b91c;
         }
       }
-      color: #f7b91c;
       font-size: 1rem;
     }
   }

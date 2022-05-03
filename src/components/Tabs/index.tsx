@@ -23,7 +23,7 @@ const Label: React.FC<LabelProps> = ({
   return (
     <div
       className={clsx(
-        clsx('', className),
+        className,
         selected && !disabled ? clsx(selectedClass) : '',
         disabled
           ? clsx('text-hblack-3 cursor-not-allowed', disabledClass)
@@ -75,7 +75,7 @@ const Tabs: React.FC<TabsProps> = ({
 
   return (
     <div className={clsx('', className)}>
-      <div className="flex flex-row flex-wrap mb-2">
+      <div className="flex flex-row flex-wrap">
         {labels.map((label, i) => {
           const thisIsDisabled = disabled[i];
           return (
