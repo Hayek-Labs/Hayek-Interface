@@ -30,6 +30,7 @@ const coins = [
   'CHFH',
   'FRAX',
   'UST',
+  'veHAS',
 ] as const;
 export type Coin = typeof coins[number];
 
@@ -70,6 +71,7 @@ export const coinToLogo: Record<Coin, SVGComponent> = {
   JPYH: JPYHLogo,
   EURH: EURHLogo,
   CHFH: CHFHLogo,
+  veHAS: HASLogo,
 };
 
 export const coinToCoinGeckoId: Record<Coin, string | undefined> = {
@@ -86,6 +88,7 @@ export const coinToCoinGeckoId: Record<Coin, string | undefined> = {
   JPYH: undefined,
   EURH: undefined,
   CHFH: undefined,
+  veHAS: undefined,
 };
 
 export const chainToCoinInterface: Record<Chain, any> = {
@@ -112,6 +115,7 @@ export const chainCoinToAddress: Record<
     JPYH: undefined,
     EURH: undefined,
     CHFH: undefined,
+    veHAS: undefined,
   },
   [Chain.BSC]: {
     USDT: '0x55d398326f99059fF775485246999027B3197955',
@@ -126,6 +130,7 @@ export const chainCoinToAddress: Record<
     GBPH: undefined,
     JPYH: undefined,
     EURH: undefined,
+    veHAS: undefined,
     CHFH: undefined,
   },
   [Chain.Polygon]: {
@@ -141,6 +146,7 @@ export const chainCoinToAddress: Record<
     GBPH: undefined,
     JPYH: undefined,
     EURH: undefined,
+    veHAS: undefined,
     CHFH: undefined,
   },
 };
