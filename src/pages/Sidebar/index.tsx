@@ -67,11 +67,11 @@ const sidebarItems = [
   //   icon: <FaToolbox size={svgSize} />,
   //   route: '/vehas',
   // },
-  // {
-  //   title: 'Gauge',
-  //   icon: <ImPieChart size={svgSize} />,
-  //   route: '/gauge',
-  // },
+  {
+    title: 'Gauge',
+    icon: <ImPieChart size={svgSize} />,
+    route: '/gauge',
+  },
   // {
   //   title: 'Cross Chain',
   //   icon: <GiArchBridge size={svgSize} />,

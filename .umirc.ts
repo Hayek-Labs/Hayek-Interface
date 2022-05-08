@@ -25,6 +25,10 @@ export default defineConfig({
           path: '/swap',
           component: '@/pages/BuybackRecollat',
         },
+        {
+          path: '/gauge',
+          component: '@/pages/Gauge',
+        },
       ],
     },
   ],
