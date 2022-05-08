@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { useMemo } from 'react';
 
 interface LabelProps {
   label: JSX.Element | string;
@@ -59,16 +60,24 @@ const Tabs: React.FC<TabsProps> = ({
   labelSelectedClassName,
   labelDisabledClassName,
 }) => {
-  const [labels, comps, disabled] = tabs.reduce<
-    [(JSX.Element | string)[], (JSX.Element | null)[], (boolean | undefined)[]]
-  >(
-    ([labels, comps, disabled], next) => {
-      labels.push(next.label);
-      comps.push(next.render);
-      disabled.push(next.disabled);
-      return [labels, comps, disabled];
-    },
-    [[], [], []],
+  const [labels, comps, disabled] = useMemo(
+    () =>
+      tabs.reduce<
+        [
+          (JSX.Element | string)[],
+          (JSX.Element | null)[],
+          (boolean | undefined)[],
+        ]
+      >(
+        ([labels, comps, disabled], next) => {
+          labels.push(next.label);
+          comps.push(next.render);
+          disabled.push(next.disabled);
+          return [labels, comps, disabled];
+        },
+        [[], [], []],
+      ),
+    [tabs],
   );
 
   const comp = currentTab !== -1 ? comps[currentTab] : undefined;
