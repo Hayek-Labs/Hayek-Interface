@@ -9,11 +9,25 @@ interface RebalanceInfoProps {
   rebalanceData: Record<NativeStableCoin, 'surplus' | 'deficit' | 'balanced'>;
 }
 
-const RebalanceInfoRow: React.FC<{ title: string }> = ({ title, children }) => {
+const RebalanceInfoRow: React.FC<{
+  title: string;
+  overflowingTitle: string;
+  overflowing: boolean;
+}> = ({ title, overflowingTitle, overflowing, children }) => {
+  if (!children) {
+    return null;
+  }
   return (
     <div className="flex flex-row items-center pt-2">
-      <span className="w-32 text-left text-hblack-4">{title}</span>
-      <div className="flex flex-row flex-wrap">{children}</div>
+      <span
+        className={clsx(
+          'text-left text-hblack-4',
+          overflowing ? 'w-16' : 'w-32',
+        )}
+      >
+        {overflowing ? overflowingTitle : title}
+      </span>
+      <div className="flex flex-row flex-wrap flex-1">{children}</div>
     </div>
   );
 };
@@ -41,38 +55,63 @@ const RebalanceInfo: React.FC<RebalanceInfoProps> = ({ rebalanceData }) => {
     );
   }, [rebalanceData]);
 
+  const surplusOverflow = surplusCoins.length > 3;
+  const deficitOverflow = deficitCoins.length > 3;
+  const balancedOverflow = balancedCoins.length > 3;
+
+  const overflow = surplusOverflow || deficitOverflow || balancedOverflow;
+
   return (
-    <div className={clsx('flex flex-col', styles['styles'])}>
-      <RebalanceInfoRow title="Collateral Surplus">
-        {surplusCoins.map((coin) => (
-          <CoinBtn
-            key={coin}
-            coin={coin}
-            state="surplus"
-            selected={nativeStableCoin === coin}
-          />
-        ))}
-      </RebalanceInfoRow>
-      <RebalanceInfoRow title="Collateral Deficit">
-        {deficitCoins.map((coin) => (
-          <CoinBtn
-            key={coin}
-            coin={coin}
-            state="deficit"
-            selected={nativeStableCoin === coin}
-          />
-        ))}
-      </RebalanceInfoRow>
-      <RebalanceInfoRow title="Balance">
-        {balancedCoins.map((coin) => (
-          <CoinBtn
-            key={coin}
-            coin={coin}
-            state="balanced"
-            selected={nativeStableCoin === coin}
-          />
-        ))}
-      </RebalanceInfoRow>
+    <div className={clsx('flex flex-col h-24', styles['styles'])}>
+      {surplusCoins.length > 0 && (
+        <RebalanceInfoRow
+          title="Collateral Surplus"
+          overflowingTitle="Surplus"
+          overflowing={overflow}
+        >
+          {surplusCoins.map((coin) => (
+            <CoinBtn
+              key={coin}
+              coin={coin}
+              state="surplus"
+              selected={nativeStableCoin === coin}
+            />
+          ))}
+        </RebalanceInfoRow>
+      )}
+
+      {deficitCoins.length > 0 && (
+        <RebalanceInfoRow
+          title="Collateral Deficit"
+          overflowingTitle="Deficit"
+          overflowing={overflow}
+        >
+          {deficitCoins.map((coin) => (
+            <CoinBtn
+              key={coin}
+              coin={coin}
+              state="deficit"
+              selected={nativeStableCoin === coin}
+            />
+          ))}
+        </RebalanceInfoRow>
+      )}
+      {balancedCoins.length > 0 && (
+        <RebalanceInfoRow
+          title="Balance"
+          overflowingTitle="Balance"
+          overflowing={overflow}
+        >
+          {balancedCoins.map((coin) => (
+            <CoinBtn
+              key={coin}
+              coin={coin}
+              state="balanced"
+              selected={nativeStableCoin === coin}
+            />
+          ))}
+        </RebalanceInfoRow>
+      )}
     </div>
   );
 };
