@@ -2,7 +2,7 @@
 module.exports = {
   // mode: 'jit',
   // jit document: https://tailwindcss.com/docs/just-in-time-mode
-  content: ['./src/**/*.html', './src/**/*.tsx', './src/**/*.ts'],
+  content: ['./src/**/*.{html,js,ts,tsx}'],
   theme: {
     extend: {
       colors: {

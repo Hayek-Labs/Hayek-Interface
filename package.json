@@ -37,7 +37,6 @@
     "react-spring": "^9.4.3",
     "recharts": "^2.1.9",
     "three": "^0.137.5",
-    "tw-elements": "^1.0.0-alpha12",
     "umi": "^3.5.20",
     "web3": "^1.7.1"
   },
