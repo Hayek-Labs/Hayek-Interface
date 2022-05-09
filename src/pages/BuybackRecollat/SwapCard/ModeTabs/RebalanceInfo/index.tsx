@@ -22,7 +22,7 @@ const RebalanceInfoRow: React.FC<{
       <span
         className={clsx(
           'text-left text-hblack-4',
-          overflowing ? 'w-16' : 'w-32',
+          overflowing ? 'w-14' : 'w-32',
         )}
       >
         {overflowing ? overflowingTitle : title}
@@ -79,7 +79,6 @@ const RebalanceInfo: React.FC<RebalanceInfoProps> = ({ rebalanceData }) => {
           ))}
         </RebalanceInfoRow>
       )}
-
       {deficitCoins.length > 0 && (
         <RebalanceInfoRow
           title="Collateral Deficit"
