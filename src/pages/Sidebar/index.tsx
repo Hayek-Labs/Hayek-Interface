@@ -62,11 +62,11 @@ const sidebarItems = [
     icon: <RiExchangeBoxLine viewBox="0 0 24 24" size={svgSize} />,
     route: '/swap',
   },
-  // {
-  //   title: 'veHAS',
-  //   icon: <FaToolbox size={svgSize} />,
-  //   route: '/vehas',
-  // },
+  {
+    title: 'veHAS',
+    icon: <FaToolbox size={svgSize} />,
+    route: '/vehas',
+  },
   {
     title: 'Gauge',
     icon: <ImPieChart size={svgSize} />,

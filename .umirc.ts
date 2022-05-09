@@ -26,6 +26,10 @@ export default defineConfig({
           component: '@/pages/BuybackRecollat',
         },
         {
+          path: '/vehas',
+          component: '@/pages/VeHAS',
+        },
+        {
           path: '/gauge',
           component: '@/pages/Gauge',
         },
