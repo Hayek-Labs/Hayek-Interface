@@ -19,7 +19,7 @@ const useSimulateCRChange = (
       setRebalanceData((prevRebalanceData) => {
         return (supportedNativeStableCoins as NativeStableCoin[]).reduce(
           (newRebalanceData, coin) => {
-            if (Math.random() > 0.9) {
+            if (Math.random() > 0.5) {
               const num = Math.random();
               newRebalanceData[coin] =
                 num < 0.3333333333
