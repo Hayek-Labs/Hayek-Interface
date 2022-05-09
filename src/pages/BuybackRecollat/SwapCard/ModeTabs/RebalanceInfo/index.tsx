@@ -2,11 +2,12 @@ import { NativeStableCoin, supportedNativeStableCoins } from '@/constants/coin';
 import { useSwapState } from '@/providers/StateProvider';
 import clsx from 'clsx';
 import { useMemo } from 'react';
+import { CRState } from '../..';
 import CoinBtn from '../CoinBtn';
 import styles from './styles.less';
 
 interface RebalanceInfoProps {
-  rebalanceData: Record<NativeStableCoin, 'surplus' | 'deficit' | 'balanced'>;
+  rebalanceData: Record<NativeStableCoin, CRState>;
 }
 
 const RebalanceInfoRow: React.FC<{

@@ -10,9 +10,7 @@ import ModeTabs from './ModeTabs';
 import SubmitButtons from './SubmitButtons';
 
 const useSimulateCRChange = (
-  setRebalanceData: SetState<
-    Record<NativeStableCoin, 'surplus' | 'deficit' | 'balanced'>
-  >,
+  setRebalanceData: SetState<Record<NativeStableCoin, CRState>>,
 ) => {
   useEffect(() => {
     const interval = setInterval(() => {
@@ -54,13 +52,15 @@ const BalancedCoinDisplay: React.FC<{ nativeStableCoin: NativeStableCoin }> = ({
   );
 };
 
+export type CRState = 'surplus' | 'deficit' | 'balanced';
+
 const SwapCard: React.FC<{
   stableCoinOptions: readonly Coin[];
 }> = ({ stableCoinOptions }) => {
   const { mode, nativeStableCoin } = useSwapState();
 
   const [rebalanceData, setRebalanceData] = useState<
-    Record<NativeStableCoin, 'surplus' | 'deficit' | 'balanced'>
+    Record<NativeStableCoin, CRState>
   >({
     USDH: 'surplus',
     EURH: 'surplus',

@@ -3,6 +3,7 @@ import { NativeStableCoin } from '@/constants/coin';
 import { useSwapState } from '@/providers/StateProvider';
 import { SwapMode } from '@/state/swap';
 import { useCallback, useEffect } from 'react';
+import { CRState } from '..';
 import CrossInfo from './CrossInfo';
 import RebalanceInfo from './RebalanceInfo';
 
@@ -13,7 +14,7 @@ const modeToTab: Record<SwapMode, number> = {
 };
 
 const ModeTabs: React.FC<{
-  rebalanceData: Record<NativeStableCoin, 'surplus' | 'deficit' | 'balanced'>;
+  rebalanceData: Record<NativeStableCoin, CRState>;
 }> = ({ rebalanceData }) => {
   const {
     mode,

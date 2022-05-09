@@ -1,12 +1,13 @@
 import { coinToLogo, NativeStableCoin } from '@/constants/coin';
 import { useSwapState } from '@/providers/StateProvider';
 import clsx from 'clsx';
+import { CRState } from '../..';
 
 const iconSize = 20;
 const CoinBtn: React.FC<{
   coin: NativeStableCoin;
   selected: boolean;
-  state?: 'surplus' | 'deficit' | 'balanced' | 'none';
+  state?: CRState | 'none';
 }> = ({ coin, state = 'none', selected }) => {
   const { setNativeStableCoin } = useSwapState();
   const Logo = coinToLogo[coin];
