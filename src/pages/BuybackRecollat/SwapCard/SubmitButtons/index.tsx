@@ -1,4 +1,5 @@
 import Button from '@/components/Button';
+import ConnectDefaultBtn from '@/components/ConnectDefaultBtn';
 import { useWeb3Connector, useWeb3Hooks } from '@/providers/web3HooksProvider';
 import { useWeb3React } from '@web3-react/core';
 import { useState, useCallback } from 'react';
@@ -28,11 +29,7 @@ const SubmitButtons = () => {
 
   return (
     <div className="flex flex-row w-full justify-evenly">
-      {account ? (
-        <Button onClick={onSwap}>Swap</Button>
-      ) : (
-        <Button onClick={() => connector.activate()}>Connect Wallet</Button>
-      )}
+      <ConnectDefaultBtn onConnected={<Button onClick={onSwap}>Swap</Button>} />
     </div>
   );
 };

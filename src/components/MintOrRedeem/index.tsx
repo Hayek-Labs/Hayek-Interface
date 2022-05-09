@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react';
 import BigNumber from 'bignumber.js';
 import { useWeb3React } from '@web3-react/core';
 import { useWeb3Connector } from '@/providers/web3HooksProvider';
+import ConnectDefaultBtn from '../ConnectDefaultBtn';
 
 const mappingFromHas = (
   hasValue: BigNumber,
@@ -252,11 +253,9 @@ const Card: React.FC<Props> = ({ type }) => {
       </div>
       <div className="h-6" />
       <div className="w-full flex flex-row justify-center">
-        {account ? (
-          <Button>{isMint ? 'Mint' : 'Redeem'}</Button>
-        ) : (
-          <Button onClick={() => connector.activate()}>Connect Wallet</Button>
-        )}
+        <ConnectDefaultBtn
+          onConnected={<Button>{isMint ? 'Mint' : 'Redeem'}</Button>}
+        />
       </div>
     </div>
   );
