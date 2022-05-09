@@ -1,4 +1,4 @@
-import LockHASCard from '../Gauge/LockHASCard';
+import LockHASCard from './LockHASCard';
 
 const VeHAS = () => {
   return (
