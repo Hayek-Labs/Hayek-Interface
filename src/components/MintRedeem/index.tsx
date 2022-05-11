@@ -195,6 +195,17 @@ const useCoinValueMapping = (isMint: boolean) => {
   return null;
 };
 
+const modeTabs = [
+  {
+    label: 'Mint',
+    render: null,
+  },
+  {
+    label: 'Redeem',
+    render: null,
+  },
+];
+
 const Card: React.FC = () => {
   const [mode, setMode] = useState<'mint' | 'redeem'>('mint');
   const isMint = mode === 'mint';
@@ -204,17 +215,6 @@ const Card: React.FC = () => {
 
   const ConversionIcon = isMint ? MintIcon : RedeemIcon;
   const conversionIconSize = 20;
-
-  const modeTabs = [
-    {
-      label: 'Mint',
-      render: null,
-    },
-    {
-      label: 'Redeem',
-      render: null,
-    },
-  ];
 
   const modeTabsOnChange = useCallback(
     (val) => setMode(val === 0 ? 'mint' : 'redeem'),
