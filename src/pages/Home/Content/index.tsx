@@ -9,6 +9,7 @@ import TVGraph from '../TVGraph';
 import CRGraph from '../CRGraph';
 import CoinGraph from '../CoinGraph';
 import Satisfication from '../Satisfaction';
+import VeHASSupply from '../VeHASSupply';
 
 const coinData: {
   id: number;
@@ -122,6 +123,8 @@ const Content: React.FC = () => {
         <CRGraph />
 
         <TVGraph />
+
+        <VeHASSupply />
 
         <div className="w-full p-2">
           <div className="rounded-lg bg-card overflow-hidden h-80">
