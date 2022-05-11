@@ -91,3 +91,42 @@ input[type='number']::-webkit-outer-spin-button {
 * {
   font-family: 'Karla';
 }
+
+.ant-btn {
+  color: rgb(255, 255, 255);
+  background: #2c2b2b;
+  border-color: transparent;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: unset;
+    background: #2c2b2b;
+    border-color: transparent;
+  }
+
+  &:hover {
+    background: #353535;
+  }
+
+  &:active {
+    background: #282727;
+  }
+
+  &:after {
+    display: none;
+  }
+
+  &[disabled] {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      color: rgba(220, 220, 220, 0.5);
+      background: #161616;
+      border-color: transparent;
+      text-shadow: none;
+      box-shadow: none;
+    }
+  }
+}
