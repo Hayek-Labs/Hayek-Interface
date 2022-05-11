@@ -1,5 +1,5 @@
 import CoinCard from '@/components/CoinCard';
-import { Coin } from '@/constants/coin';
+import { Coin, supportedNativeStableCoins } from '@/constants/coin';
 import { useSwapState } from '@/providers/StateProvider';
 import { useEffect, useState } from 'react';
 import { MdArrowDownward } from 'react-icons/md';
@@ -48,6 +48,7 @@ const SwapCoinDisplay: React.FC<{
     setCollateralCoin,
 
     nativeStableCoin,
+    setNativeStableCoin,
 
     needsCollateral,
   } = useSwapState();
@@ -88,8 +89,9 @@ const SwapCoinDisplay: React.FC<{
   };
 
   const nativeSelect = {
-    selectFrom: [nativeStableCoin],
-    canSelect: false,
+    selectFrom: supportedNativeStableCoins,
+    setCoin: setNativeStableCoin as SetState<Coin>,
+    canSelect: true,
   };
 
   const HASSelect = {
