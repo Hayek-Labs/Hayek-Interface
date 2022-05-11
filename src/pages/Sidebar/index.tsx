@@ -5,7 +5,7 @@ import { history } from 'umi';
 import { MdDashboard } from 'react-icons/md';
 import { GiMineTruck, GiTakeMyMoney, GiArchBridge } from 'react-icons/gi';
 import { FaToolbox } from 'react-icons/fa';
-import { ImPieChart } from 'react-icons/im';
+import { AiOutlinePieChart } from 'react-icons/ai';
 import { GrStakeholder } from 'react-icons/gr';
 import { AiFillDiff } from 'react-icons/ai';
 import {
@@ -69,7 +69,7 @@ const sidebarItems = [
   // },
   {
     title: 'Gauge',
-    icon: <ImPieChart size={svgSize} />,
+    icon: <AiOutlinePieChart size={svgSize} />,
     route: '/gauge',
   },
   // {
