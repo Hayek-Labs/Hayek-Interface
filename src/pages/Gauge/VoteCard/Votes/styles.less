@@ -9,5 +9,53 @@
       background-color: transparent !important;
       color: white !important;
     }
+
+    .ant-table {
+      .ant-table-cell:first-child {
+        text-align: left;
+      }
+
+      .ant-table-cell {
+        border-bottom-color: transparent;
+        padding: 8px;
+
+        text-align: right;
+      }
+    }
+
+    .pool-display-table-row {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+
+      > * {
+        padding: 6px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      > :first-child {
+        text-align: left;
+        flex: 4;
+      }
+      > :not(:first-child) {
+        text-align: right;
+      }
+      > :nth-child(2) {
+        flex: 3;
+      }
+      > :nth-child(3) {
+        flex: 2;
+      }
+      > :nth-child(4) {
+        flex: 2;
+      }
+    }
+
+    .ant-input-number {
+      width: 50px;
+      height: 24px;
+    }
   }
 }
