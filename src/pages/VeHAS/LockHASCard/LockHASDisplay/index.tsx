@@ -17,7 +17,6 @@ const LockHASDisplay: React.FC<{ state: VeHASState }> = ({ state }) => {
     setVeHASCoinValue,
     lockPeriod,
     setLockPeriod,
-    setMode,
   } = state;
 
   const HASSelect = {
@@ -49,7 +48,8 @@ const LockHASDisplay: React.FC<{ state: VeHASState }> = ({ state }) => {
         <div className="h-2" />
 
         <div className={clsx('flex flex-row items-center', styles['styles'])}>
-          Lock Period:{' '}
+          <span>Lock Period:</span>
+          <div className="w-1" />
           <InputNumber
             bordered={false}
             controls={false}
@@ -59,8 +59,10 @@ const LockHASDisplay: React.FC<{ state: VeHASState }> = ({ state }) => {
             }}
             min={2}
             max={365 * 4}
+            size="small"
           />
-          Days
+          <div className="w-1" />
+          <span>Days</span>
         </div>
         <div className={clsx('px-4 w-full', styles['styles'])}>
           <Slider
