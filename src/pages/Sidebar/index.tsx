@@ -34,7 +34,7 @@ const sidebarItems = [
     route: '/',
   },
   {
-    title: 'Mint',
+    title: 'Mint-Redeem',
     icon: (
       <MintSVG
         className="ml-[2px]"
@@ -43,20 +43,20 @@ const sidebarItems = [
         height={smallerSvgSize}
       />
     ),
-    route: '/mint',
+    route: '/mint-redeem',
   },
-  {
-    title: 'Redeem',
-    icon: (
-      <RedeemSVG
-        className="ml-[2px]"
-        fill="currentColor"
-        width={smallerSvgSize}
-        height={smallerSvgSize}
-      />
-    ),
-    route: '/redeem',
-  },
+  // {
+  //   title: 'Redeem',
+  //   icon: (
+  //     <RedeemSVG
+  //       className="ml-[2px]"
+  //       fill="currentColor"
+  //       width={smallerSvgSize}
+  //       height={smallerSvgSize}
+  //     />
+  //   ),
+  //   route: '/redeem',
+  // },
   {
     title: 'Swap',
     icon: <RiExchangeBoxLine viewBox="0 0 24 24" size={svgSize} />,

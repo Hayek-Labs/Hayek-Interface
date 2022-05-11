@@ -10,11 +10,10 @@ import {
   NativeStableCoinCard,
 } from './CoinDisplay';
 import { useMintOrRedeemState } from '@/providers/StateProvider';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import BigNumber from 'bignumber.js';
-import { useWeb3React } from '@web3-react/core';
-import { useWeb3Connector } from '@/providers/web3HooksProvider';
 import ConnectDefaultBtn from '../ConnectDefaultBtn';
+import Tabs from '../Tabs';
 
 const mappingFromHas = (
   hasValue: BigNumber,
@@ -196,12 +195,9 @@ const useCoinValueMapping = (isMint: boolean) => {
   return null;
 };
 
-interface Props {
-  type: 'mint' | 'redeem';
-}
-
-const Card: React.FC<Props> = ({ type }) => {
-  const isMint = type === 'mint';
+const Card: React.FC = () => {
+  const [mode, setMode] = useState<'mint' | 'redeem'>('mint');
+  const isMint = mode === 'mint';
   const pageText = isMint ? 'MINT' : 'REDEEM';
 
   useCoinValueMapping(isMint);
@@ -209,14 +205,41 @@ const Card: React.FC<Props> = ({ type }) => {
   const ConversionIcon = isMint ? MintIcon : RedeemIcon;
   const conversionIconSize = 20;
 
-  const { account } = useWeb3React();
-  const connector = useWeb3Connector();
+  const modeTabs = [
+    {
+      label: 'Mint',
+      render: null,
+    },
+    {
+      label: 'Redeem',
+      render: null,
+    },
+  ];
+
+  const modeTabsOnChange = useCallback(
+    (val) => setMode(val === 0 ? 'mint' : 'redeem'),
+    [setMode],
+  );
 
   return (
-    <div className="bg-card w-96 flex flex-col justify-center px-4 pt-2 pb-6 rounded-lg">
+    <div className="bg-card w-96 flex flex-col justify-center px-4 pt-2 pb-4 rounded-lg">
       <span className="font-bold text-center text-md mb-2 text-hblack-4">
         {pageText}
       </span>
+      <Tabs
+        tabs={modeTabs}
+        currentTab={mode === 'mint' ? 0 : 1}
+        onChange={modeTabsOnChange}
+        className="mb-1"
+        labelClassName={`
+          rounded-xl 
+          px-3 
+          py-1
+          mr-2 
+          select-none 
+          text-white`}
+        labelSelectedClassName={`bg-hblack-3`}
+      />
       <div
         className={clsx(
           'flex w-full',
@@ -261,14 +284,14 @@ const Card: React.FC<Props> = ({ type }) => {
   );
 };
 
-const MintOrRedeem: React.FC<Props> = ({ type }) => {
+const MintRedeem: React.FC = () => {
   return (
     <div className="flex flex-col w-full h-full text-white">
       <div className="flex-1 w-full flex flex-col text-center p-4 sm:p-2 justify-center items-center">
-        <Card type={type} />
+        <Card />
       </div>
     </div>
   );
 };
 
-export default MintOrRedeem;
+export default MintRedeem;
