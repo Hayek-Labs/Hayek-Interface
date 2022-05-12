@@ -61,14 +61,14 @@ const ModeTabs: React.FC<{
       currentTab={modeToTab[mode]}
       onChange={modeTabsOnChange}
       labelClassName={`
-      rounded-xl 
+      rounded-md
       px-3 
       py-1
       mr-2 
       select-none 
-      text-white`}
+      text-hblack-4`}
       labelSelectedClassName={`
-      bg-hblack-3`}
+      bg-hblack-3 text-white`}
     />
   );
 };

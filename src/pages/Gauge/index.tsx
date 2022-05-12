@@ -3,11 +3,9 @@ import VoteCard from './VoteCard';
 
 const Gauge = () => {
   return (
-    <div className="w-full h-full flex flex-col lg:flex-row items-center justify-center">
-      <div className="w-full flex flex-col lg:flex-row items-center justify-center sm:h-96 p-4 sm:p-2 gap-8">
-        <LockHASCard />
-        <VoteCard />
-      </div>
+    <div className="w-full h-[unset] flex flex-col items-center justify-center overflow-y-auto gap-6">
+      <LockHASCard />
+      <VoteCard />
     </div>
   );
 };

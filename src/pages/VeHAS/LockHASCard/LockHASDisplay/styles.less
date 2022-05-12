@@ -1,9 +1,24 @@
 .styles {
   :global {
     .ant-slider-handle {
+      background-color: #676767;
       &:focus {
         box-shadow: 0 0 0 5px rgba(247, 185, 28, 0.12);
       }
+    }
+
+    .ant-slider-rail,
+    .ant-slider-track {
+      height: 3px;
+    }
+    .ant-slider:hover {
+      // background-color: #676767;
+    }
+
+    .ant-slider-rail,
+    .ant-slider-rail:focus,
+    .ant-slider-rail:hover {
+      background-color: #676767;
     }
 
     .ant-input-number {

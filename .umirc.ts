@@ -18,7 +18,8 @@ export default defineConfig({
       component: '@/layouts/Main',
       routes: [
         { path: '/', component: '@/pages/Home' },
-        { path: '/mint-redeem', component: '@/pages/MintRedeem' },
+        { path: '/mint', component: '@/pages/Mint' },
+        { path: '/redeem', component: '@/pages/Redeem' },
         { path: '/exchange', component: '@/pages/Exchange' },
         {
           path: '/swap',

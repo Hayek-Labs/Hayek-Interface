@@ -28,6 +28,18 @@
       flex-direction: row;
       width: 100%;
 
+      &:first-child {
+        border-bottom: thin solid #353535;
+      }
+
+      &:not(:first-child) {
+        border-bottom: thin dotted #353535;
+      }
+
+      // &:not(:first-child):hover {
+      //   background-color: #353535;
+      // }
+
       > * {
         padding: 6px;
         display: flex;
@@ -38,7 +50,7 @@
       > :first-child {
         text-align: left;
         justify-content: flex-start;
-        flex: 4;
+        flex: 8;
       }
       > :not(:first-child) {
         text-align: right;

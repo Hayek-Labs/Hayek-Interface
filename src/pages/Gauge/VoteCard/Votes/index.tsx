@@ -3,28 +3,82 @@ import { InputNumber } from 'antd';
 import clsx from 'clsx';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import styles from './styles.less';
+import { MdOutlineContentCopy } from 'react-icons/md';
+import { ReactComponent as UniswapLogo } from '@/assets/logos/coins/uniswap-uni-logo.svg';
+import { Coin, coinToLogo } from '@/constants/coin';
+import Button from '@/components/Button';
 
 interface Pool {
   key: number;
   name: string;
+  coin1: Coin;
+  coin2: Coin;
   address: string;
 }
 
 const pools: Pool[] = [
   {
     key: 1,
-    name: 'Uniswap V3 FRAX/USDC',
+    name: 'Uniswap V3',
+    coin1: 'USDH',
+    coin2: 'USDC',
     address: '0x3EF2 ... B4B0',
   },
   {
     key: 2,
-    name: 'mStable FRAX/mUSD',
+    name: 'ACY Finance',
+    coin1: 'USDH',
+    coin2: 'USDT',
     address: '0x3e14 ... 6AeC',
   },
   {
     key: 3,
-    name: 'Uniswap V3 FRAX/DAI',
+    name: 'SushiSwap',
+    coin1: 'USDH',
+    coin2: 'DAI',
     address: '0xF224 ... f53e',
+  },
+  {
+    key: 4,
+    name: 'Uniswap V3',
+    coin1: 'EURH',
+    coin2: 'USDC',
+    address: '0x3EA2 ... B4B0',
+  },
+  {
+    key: 5,
+    name: 'ACY Finance',
+    coin1: 'GBPH',
+    coin2: 'USDT',
+    address: '0x3eB4 ... 6AeC',
+  },
+  {
+    key: 6,
+    name: 'SushiSwap',
+    coin1: 'JPYH',
+    coin2: 'DAI',
+    address: '0xF2C4 ... f53e',
+  },
+  {
+    key: 7,
+    name: 'Uniswap V3',
+    coin1: 'AUDH',
+    coin2: 'USDC',
+    address: '0x3ED2 ... B4B0',
+  },
+  {
+    key: 8,
+    name: 'ACY Finance',
+    coin1: 'USDH',
+    coin2: 'USDT',
+    address: '0x3eE4 ... 6AeC',
+  },
+  {
+    key: 9,
+    name: 'SushiSwap',
+    coin1: 'USDH',
+    coin2: 'DAI',
+    address: '0xF2F4 ... f53e',
   },
 ];
 
@@ -47,10 +101,35 @@ const PoolDisplay: React.FC<{
     setWeight(pool.address, 0);
   }, [pool.address, setWeight]);
 
+  const AddressTooltip = () => {
+    return <MdOutlineContentCopy size={10} className="ml-1" />;
+  };
+
+  const PoolIcon: React.FC<{ coin1: Coin; coin2: Coin }> = ({
+    coin1,
+    coin2,
+  }) => {
+    const Logo1 = coinToLogo[coin1];
+    const Logo2 = coinToLogo[coin2];
+    const size = 15;
+    return (
+      <div className="flex flex-row relative mr-3">
+        <Logo1 width={size} height={size} className="z-10" />
+        <Logo2 width={size} height={size} className="absolute left-1/2" />
+      </div>
+    );
+  };
+
   return (
     <div className="pool-display-table-row">
-      <span>{pool.name}</span>
-      <span>{pool.address}</span>
+      <span className="items-center">
+        <PoolIcon coin1={pool.coin1} coin2={pool.coin2} />
+        <span className="text-white">
+          {pool.coin1}-{pool.coin2}
+        </span>
+        <span className="ml-1 text-[0.6rem]"> {pool.name}</span>
+        <AddressTooltip />
+      </span>
       <span>
         <InputNumber
           bordered={false}
@@ -66,15 +145,6 @@ const PoolDisplay: React.FC<{
           size="small"
         />
         <span className="ml-1 text-lg">%</span>
-      </span>
-      <span>
-        <Btn
-          size="small"
-          onClick={() => setConfirmation(pool.address, true)}
-          disabled={isConfirmed}
-        >
-          Confirm
-        </Btn>
       </span>
     </div>
   );
@@ -128,7 +198,8 @@ const Votes = () => {
     return (
       100 -
       pools.reduce<number>((weight, pool) => {
-        return weight + voteState.weights[pool.address];
+        const val = voteState.weights[pool.address];
+        return weight + (val !== undefined && val !== null ? val : 0);
       }, 0)
     );
   }, [voteState.weights]);
@@ -137,29 +208,43 @@ const Votes = () => {
     return pools.every((pool) => voteState.confirmations[pool.address]);
   }, [voteState.confirmations]);
 
+  const [maxPoolsToDisplay, setMaxPoolsToDisplay] = useState(5);
+
+  const poolsInDisplay = pools.slice(0, maxPoolsToDisplay);
+
   return (
-    <div className={clsx('flex flex-col', styles['styles'])}>
-      <div>Unused Weight: {unusedWeight}%</div>
-      <div className="pool-display-table-row">
-        <span>Pool Name</span>
-        <span>Address</span>
-        <span>Weight</span>
-        <span>Confirm</span>
+    <div className={clsx('flex flex-col text-hblack-4 pb-3', styles['styles'])}>
+      <div className="flex flex-row mb-2">
+        <span>Unused Weight:</span>
+        <span className="ml-auto">{unusedWeight}%</span>
       </div>
-      {pools.map((pool) => (
-        <PoolDisplay
-          key={pool.address}
-          pool={pool}
-          weight={voteState.weights[pool.address]}
-          isConfirmed={voteState.confirmations[pool.address]}
-          setWeight={setWeight}
-          setConfirmation={setConfirmation}
-          unusedWeight={unusedWeight}
-        />
-      ))}
-      <Btn disabled={!allConfirmed} className="mt-1">
-        Vote
-      </Btn>
+      <div className="rounded-md bg-hblack-2 mb-4">
+        <div className="pool-display-table-row">
+          <span>Pool</span>
+          {/* <span>Address</span> */}
+          <span>Weight</span>
+          {/* <span>Confirm</span> */}
+        </div>
+        {poolsInDisplay.map((pool) => (
+          <PoolDisplay
+            key={pool.address}
+            pool={pool}
+            weight={voteState.weights[pool.address]}
+            isConfirmed={voteState.confirmations[pool.address]}
+            setWeight={setWeight}
+            setConfirmation={setConfirmation}
+            unusedWeight={unusedWeight}
+          />
+        ))}
+        {poolsInDisplay.length < pools.length ? (
+          <div onClick={() => setMaxPoolsToDisplay((prev) => prev + 5)}>
+            See more...
+          </div>
+        ) : (
+          <div onClick={() => setMaxPoolsToDisplay(5)}>See less...</div>
+        )}
+      </div>
+      <Button disabled={!allConfirmed}>Vote</Button>
     </div>
   );
 };

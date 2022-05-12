@@ -4,10 +4,10 @@ import ConnectDefaultBtn from '@/components/ConnectDefaultBtn';
 import { Coin } from '@/constants/coin';
 import { VeHASState } from '@/state/veHAS';
 import BigNumber from 'bignumber.js';
-import { MdArrowDownward } from 'react-icons/md';
 import { Slider, InputNumber } from 'antd';
 import styles from './styles.less';
 import clsx from 'clsx';
+import { BsArrowDown } from 'react-icons/bs';
 
 const LockHASDisplay: React.FC<{ state: VeHASState }> = ({ state }) => {
   const {
@@ -47,9 +47,30 @@ const LockHASDisplay: React.FC<{ state: VeHASState }> = ({ state }) => {
         />
         <div className="h-2" />
 
-        <div className={clsx('flex flex-row items-center', styles['styles'])}>
-          <span>Lock Period:</span>
-          <div className="w-1" />
+        <div
+          className={clsx(
+            'flex flex-row items-center w-full',
+            styles['styles'],
+          )}
+        >
+          <div className="text-left text-hblack-4 mr-4">Lock Period</div>
+          <Slider
+            value={lockPeriod.toNumber()}
+            onChange={(val) => {
+              setLockPeriod(new BigNumber(val));
+            }}
+            range={false}
+            min={2}
+            max={365 * 4}
+            className="w-40"
+            trackStyle={{
+              backgroundColor: '#f7b91c',
+            }}
+            handleStyle={{
+              border: '2px solid #f7b91c',
+            }}
+          />
+          <div className="flex-1" />
           <InputNumber
             bordered={false}
             controls={false}
@@ -62,27 +83,9 @@ const LockHASDisplay: React.FC<{ state: VeHASState }> = ({ state }) => {
             size="small"
           />
           <div className="w-1" />
-          <span>Days</span>
+          <span className="text-hblack-4">Days</span>
         </div>
-        <div className={clsx('px-4 w-full', styles['styles'])}>
-          <Slider
-            value={lockPeriod.toNumber()}
-            onChange={(val) => {
-              setLockPeriod(new BigNumber(val));
-            }}
-            range={false}
-            min={2}
-            max={365 * 4}
-            className="w-full"
-            trackStyle={{
-              backgroundColor: '#f7b91c',
-            }}
-            handleStyle={{
-              border: '2px solid #f7b91c',
-            }}
-          />
-        </div>
-        <MdArrowDownward size={30} className="mb-4" />
+        <BsArrowDown size={30} className="mb-4 fill-hblack-4" />
         <CoinCard
           coin="veHAS"
           input={{
@@ -93,7 +96,7 @@ const LockHASDisplay: React.FC<{ state: VeHASState }> = ({ state }) => {
           select={veHASSelect}
           balance={veHASBalance}
         />
-        <div className="h-2" />
+        <div className="h-4" />
         <ConnectDefaultBtn onConnected={<Button>Lock</Button>} />
       </div>
     </div>

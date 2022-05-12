@@ -46,7 +46,6 @@ const deposits: Deposit[] = [
 ];
 
 const DepositDisplay: React.FC<{ deposit: Deposit }> = ({ deposit }) => {
-  const HASLogo = coinToLogo['HAS'];
   const logoSize = 15;
 
   const Amount: React.FC<{ value: BigNumber; name: Coin }> = ({
@@ -55,7 +54,7 @@ const DepositDisplay: React.FC<{ deposit: Deposit }> = ({ deposit }) => {
   }) => {
     const Logo = coinToLogo[name];
     return (
-      <div className="flex flex-row items-center text-lg">
+      <div className="flex flex-row items-center">
         <span className="mr-1">{value.toFixed(2)}</span>
         <Logo width={logoSize} height={logoSize} className="mr-[0.15rem]" />
         <span>{name}</span>
@@ -97,17 +96,19 @@ const DepositDisplay: React.FC<{ deposit: Deposit }> = ({ deposit }) => {
   return (
     <div className="w-full px-2 py-1 bg-hblack-1 text-white rounded-lg flex flex-col items-start">
       <div className="self-start flex flex-row items-center w-full">
-        <HASLogo width={logoSize} height={logoSize} className="mr-[0.15rem]" />
-        <span>HAS Deposit</span>
-        <div className="ml-auto">{deposit.depositTime.toLocaleString()}</div>
+        <span className="text-hblack-4">
+          Deposited: {deposit.depositTime.toLocaleString()}
+        </span>
       </div>
-      <div>Lock Period: {deposit.lockPeriod.toFixed(2)} days</div>
-      <div className="flex flex-row items-center">
+      <div className="text-hblack-4">
+        Lock Period: {deposit.lockPeriod.toFixed(2)} days
+      </div>
+      <div className="flex flex-row items-center text-hblack-4">
         {canWithdraw
-          ? 'HAS can be withdrawn'
-          : `Can withdraw in ${withdrawlMsg} (${deposit.endTime.toLocaleDateString()})`}
+          ? 'Withdraw: Yes'
+          : `Withdraw: In ${withdrawlMsg} (${deposit.endTime.toLocaleDateString()})`}
       </div>
-      <div className="flex flex-row items-center mb-2">
+      <div className="flex flex-row items-center mb-2 text-white">
         <Amount value={deposit.HAS} name="HAS" />
         <BsArrowRight size={18} className="mx-2" />
         <Amount value={deposit.veHAS} name="veHAS" />

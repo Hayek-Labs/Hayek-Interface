@@ -206,8 +206,8 @@ const modeTabs = [
   },
 ];
 
-const Card: React.FC = () => {
-  const [mode, setMode] = useState<'mint' | 'redeem'>('mint');
+const Card: React.FC<{ mode: 'mint' | 'redeem' }> = ({ mode }) => {
+  // const [mode, setMode] = useState<'mint' | 'redeem'>('mint');
   const isMint = mode === 'mint';
   const pageText = isMint ? 'MINT' : 'REDEEM';
 
@@ -216,17 +216,17 @@ const Card: React.FC = () => {
   const ConversionIcon = isMint ? MintIcon : RedeemIcon;
   const conversionIconSize = 20;
 
-  const modeTabsOnChange = useCallback(
-    (val) => setMode(val === 0 ? 'mint' : 'redeem'),
-    [setMode],
-  );
+  // const modeTabsOnChange = useCallback(
+  //   (val) => setMode(val === 0 ? 'mint' : 'redeem'),
+  //   [setMode],
+  // );
 
   return (
-    <div className="bg-card w-96 flex flex-col justify-center px-4 pt-2 pb-4 rounded-lg">
+    <div className="bg-card w-96 flex flex-col justify-center px-4 pt-2 pb-2 rounded-lg">
       <span className="font-bold text-center text-md mb-2 text-hblack-4">
         {pageText}
       </span>
-      <Tabs
+      {/* <Tabs
         tabs={modeTabs}
         currentTab={mode === 'mint' ? 0 : 1}
         onChange={modeTabsOnChange}
@@ -239,7 +239,7 @@ const Card: React.FC = () => {
           select-none 
           text-white`}
         labelSelectedClassName={`bg-hblack-3`}
-      />
+      /> */}
       <div
         className={clsx(
           'flex w-full',
@@ -284,11 +284,11 @@ const Card: React.FC = () => {
   );
 };
 
-const MintRedeem: React.FC = () => {
+const MintRedeem: React.FC<{ mode: 'mint' | 'redeem' }> = ({ mode }) => {
   return (
     <div className="flex flex-col w-full h-full text-white">
       <div className="flex-1 w-full flex flex-col text-center p-4 sm:p-2 justify-center items-center">
-        <Card />
+        <Card mode={mode} />
       </div>
     </div>
   );

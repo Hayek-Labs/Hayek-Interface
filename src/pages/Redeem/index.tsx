@@ -1,7 +1,7 @@
 import MintOrRedeem from '@/components/MintRedeem';
 
 const Redeem = () => {
-  return <MintOrRedeem />;
+  return <MintOrRedeem mode="redeem" />;
 };
 
 export default Redeem;

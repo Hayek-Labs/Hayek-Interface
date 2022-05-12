@@ -68,7 +68,7 @@ const CoinCard: React.FC<{
         <CoinDisplay coin={coin} select={select} />
         <input
           className="ml-1 lg:ml-4 bg-transparent outline-none text-right w-12 lg:w-20 text-lg flex-1"
-          value={value.toString()}
+          value={value.toFixed(2)}
           type="number"
           onChange={(e) => {
             const number = new BigNumber(e.target.value);

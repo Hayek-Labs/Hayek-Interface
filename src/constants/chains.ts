@@ -25,6 +25,6 @@ export const chainToLogo: Record<Chain | number, SVGComponent> = {
 
 export const chainToInfo: Record<Chain | number, { name: string }> = {
   [Chain.Ethereum]: { name: 'Ethereum' },
-  [Chain.BSC]: { name: 'BSC' },
+  [Chain.BSC]: { name: 'BNB Chain' },
   [Chain.Polygon]: { name: 'Polygon' },
 };

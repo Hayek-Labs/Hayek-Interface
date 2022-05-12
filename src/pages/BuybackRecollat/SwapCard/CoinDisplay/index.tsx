@@ -10,6 +10,7 @@ import {
   useNativeStableCoinState,
 } from '@/state/swap';
 import BigNumber from 'bignumber.js';
+import { BsArrowDown } from 'react-icons/bs';
 
 const useMapCoinPrice = (
   independentCoin: 'buy' | 'sell',
@@ -143,13 +144,13 @@ const SwapCoinDisplay: React.FC<{
       {mode === 'cross' ? (
         <CgArrowsExchangeAltV
           size={30}
-          className="my-4 cursor-pointer"
+          className="my-4 cursor-pointer fill-hblack-4"
           onClick={() => {
             setCrossSellHAS((prev) => !prev);
           }}
         />
       ) : (
-        <MdArrowDownward size={30} className="my-4" />
+        <BsArrowDown size={30} className="my-4 fill-hblack-4" />
       )}
 
       <CoinCard

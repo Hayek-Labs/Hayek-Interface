@@ -37,29 +37,28 @@ const LockHASCard = () => {
       render: <LockHASDisplay state={state} />,
     },
     {
-      label: 'My veHAS',
+      label: 'Withdraw',
       render: <MyDeposits />,
     },
   ];
 
   return (
-    <div className="bg-card w-96 flex flex-col justify-center px-4 pt-2 pb-6 rounded-lg text-white text-center relative">
-      <span className="font-bold text-center text-md mb-2 text-hblack-4">
+    <div className="bg-card w-96 flex flex-col justify-center px-4 pt-2 rounded-lg text-white text-center relative">
+      {/* <span className="font-bold text-center text-md mb-2 text-hblack-4">
         {mode === 'lock' ? 'Lock HAS for veHAS' : 'Lock HAS for veHAS'}
-      </span>
+      </span> */}
       <Tabs
         tabs={modeTabs}
         currentTab={mode === 'lock' ? 0 : 1}
         onChange={modeTabsOnChange}
-        className="mb-1"
         labelClassName={`
-          rounded-xl 
+          rounded-md 
           px-3 
           py-1
           mr-2 
           select-none 
-          text-white`}
-        labelSelectedClassName={`bg-hblack-3`}
+          text-hblack-4`}
+        labelSelectedClassName={`bg-hblack-3 text-white`}
       />
     </div>
   );
