@@ -4,6 +4,7 @@ import { VeHASState } from '@/state/veHAS';
 import BigNumber from 'bignumber.js';
 import { useCallback, useEffect, useMemo } from 'react';
 import MyDeposits from '../MyDeposits';
+import Vote from '../Vote';
 import LockHASDisplay from './LockHASDisplay';
 
 const useComputeVeHAS = (state: VeHASState) => {
@@ -27,7 +28,7 @@ const LockHASCard = () => {
   const { mode, setMode } = state;
 
   const modeTabsOnChange = useCallback(
-    (val) => setMode(val === 0 ? 'lock' : 'my-vehas'),
+    (val) => setMode(val === 0 ? 'lock' : val === 1 ? 'my-vehas' : 'vote'),
     [setMode],
   );
 
@@ -40,16 +41,17 @@ const LockHASCard = () => {
       label: 'Withdraw',
       render: <MyDeposits />,
     },
+    {
+      label: 'Vote',
+      render: <Vote />,
+    },
   ];
 
   return (
     <div className="bg-card w-96 flex flex-col justify-center px-4 pt-2 rounded-lg text-white text-center relative">
-      {/* <span className="font-bold text-center text-md mb-2 text-hblack-4">
-        {mode === 'lock' ? 'Lock HAS for veHAS' : 'Lock HAS for veHAS'}
-      </span> */}
       <Tabs
         tabs={modeTabs}
-        currentTab={mode === 'lock' ? 0 : 1}
+        currentTab={mode === 'lock' ? 0 : mode === 'my-vehas' ? 1 : 2}
         onChange={modeTabsOnChange}
         labelClassName={`
           rounded-md 

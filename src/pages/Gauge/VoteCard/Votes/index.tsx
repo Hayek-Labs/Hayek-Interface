@@ -7,6 +7,7 @@ import { MdOutlineContentCopy } from 'react-icons/md';
 import { ReactComponent as UniswapLogo } from '@/assets/logos/coins/uniswap-uni-logo.svg';
 import { Coin, coinToLogo } from '@/constants/coin';
 import Button from '@/components/Button';
+import ConnectDefaultBtn from '@/components/ConnectDefaultBtn';
 
 interface Pool {
   key: number;
@@ -213,7 +214,12 @@ const Votes = () => {
   const poolsInDisplay = pools.slice(0, maxPoolsToDisplay);
 
   return (
-    <div className={clsx('flex flex-col text-hblack-4 pb-3', styles['styles'])}>
+    <div
+      className={clsx(
+        'flex flex-col text-hblack-4 h-full flex-1 pb-2',
+        styles['styles'],
+      )}
+    >
       <div className="flex flex-row mb-2">
         <span>Unused Weight:</span>
         <span className="ml-auto">{unusedWeight}%</span>
@@ -221,9 +227,7 @@ const Votes = () => {
       <div className="rounded-md bg-hblack-2 mb-4">
         <div className="pool-display-table-row">
           <span>Pool</span>
-          {/* <span>Address</span> */}
           <span>Weight</span>
-          {/* <span>Confirm</span> */}
         </div>
         {poolsInDisplay.map((pool) => (
           <PoolDisplay
@@ -244,7 +248,10 @@ const Votes = () => {
           <div onClick={() => setMaxPoolsToDisplay(5)}>See less...</div>
         )}
       </div>
-      <Button disabled={!allConfirmed}>Vote</Button>
+      <div className="mt-auto" />
+      <ConnectDefaultBtn
+        onConnected={<Button disabled={!allConfirmed}>Vote</Button>}
+      />
     </div>
   );
 };

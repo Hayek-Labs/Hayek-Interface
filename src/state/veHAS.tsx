@@ -22,7 +22,7 @@ export const useCreateVeHASState = (): VeHASState => {
   };
 };
 
-type VeHASMode = 'lock' | 'my-vehas';
+type VeHASMode = 'lock' | 'my-vehas' | 'vote';
 
 export interface VeHASState {
   HASCoinValue: BigNumber;

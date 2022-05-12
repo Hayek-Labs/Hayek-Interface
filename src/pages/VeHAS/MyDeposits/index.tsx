@@ -122,7 +122,7 @@ const DepositDisplay: React.FC<{ deposit: Deposit }> = ({ deposit }) => {
 
 const MyDeposits: React.FC = () => {
   return (
-    <div className="h-[22.5rem] pt-2 flex flex-col gap-2 overflow-y-auto">
+    <div className="h-[26rem] py-2 flex flex-col gap-2 overflow-y-auto">
       {deposits.map((deposit) => (
         <DepositDisplay deposit={deposit} key={deposit.id} />
       ))}

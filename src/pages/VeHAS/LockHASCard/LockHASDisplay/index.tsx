@@ -33,8 +33,9 @@ const LockHASDisplay: React.FC<{ state: VeHASState }> = ({ state }) => {
   const veHASBalance = new BigNumber(0.0);
 
   return (
-    <div className="h-[22.5rem] pt-2">
-      <div className="flex flex-col items-center">
+    <div className="h-[26rem] pt-2">
+      <div className="flex flex-col items-center h-full pb-2">
+        <div className="flex-grow" />
         <CoinCard
           coin="HAS"
           input={{
@@ -46,7 +47,6 @@ const LockHASDisplay: React.FC<{ state: VeHASState }> = ({ state }) => {
           balance={HASBalance}
         />
         <div className="h-2" />
-
         <div
           className={clsx(
             'flex flex-row items-center w-full',
@@ -85,7 +85,9 @@ const LockHASDisplay: React.FC<{ state: VeHASState }> = ({ state }) => {
           <div className="w-1" />
           <span className="text-hblack-4">Days</span>
         </div>
+        <div className="flex-grow" />
         <BsArrowDown size={30} className="mb-4 fill-hblack-4" />
+        <div className="flex-grow" />
         <CoinCard
           coin="veHAS"
           input={{
@@ -96,7 +98,7 @@ const LockHASDisplay: React.FC<{ state: VeHASState }> = ({ state }) => {
           select={veHASSelect}
           balance={veHASBalance}
         />
-        <div className="h-4" />
+        <div className="h-4 flex-grow" />
         <ConnectDefaultBtn onConnected={<Button>Lock</Button>} />
       </div>
     </div>

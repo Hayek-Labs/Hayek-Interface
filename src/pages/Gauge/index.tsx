@@ -1,11 +1,9 @@
 import LockHASCard from '../VeHAS/LockHASCard';
-import VoteCard from './VoteCard';
 
 const Gauge = () => {
   return (
-    <div className="w-full h-[unset] flex flex-col items-center justify-center overflow-y-auto gap-6">
+    <div className="w-full h-full flex flex-col items-center justify-center overflow-y-auto">
       <LockHASCard />
-      <VoteCard />
     </div>
   );
 };
