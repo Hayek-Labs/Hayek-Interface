@@ -144,13 +144,13 @@ const SwapCoinDisplay: React.FC<{
       {mode === 'cross' ? (
         <CgArrowsExchangeAltV
           size={30}
-          className="my-4 cursor-pointer fill-hblack-4"
+          className="my-4 cursor-pointer text-hblack-4 fill-hblack-4"
           onClick={() => {
             setCrossSellHAS((prev) => !prev);
           }}
         />
       ) : (
-        <BsArrowDown size={30} className="my-4 fill-hblack-4" />
+        <BsArrowDown size={30} className="my-4 text-hblack-4 fill-hblack-4" />
       )}
 
       <CoinCard
