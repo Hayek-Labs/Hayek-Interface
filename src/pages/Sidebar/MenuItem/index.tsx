@@ -5,33 +5,27 @@ interface Props {
   item: {
     id: string;
     title: string;
-    notifications: number | null;
   };
   onClick: (id: string) => void;
-  selected: string;
+  isSelected: boolean;
 }
 
 const MenuItem: React.FC<Props> = ({
-  item: { id, title, notifications },
+  item: { id, title },
   onClick,
-  selected,
+  isSelected,
 }) => {
   return (
     <div
       className={clsx(
-        'w-full mt-6 flex items-center px-3 sm:px-0 xl:px-3 justify-start sm:justify-center xl:justify-start sm:mt-6 xl:mt-3 cursor-pointer',
-        selected === id ? 'sidebar-item-selected' : 'sidebar-item',
+        'w-full z-0 h-10 rounded-lg py-1 mt-3 flex items-center px-3 sm:px-0 xl:px-3 justify-start sm:justify-center xl:justify-start cursor-pointer',
+        isSelected ? 'sidebar-item-selected' : 'sidebar-item hover:bg-hblack-2',
       )}
       onClick={() => onClick(id)}
     >
       <SidebarIcons id={id} />
       <div className="block sm:hidden xl:block ml-2">{title}</div>
       <div className="block sm:hidden xl:block flex-grow" />
-      {notifications && (
-        <div className="sm:hidden xl:flex bg-pink-600  w-5 h-5 flex items-center justify-center rounded-full mr-2">
-          <div className="text-white text-sm">{notifications}</div>
-        </div>
-      )}
     </div>
   );
 };

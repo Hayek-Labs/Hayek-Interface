@@ -24,6 +24,8 @@ import MenuItem from './MenuItem';
 import ChainDisplay from './ChainDisplay';
 import { useWeb3Hooks } from '@/providers/web3HooksProvider';
 
+import styles from './styles.less';
+
 const svgSize = 25;
 const smallerSvgSize = 22;
 const sidebarItems = [
@@ -151,6 +153,23 @@ const routeToId: Record<string, string> = Object.keys(idToRoute).reduce<
   return accum;
 }, {});
 
+const SidebarItemHighlight: React.FC<{ selectedIndex: number }> = ({
+  selectedIndex,
+}) => {
+  const yOffset = selectedIndex * (40 + 12) + 12;
+  return (
+    <div className={styles['styles']}>
+      <div
+        className="sidebar-selection-box z-0 absolute bg-hyellow-1 h-10 rounded-lg px-4 py-2"
+        style={{
+          top: `${yOffset}px`,
+          width: 'calc(100% - 24px)',
+        }}
+      />
+    </div>
+  );
+};
+
 const Sidebar = () => {
   const { sidebarVisible } = useSidebarContext();
 
@@ -186,17 +205,17 @@ const Sidebar = () => {
       </div>
       <div className="flex-grow overflow-x-hidden overflow-y-auto flex flex-col">
         <ChainDisplay />
-        {sidebarItems.map((i) => (
-          <MenuItem
-            key={i.id}
-            item={{
-              ...i,
-              notifications: null,
-            }}
-            onClick={setSelected}
-            selected={selected}
-          />
-        ))}
+        <div className="flex flex-col relative px-3">
+          <SidebarItemHighlight selectedIndex={Number.parseInt(selected)} />
+          {sidebarItems.map((item) => (
+            <MenuItem
+              key={item.id}
+              item={item}
+              onClick={setSelected}
+              isSelected={selected === item.id}
+            />
+          ))}
+        </div>
 
         <div className="flex-grow" />
       </div>
