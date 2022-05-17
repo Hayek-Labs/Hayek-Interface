@@ -1,6 +1,6 @@
 import Icon from '@/pages/Home/Icon';
 import { useHover } from '@/util/useHover';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   LineChart,
   Line,
@@ -10,27 +10,6 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
-
-const graphData = [
-  'Nov',
-  'Dec',
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'June',
-  'July',
-].map((i) => {
-  const revenue = 500 + Math.random() * 2000;
-  const expectedRevenue = Math.max(revenue + (Math.random() - 0.5) * 2000, 0);
-  return {
-    name: i,
-    revenue,
-    expectedRevenue,
-    sales: Math.floor(Math.random() * 500),
-  };
-});
 
 const CustomTooltip = () => (
   <div className="rounded-xl overflow-hidden tooltip-head">
@@ -52,6 +31,26 @@ const Graph: React.FC = () => {
   useEffect(() => {
     setLineStroke(isHovering ? 'url(#paint0_linear)' : 'url(#paint1_linear)');
   }, [isHovering]);
+
+  const graphData = useMemo(
+    () =>
+      ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July'].map(
+        (i) => {
+          const revenue = 500 + Math.random() * 2000;
+          const expectedRevenue = Math.max(
+            revenue + (Math.random() - 0.5) * 2000,
+            0,
+          );
+          return {
+            name: i,
+            revenue,
+            expectedRevenue,
+            sales: Math.floor(Math.random() * 500),
+          };
+        },
+      ),
+    [],
+  );
 
   return (
     <div className="flex-grow" ref={ref}>

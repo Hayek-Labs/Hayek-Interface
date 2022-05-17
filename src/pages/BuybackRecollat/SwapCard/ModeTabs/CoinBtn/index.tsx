@@ -1,16 +1,15 @@
-import { coinToLogo, NativeStableCoin } from '@/constants/coin';
+import CoinNameIcon from '@/components/CoinNameIcon';
+import { NativeStableCoin } from '@/constants/coin';
 import { useSwapState } from '@/providers/StateProvider';
 import clsx from 'clsx';
 import { CRState } from '../..';
 
-const iconSize = 20;
 const CoinBtn: React.FC<{
   coin: NativeStableCoin;
   selected: boolean;
   state?: CRState | 'none';
 }> = ({ coin, state = 'none', selected }) => {
   const { setNativeStableCoin } = useSwapState();
-  const Logo = coinToLogo[coin];
 
   return (
     <div
@@ -27,15 +26,13 @@ const CoinBtn: React.FC<{
           : undefined
       }
     >
-      <div
+      <CoinNameIcon
         className={clsx(
           'flex flex-row items-center text-base',
           state === 'none' ? '' : state,
         )}
-      >
-        <Logo width={iconSize} height={iconSize} className="mr-1" />
-        <span>{coin}</span>
-      </div>
+        coin={coin}
+      />
     </div>
   );
 };

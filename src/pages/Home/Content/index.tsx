@@ -10,6 +10,7 @@ import CRGraph from '../CRGraph';
 import CoinGraph from '../CoinGraph';
 import Satisfication from '../Satisfaction';
 import VeHASSupply from '../VeHASSupply';
+import GaugePieChart from '@/pages/Home/GaugePieChart';
 
 const coinData: {
   id: number;
@@ -132,6 +133,10 @@ const Content: React.FC = () => {
           </div>
         </div>
       </div>
+
+      <div className="w-full m-2 border border-solid border-hblack-1" />
+
+      <GaugePieChart />
     </>
   );
 };

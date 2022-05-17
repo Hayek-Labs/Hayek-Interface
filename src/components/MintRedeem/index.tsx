@@ -1,8 +1,8 @@
 import { BsPlusLg } from 'react-icons/bs';
 import clsx from 'clsx';
 import Button from '../Button';
-import { ReactComponent as RedeemIcon } from '@/assets/icons/redeem-original.svg';
-import { ReactComponent as MintIcon } from '@/assets/icons/mint-original.svg';
+import { ReactComponent as RedeemIcon } from '@/assets/icons/redeem-new-min.svg';
+import { ReactComponent as MintIcon } from '@/assets/icons/mint-new-min.svg';
 import styles from './styles.less';
 import {
   HASCoinCard,
@@ -10,10 +10,9 @@ import {
   NativeStableCoinCard,
 } from './CoinDisplay';
 import { useMintOrRedeemState } from '@/providers/StateProvider';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import BigNumber from 'bignumber.js';
 import ConnectDefaultBtn from '../ConnectDefaultBtn';
-import Tabs from '../Tabs';
 
 const mappingFromHas = (
   hasValue: BigNumber,
@@ -84,21 +83,6 @@ const mappingFromForeign = (
     foreign: foreignValue,
   };
 };
-
-// const getMapping = (
-//   independentCoin: 'has' | 'native' | 'foreign',
-//   independentCoinValue: string,
-// ) => {
-//   if (independentCoin === 'has') {
-//     return mappingFromHas(independentCoinValue);
-//   } else if (independentCoin === 'native') {
-//     return mappingFromNative(independentCoinValue);
-//   } else if (independentCoin === 'foreign') {
-//     return mappingFromForeign(independentCoinValue);
-//   } else {
-//     throw new Error('unreachable');
-//   }
-// };
 
 const useCoinValueMapping = (isMint: boolean) => {
   const {

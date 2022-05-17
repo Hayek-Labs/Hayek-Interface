@@ -17,7 +17,7 @@ interface Pool {
   address: string;
 }
 
-const pools: Pool[] = [
+export const pools: Pool[] = [
   {
     key: 1,
     name: 'Uniswap V3',
