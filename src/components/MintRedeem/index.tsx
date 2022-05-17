@@ -1,8 +1,8 @@
 import { BsPlusLg } from 'react-icons/bs';
 import clsx from 'clsx';
 import Button from '../Button';
-import { ReactComponent as RedeemIcon } from '@/assets/icons/redeem-new-min.svg';
-import { ReactComponent as MintIcon } from '@/assets/icons/mint-new-min.svg';
+import { ReactComponent as RedeemIcon } from '@/assets/icons/redeem-original.svg';
+import { ReactComponent as MintIcon } from '@/assets/icons/mint-original.svg';
 import styles from './styles.less';
 import {
   HASCoinCard,
