@@ -98,10 +98,6 @@ const PoolDisplay: React.FC<{
   setConfirmation,
   unusedWeight,
 }) => {
-  useEffect(() => {
-    setWeight(pool.address, 0);
-  }, [pool.address, setWeight]);
-
   const AddressTooltip = () => {
     return <MdOutlineContentCopy size={10} className="ml-1" />;
   };
@@ -194,6 +190,20 @@ const Votes = () => {
     },
     [],
   );
+
+  useEffect(() => {
+    setVoteState((prevVoteState) => {
+      const voteState = {
+        ...prevVoteState,
+      };
+
+      pools.forEach((pool) => {
+        voteState.weights[pool.address] = 0;
+      });
+
+      return voteState;
+    });
+  }, []);
 
   const unusedWeight = useMemo(() => {
     return (
