@@ -1,30 +1,17 @@
+import React from 'react';
+import { useMemo } from 'react';
+import { useCallback, useState } from 'react';
 import {
   PieChart as LibPieChart,
   Pie,
   Cell,
+  Legend as LibLegend,
   ResponsiveContainer,
-  Legend,
+  Tooltip as LibTooltip,
 } from 'recharts';
-import { pools } from '../../Gauge/VoteCard/Votes';
-
-const data = [
-  { name: 'Group A', value: 400 },
-  { name: 'Group B', value: 300 },
-  { name: 'Group C', value: 300 },
-  { name: 'Group D', value: 200 },
-];
-
-let weightRemaining = 100;
-const mockPoolWeights = pools.map((pool, i) => {
-  const weight =
-    i === pools.length - 1 ? weightRemaining : weightRemaining * Math.random();
-  weightRemaining = weightRemaining - weight;
-  return {
-    ...pool,
-    name: `${pool.name} ${pool.coin1}-${pool.coin2}`,
-    value: weight,
-  };
-});
+import { Pool, pools } from '../../Gauge/VoteCard/Votes';
+import Legend from './Legend';
+import Tooltip from './Tooltip';
 
 const COLORS = [
   '#ff299b',
@@ -35,65 +22,109 @@ const COLORS = [
   '#2f49d1',
   '#10b981',
   '#ef4444',
-  '#1e1e1e',
+  '#aeaeae',
   '#0e0304',
 ];
 
-const RADIAN = Math.PI / 180;
-const renderCustomizedLabel = ({
-  cx,
-  cy,
-  midAngle,
-  innerRadius,
-  outerRadius,
-  index,
-}: {
-  cx: number;
-  cy: number;
-  midAngle: number;
-  innerRadius: number;
-  outerRadius: number;
-  percent: number;
-  index: number;
-}) => {
-  const radius = innerRadius + (outerRadius - innerRadius) * 0.2;
-  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+let weightRemaining = 100;
+const mockPoolWeights: PoolWithChartInfo[] = pools.map((pool, i) => {
+  const weight =
+    i === pools.length - 1 ? weightRemaining : weightRemaining * Math.random();
+  weightRemaining = weightRemaining - weight;
+  return {
+    ...pool,
+    name: `${pool.name} ${pool.coin1}-${pool.coin2}`,
+    value: weight,
+    color: COLORS[i % COLORS.length],
+  };
+});
 
-  return (
-    <text
-      x={x}
-      y={y}
-      fill="white"
-      textAnchor={x > cx ? 'start' : 'end'}
-      dominantBaseline="central"
-    >
-      {mockPoolWeights[index].name}
-    </text>
-  );
+export type PoolWithChartInfo = Pool & {
+  name: string;
+  value: number;
+  color: string;
+};
+
+export const GaugeChartContext = React.createContext<{
+  onToggleVisible: (key: string) => void;
+  visibility: Record<string, boolean>;
+}>(undefined!);
+
+export const getEntryKey = (entry: PoolWithChartInfo) => {
+  return `${entry.name} ${entry.coin1}-${entry.coin2}`;
+};
+
+const generateVisibleMap = (data: PoolWithChartInfo[]) => {
+  const map: Record<string, boolean> = {};
+
+  data.forEach((entry) => {
+    map[getEntryKey(entry)] = true;
+  });
+
+  return map;
 };
 
 const PieChart = () => {
+  const [visibility, setVisibility] = useState<Record<string, boolean>>(
+    generateVisibleMap(mockPoolWeights),
+  );
+
+  const onToggleVisible = useCallback((key: string) => {
+    setVisibility((prevVisibility) => {
+      const newVisibility = {
+        ...prevVisibility,
+      };
+
+      newVisibility[key] = !newVisibility[key];
+
+      return newVisibility;
+    });
+  }, []);
+
+  const visibleData = useMemo(
+    () =>
+      mockPoolWeights.map((pool) =>
+        visibility[getEntryKey(pool)]
+          ? pool
+          : {
+              ...pool,
+              value: 0,
+            },
+      ),
+    [visibility],
+  );
+
+  const gaugeChartContextData = useMemo(
+    () => ({
+      onToggleVisible,
+      visibility,
+    }),
+    [onToggleVisible, visibility],
+  );
+
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <LibPieChart width={200} height={350}>
-        <Legend layout="horizontal" />
-        <Pie
-          data={mockPoolWeights}
-          cx="50%"
-          cy="50%"
-          labelLine={false}
-          // label={renderCustomizedLabel}
-          outerRadius={170}
-          innerRadius={100}
-          dataKey="value"
-        >
-          {mockPoolWeights.map((_, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-      </LibPieChart>
-    </ResponsiveContainer>
+    <GaugeChartContext.Provider value={gaugeChartContextData}>
+      <ResponsiveContainer width="100%" height="100%">
+        <LibPieChart width={200} height={350}>
+          <LibLegend layout="horizontal" content={Legend} />
+          <LibTooltip content={Tooltip} />
+          <Pie
+            data={visibleData}
+            cx="50%"
+            cy="50%"
+            labelLine={false}
+            outerRadius={170}
+            innerRadius={100}
+            dataKey="value"
+            animationBegin={200}
+          >
+            {visibleData.map((entry) => (
+              <Cell key={`cell ${getEntryKey(entry)}`} fill={entry.color} />
+            ))}
+          </Pie>
+        </LibPieChart>
+      </ResponsiveContainer>
+    </GaugeChartContext.Provider>
   );
 };
 

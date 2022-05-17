@@ -4,12 +4,11 @@ import clsx from 'clsx';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import styles from './styles.less';
 import { MdOutlineContentCopy } from 'react-icons/md';
-import { ReactComponent as UniswapLogo } from '@/assets/logos/coins/uniswap-uni-logo.svg';
 import { Coin, coinToLogo } from '@/constants/coin';
 import Button from '@/components/Button';
 import ConnectDefaultBtn from '@/components/ConnectDefaultBtn';
 
-interface Pool {
+export interface Pool {
   key: number;
   name: string;
   coin1: Coin;
@@ -36,7 +35,7 @@ export const pools: Pool[] = [
     key: 3,
     name: 'SushiSwap',
     coin1: 'USDH',
-    coin2: 'DAI',
+    coin2: 'USDC',
     address: '0xF224 ... f53e',
   },
   {
@@ -71,7 +70,7 @@ export const pools: Pool[] = [
     key: 8,
     name: 'ACY Finance',
     coin1: 'USDH',
-    coin2: 'USDT',
+    coin2: 'USDC',
     address: '0x3eE4 ... 6AeC',
   },
   {
@@ -90,14 +89,7 @@ const PoolDisplay: React.FC<{
   setConfirmation: (address: string, confirmed: boolean) => void;
   setWeight: (address: string, newWeight: number) => void;
   unusedWeight: number;
-}> = ({
-  pool,
-  weight,
-  isConfirmed,
-  setWeight,
-  setConfirmation,
-  unusedWeight,
-}) => {
+}> = ({ pool, weight, isConfirmed, setWeight, unusedWeight }) => {
   const AddressTooltip = () => {
     return <MdOutlineContentCopy size={10} className="ml-1" />;
   };
