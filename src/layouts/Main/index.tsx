@@ -11,7 +11,7 @@ const MainLayout: React.FC = ({ children }) => {
         <div className="flex flex-col sm:flex-row">
           <Sidebar />
           <div className="flex w-full overflow-auto">
-            <div className="w-full h-screen hidden sm:block sm:w-20 xl:w-60 flex-shrink-0">
+            <div className="w-full h-screen hidden sm:block sm:w-24 xl:w-60 flex-shrink-0">
               .
             </div>
             <div className="h-max sm:h-screen flex-grow overflow-x-hidden overflow-auto flex flex-wrap content-start p-2">
