@@ -1,4 +1,11 @@
 .select-wrapper {
+  transition: all 0.45s cubic-bezier(0.77, 0, 0.175, 1), color 0ms;
+
   :global {
+    .custom-select__control {
+      &:hover {
+        background-color: transparent;
+      }
+    }
   }
 }

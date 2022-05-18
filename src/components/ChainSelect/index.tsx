@@ -21,9 +21,11 @@ const SingleValue = ({
     <components.SingleValue {...props} isMulti={false}>
       <div className="flex flex-row items-center">
         {Logo && <Logo width={size} height={size} />}
-        <span className="hidden xl:inline ml-2 text-md">{children}</span>
+        <span className="xl:group-hover:inline ml-2 text-[0px] xl:group-hover:text-lg trans">
+          {children}
+        </span>
         {!props.data.value && (
-          <div className="block xl:hidden">
+          <div className="block xl:group-hover:hidden">
             <VscDebugDisconnect size={size} />
           </div>
         )}
@@ -37,26 +39,31 @@ const Option = ({ children, ...props }: OptionProps<ChainOption, false>) => {
   const size = 30;
   return (
     <components.Option {...props} isMulti={false}>
-      <div className="flex flex-row items-center">
+      <div className="flex flex-row items-center justify-start">
+        <div className="flex-grow xl:group-hover:flex-grow-0 trans" />
         {Logo && (
-          <>
-            <Logo width={size} height={size} />
-            <div className="hidden xl:block ml-2" />
-          </>
+          <Logo
+            className="ml-0 xl:group-hover:mr-2 trans"
+            width={size}
+            height={size}
+          />
         )}
         {props.data.value === undefined ? (
           <>
             <VscDebugDisconnect size={size} />
-            <div className="hidden xl:block ml-2" />
+            <div className="xl:group-hover:block ml-0 xl:group-hover:ml-2 trans" />
             <div className="min-h-[30px] flex flex-row items-center">
-              <span className="text-ellipsis w-full hidden xl:inline">
+              <span className="text-ellipsis w-full text-[0px] xl:group-hover:text-base xl:group-hover:inline trans">
                 Disconnect
               </span>
             </div>
           </>
         ) : (
-          <span className="hidden xl:inline">{children}</span>
+          <span className="text-[0px] xl:group-hover:text-base xl:group-hover:inline trans">
+            {children}
+          </span>
         )}
+        <div className="flex-grow xl:group-hover:flex-grow-0 trans" />
       </div>
     </components.Option>
   );
@@ -98,7 +105,7 @@ const ChainSelect: React.FC<Props> = ({
       className={clsx(
         selectStyles['select-wrapper'],
         specialStyles['select-wrapper'],
-        'bg-hblack-3 rounded-xl py-2 w-full h-full flex items-center justify-start sm:justify-center xl:justify-start px-3 sm:px-0 xl:px-3 hover:cursor-pointer',
+        'bg-hblack-3 rounded-xl py-2 w-full h-full flex items-center justify-start sm:justify-center xl:group-hover:justify-start px-3 sm:px-0 xl:group-hover:px-3 hover:cursor-pointer',
       )}
     >
       <ReactSelect

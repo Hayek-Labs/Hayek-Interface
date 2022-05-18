@@ -158,15 +158,13 @@ const SidebarItemHighlight: React.FC<{ selectedIndex: number }> = ({
 }) => {
   const yOffset = selectedIndex * (40 + 12) + 12;
   return (
-    <div className={styles['styles']}>
-      <div
-        className="sidebar-selection-box z-0 absolute bg-hyellow-1 h-10 rounded-lg px-4 py-2"
-        style={{
-          top: `${yOffset}px`,
-          width: 'calc(100% - 24px)',
-        }}
-      />
-    </div>
+    <div
+      className="sidebar-selection-box z-0 absolute bg-hyellow-1 h-10 rounded-lg px-4 py-2"
+      style={{
+        top: `${yOffset}px`,
+        width: 'calc(100% - 24px)',
+      }}
+    />
   );
 };
 
@@ -192,44 +190,46 @@ const Sidebar = () => {
   };
 
   return (
-    <div
-      className={clsx(
-        'sm:fixed inset-y-0 left-0 bg-card w-full sm:w-24 xl:w-60 sm:flex flex-col z-10',
-        sidebarVisible ? 'flex' : 'hidden',
-      )}
-    >
-      <div className="flex-shrink-0 overflow-hidden p-2">
-        <div className="flex items-center h-full sm:justify-center xl:justify-start px-2 py-5 sidebar-separator-top">
-          <LogoSVG width="100" height="22.5" />
-        </div>
-      </div>
-      <div className="flex-grow overflow-x-hidden overflow-y-auto flex flex-col">
-        <ChainDisplay />
-        <div className="flex flex-col relative px-3">
-          <SidebarItemHighlight selectedIndex={Number.parseInt(selected)} />
-          {sidebarItems.map((item) => (
-            <MenuItem
-              key={item.id}
-              item={item}
-              onClick={setSelected}
-              isSelected={selected === item.id}
-            />
-          ))}
-        </div>
-
-        <div className="flex-grow" />
-      </div>
-
-      <div className="flex-shrink-0 overflow-hidden p-2">
-        <div className="flex items-center h-full sm:justify-center xl:justify-start p-2 sidebar-separator-bottom">
-          <div className="block sm:hidden xl:block font-bold">
-            {account && formatAccount(account)}
+    <div className={styles['styles']}>
+      <div
+        className={clsx(
+          'sidebar-wrapper sm:fixed inset-y-0 left-0 bg-card w-full sm:w-24 group xl:hover:w-60 sm:flex flex-col z-10',
+          sidebarVisible ? 'flex' : 'hidden',
+        )}
+      >
+        <div className="flex-shrink-0 overflow-hidden p-2">
+          <div className="flex items-center h-full sm:justify-center px-2 py-5 sidebar-separator-top">
+            <LogoSVG width="100" height="22.5" />
           </div>
-          <div className="flex-grow block sm:hidden xl:block" />
-          <Icon
-            path="res-react-dash-options"
-            className="block sm:hidden xl:block w-3 h-3"
-          />
+        </div>
+        <div className="flex-grow overflow-x-hidden overflow-y-auto flex flex-col">
+          <ChainDisplay />
+          <div className="flex flex-col relative px-3">
+            <SidebarItemHighlight selectedIndex={Number.parseInt(selected)} />
+            {sidebarItems.map((item) => (
+              <MenuItem
+                key={item.id}
+                item={item}
+                onClick={setSelected}
+                isSelected={selected === item.id}
+              />
+            ))}
+          </div>
+
+          <div className="flex-grow" />
+        </div>
+
+        <div className="flex-shrink-0 overflow-hidden p-2">
+          <div className="flex items-center h-full sm:justify-center xl:group-hover:justify-start p-2 sidebar-separator-bottom">
+            <div className="block sm:hidden xl:group-hover:block font-bold">
+              {account && formatAccount(account)}
+            </div>
+            <div className="flex-grow block sm:hidden xl:group-hover:block" />
+            <Icon
+              path="res-react-dash-options"
+              className="block sm:hidden xl:group-hover:block w-3 h-3"
+            />
+          </div>
         </div>
       </div>
     </div>

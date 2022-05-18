@@ -18,14 +18,18 @@ const MenuItem: React.FC<Props> = ({
   return (
     <div
       className={clsx(
-        'w-full z-0 h-10 rounded-lg py-1 mt-3 flex items-center px-3 sm:px-0 xl:px-3 justify-start sm:justify-center xl:justify-start cursor-pointer',
+        'w-full trans z-0 h-10 rounded-lg py-1 mt-3 flex flex-row items-center px-3 sm:px-0 xl:group-hover:px-3 justify-start sm:justify-center xl:group-hover:justify-start cursor-pointer',
         isSelected ? 'sidebar-item-selected' : 'sidebar-item hover:bg-hblack-2',
       )}
       onClick={() => onClick(id)}
     >
-      <SidebarIcons id={id} />
-      <div className="block sm:hidden xl:block ml-2">{title}</div>
-      <div className="block sm:hidden xl:block flex-grow" />
+      <div className="block sm:text-[0px] xl:group-hover:text-base xl:group-hover:block xl:group-hover:ml-2 trans">
+        {title}
+      </div>
+      <div className="block trans flex-grow-0 xl:group-hover:flex-grow" />
+      <div className="ml-auto sm:mx-auto">
+        <SidebarIcons id={id} />
+      </div>
     </div>
   );
 };

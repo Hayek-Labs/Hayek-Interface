@@ -38,7 +38,7 @@ const ChainDisplay = () => {
     : [...supportedChains];
 
   return (
-    <div className="w-full p-3 h-18 sm:h-16 xl:h-20 hidden sm:block flex-shrink-0">
+    <div className="w-full p-3 h-20 hidden sm:block flex-shrink-0">
       <ChainSelect
         options={selectOptions}
         value={chainId}
