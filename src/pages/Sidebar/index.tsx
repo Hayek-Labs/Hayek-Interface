@@ -193,7 +193,7 @@ const Sidebar = () => {
     <div className={styles['styles']}>
       <div
         className={clsx(
-          'sidebar-wrapper sm:fixed inset-y-0 left-0 bg-card w-full sm:w-24 group xl:hover:w-60 sm:flex flex-col z-10',
+          'sidebar-wrapper flex-shrink-0 sm:fixed inset-y-0 left-0 bg-card w-full sm:w-24 xl:hover:w-60 group sm:flex flex-col z-10',
           sidebarVisible ? 'flex' : 'hidden',
         )}
       >

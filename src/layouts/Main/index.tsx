@@ -8,11 +8,10 @@ const MainLayout: React.FC = ({ children }) => {
   return (
     <Providers>
       <SidebarContext.Provider value={{ sidebarVisible, setSidebarVisible }}>
-        <div className="flex flex-col sm:flex-row">
-          <Sidebar />
+        <div className="flex flex-col sm:flex-row bg-[#060203]">
           <div className="flex w-full overflow-auto">
-            <div className="w-full h-screen hidden sm:block sm:w-24 xl:w-60 flex-shrink-0">
-              .
+            <div className="w-full sm:w-24 hover:xl:w-60 flex-shrink-0 main-trans">
+              <Sidebar />
             </div>
             <div className="h-max sm:h-screen flex-grow overflow-x-hidden overflow-auto flex flex-wrap content-start p-2">
               {children}
