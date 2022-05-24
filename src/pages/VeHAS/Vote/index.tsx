@@ -5,7 +5,7 @@ const Vote = () => {
   const veHASBalance = new BigNumber(0.0);
 
   return (
-    <div className="min-h-[26rem] flex flex-col">
+    <div className="min-h-[26rem] flex flex-col pt-2 px-4">
       <div className="flex flex-row text-hblack-4">
         <span>veHAS Balance:</span>
         <span className="ml-auto">{veHASBalance.toFixed(2)}</span>

@@ -86,7 +86,7 @@ const SwapCard: React.FC<{
   })();
 
   return (
-    <div className="bg-card w-96 flex flex-col justify-center px-4 pt-2 pb-2 rounded-lg text-white text-center">
+    <div className="bg-card w-96 flex flex-col justify-center px-4 pt-2 pb-4 rounded-lg text-white text-center">
       <span className="font-bold text-center text-md mb-2 text-hblack-4">
         SWAP
       </span>

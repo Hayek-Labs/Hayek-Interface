@@ -1,11 +1,14 @@
-import Tabs from '@/components/Tabs';
 import { useVeHASState } from '@/providers/StateProvider';
 import { VeHASState } from '@/state/veHAS';
+import { Tabs as AntTabs } from 'antd';
+const { TabPane: AntTabPane } = AntTabs;
 import BigNumber from 'bignumber.js';
+import clsx from 'clsx';
 import { useCallback, useEffect, useMemo } from 'react';
 import MyDeposits from '../MyDeposits';
 import Vote from '../Vote';
 import LockHASDisplay from './LockHASDisplay';
+import styles from './styles.less';
 
 const useComputeVeHAS = (state: VeHASState) => {
   // input
@@ -48,20 +51,23 @@ const LockHASCard = () => {
   ];
 
   return (
-    <div className="bg-card w-96 flex flex-col justify-center px-4 pt-2 rounded-lg text-white text-center relative">
-      <Tabs
-        tabs={modeTabs}
-        currentTab={mode === 'lock' ? 0 : mode === 'my-vehas' ? 1 : 2}
-        onChange={modeTabsOnChange}
-        labelClassName={`
-          rounded-md 
-          px-3 
-          py-1
-          mr-2 
-          select-none 
-          text-hblack-4`}
-        labelSelectedClassName={`bg-hblack-3 text-white`}
-      />
+    <div
+      className={clsx(
+        'bg-card w-96 flex flex-col justify-center rounded-lg text-white text-center relative',
+        styles['styles'],
+      )}
+    >
+      <AntTabs defaultActiveKey="1" type="card" size="middle" tabBarGutter={0}>
+        <AntTabPane tab="Lock" key="1">
+          <LockHASDisplay state={state} />
+        </AntTabPane>
+        <AntTabPane tab="Withdraw" key="2">
+          <MyDeposits />
+        </AntTabPane>
+        <AntTabPane tab="Vote" key="3">
+          <Vote />
+        </AntTabPane>
+      </AntTabs>
     </div>
   );
 };

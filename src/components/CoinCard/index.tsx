@@ -60,14 +60,14 @@ const CoinCard: React.FC<{
   return (
     <div
       className={clsx(
-        'rounded-lg w-full bg-hblack-1 flex flex-col justify-start px-4',
+        'rounded-lg w-full bg-[#060203] flex flex-col justify-start px-4',
         size === 'lg' ? 'py-3' : 'py-1',
       )}
     >
       <div className="flex flex-row items-center">
         <CoinDisplay coin={coin} select={select} />
         <input
-          className="ml-1 lg:ml-4 bg-transparent outline-none text-right w-12 lg:w-20 text-lg flex-1"
+          className="ml-1 lg:ml-4 bg-transparent outline-none text-right text-white w-12 lg:w-20 text-lg flex-1"
           value={value.toFixed(2)}
           type="number"
           onChange={(e) => {

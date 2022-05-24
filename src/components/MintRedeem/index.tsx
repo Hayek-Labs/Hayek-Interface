@@ -206,24 +206,10 @@ const Card: React.FC<{ mode: 'mint' | 'redeem' }> = ({ mode }) => {
   // );
 
   return (
-    <div className="bg-card w-96 flex flex-col justify-center px-4 pt-2 pb-2 rounded-lg">
+    <div className="bg-card w-96 flex flex-col justify-center px-4 pt-2 pb-4 rounded-lg">
       <span className="font-bold text-center text-md mb-2 text-hblack-4">
         {pageText}
       </span>
-      {/* <Tabs
-        tabs={modeTabs}
-        currentTab={mode === 'mint' ? 0 : 1}
-        onChange={modeTabsOnChange}
-        className="mb-1"
-        labelClassName={`
-          rounded-xl 
-          px-3 
-          py-1
-          mr-2 
-          select-none 
-          text-white`}
-        labelSelectedClassName={`bg-hblack-3`}
-      /> */}
       <div
         className={clsx(
           'flex w-full',

@@ -94,16 +94,16 @@ const DepositDisplay: React.FC<{ deposit: Deposit }> = ({ deposit }) => {
   const canWithdraw = withdrawlDurationMs < 0;
 
   return (
-    <div className="w-full px-2 py-1 bg-hblack-1 text-white rounded-lg flex flex-col items-start">
+    <div className="w-full px-2 py-1 bg-hblack-2 text-white rounded-lg flex flex-col items-start">
       <div className="self-start flex flex-row items-center w-full">
-        <span className="text-hblack-4">
+        <span className="text-[#989898]">
           Deposited: {deposit.depositTime.toLocaleString()}
         </span>
       </div>
-      <div className="text-hblack-4">
+      <div className="text-[#989898]">
         Lock Period: {deposit.lockPeriod.toFixed(2)} days
       </div>
-      <div className="flex flex-row items-center text-hblack-4">
+      <div className="flex flex-row items-center text-[#989898]">
         {canWithdraw
           ? 'Withdraw: Yes'
           : `Withdraw: In ${withdrawlMsg} (${deposit.endTime.toLocaleDateString()})`}
@@ -122,7 +122,7 @@ const DepositDisplay: React.FC<{ deposit: Deposit }> = ({ deposit }) => {
 
 const MyDeposits: React.FC = () => {
   return (
-    <div className="h-[26rem] py-2 flex flex-col gap-2 overflow-y-auto">
+    <div className="h-[26rem] pt-6 px-4 pb-4 flex flex-col gap-2 overflow-y-auto">
       {deposits.map((deposit) => (
         <DepositDisplay deposit={deposit} key={deposit.id} />
       ))}

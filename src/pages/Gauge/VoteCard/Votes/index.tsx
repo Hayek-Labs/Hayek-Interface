@@ -218,7 +218,7 @@ const Votes = () => {
   return (
     <div
       className={clsx(
-        'flex flex-col text-hblack-4 h-full flex-1 pb-2',
+        'flex flex-col text-hblack-4 h-full flex-1 pb-4',
         styles['styles'],
       )}
     >

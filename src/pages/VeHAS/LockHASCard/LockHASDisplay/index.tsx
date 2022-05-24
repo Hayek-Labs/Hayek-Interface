@@ -33,8 +33,8 @@ const LockHASDisplay: React.FC<{ state: VeHASState }> = ({ state }) => {
   const veHASBalance = new BigNumber(0.0);
 
   return (
-    <div className="h-[26rem] pt-2">
-      <div className="flex flex-col items-center h-full pb-2">
+    <div className="h-[26rem] pt-6 px-4">
+      <div className="flex flex-col items-center h-full pb-4">
         <div className="flex-grow" />
         <CoinCard
           coin="HAS"
