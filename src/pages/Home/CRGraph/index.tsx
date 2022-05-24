@@ -3,6 +3,7 @@ import LineChart from '@/components/LineChart';
 import { NativeStableCoin, supportedNativeStableCoins } from '@/constants/coin';
 import clsx from 'clsx';
 import { useState } from 'react';
+import HomeRenderIfVisible from '../HomeRenderIfVisible';
 import Icon from '../Icon';
 
 const CoinBtn: React.FC<{
@@ -58,7 +59,9 @@ const CRGraph: React.FC = () => {
             </div>
             <div className="font-bold ml-5">Nov - July</div>
           </div>
-          <LineChart key={poolCoin} />
+          <HomeRenderIfVisible height="320px">
+            <LineChart key={poolCoin} />
+          </HomeRenderIfVisible>
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import { Coin, coinToLogo } from '@/constants/coin';
 import LineChart from '@/components/LineChart';
 
 import Icon from '../Icon';
+import HomeRenderIfVisible from '../HomeRenderIfVisible';
 
 const Graph: React.FC<{ coin: Coin }> = ({ coin }) => {
   const Logo = coinToLogo[coin];
@@ -24,7 +25,9 @@ const Graph: React.FC<{ coin: Coin }> = ({ coin }) => {
         </div>
         <div className="font-bold ml-5">Nov - July</div>
       </div>
-      <LineChart />
+      <HomeRenderIfVisible height="320px">
+        <LineChart />
+      </HomeRenderIfVisible>
     </div>
   );
 };

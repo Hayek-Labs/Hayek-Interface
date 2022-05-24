@@ -1,6 +1,6 @@
 import Icon from '@/pages/Home/Icon';
-import { useHover } from '@/util/useHover';
-import { useEffect, useMemo, useState } from 'react';
+import { useHoverWithRef } from '@/util/useHover';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   LineChart,
   Line,
@@ -10,6 +10,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
+import { useRenderIfScrollVisibleContext } from '../RenderIfScrollVisible';
 
 const CustomTooltip = () => (
   <div className="rounded-xl overflow-hidden tooltip-head">
@@ -26,7 +27,10 @@ const CustomTooltip = () => (
 
 const Graph: React.FC = () => {
   const [lineStroke, setLineStroke] = useState('url(#paint1_linear)');
-  const [ref, isHovering] = useHover<HTMLDivElement>();
+  const renderIfScrollData = useRenderIfScrollVisibleContext();
+  const _ref = useRef<HTMLDivElement>(null);
+  const ref = (renderIfScrollData && renderIfScrollData.selfRef) || _ref;
+  const [isHovering] = useHoverWithRef<HTMLDivElement>(ref);
 
   useEffect(() => {
     setLineStroke(isHovering ? 'url(#paint0_linear)' : 'url(#paint1_linear)');

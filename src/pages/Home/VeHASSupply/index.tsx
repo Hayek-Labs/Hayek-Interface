@@ -1,4 +1,5 @@
 import LineChart from '@/components/LineChart';
+import HomeRenderIfVisible from '../HomeRenderIfVisible';
 import Icon from '../Icon';
 
 const CRGraph: React.FC = () => {
@@ -21,7 +22,9 @@ const CRGraph: React.FC = () => {
             </div>
             <div className="font-bold ml-5">Nov - July</div>
           </div>
-          <LineChart />
+          <HomeRenderIfVisible height="320px">
+            <LineChart />
+          </HomeRenderIfVisible>
         </div>
       </div>
     </div>

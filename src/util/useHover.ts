@@ -1,7 +1,13 @@
-import { MutableRefObject, useState, useRef, useEffect } from 'react';
+import {
+  MutableRefObject,
+  useState,
+  useRef,
+  useEffect,
+  RefObject,
+} from 'react';
 
 export const useHover = <T extends HTMLElement>(): [
-  MutableRefObject<T | null>,
+  MutableRefObject<T | null> | RefObject<T | null>,
   boolean,
 ] => {
   const ref = useRef<T | null>(null);
@@ -10,7 +16,7 @@ export const useHover = <T extends HTMLElement>(): [
 };
 
 export const useHoverWithRef = <T extends HTMLElement>(
-  ref: MutableRefObject<T | null>,
+  ref: MutableRefObject<T | null> | RefObject<T | null>,
 ): [boolean] => {
   const [value, setValue] = useState<boolean>(false);
   const handleMouseOver = () => setValue(true);

@@ -10,6 +10,7 @@ import {
   Tooltip as LibTooltip,
 } from 'recharts';
 import { Pool, pools } from '../../Gauge/VoteCard/Votes';
+import HomeRenderIfVisible from '../HomeRenderIfVisible';
 import Legend from './Legend';
 import Tooltip from './Tooltip';
 
@@ -138,7 +139,9 @@ const PieChartCard: React.FC = () => {
           </span>
         </div>
         <div className="flex h-[30rem] flex-col">
-          <PieChart />
+          <HomeRenderIfVisible height="480px">
+            <PieChart />
+          </HomeRenderIfVisible>
         </div>
       </div>
     </div>
