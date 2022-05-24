@@ -17,14 +17,17 @@ const useInScrolledView = (
   itemRef: React.RefObject<HTMLElement>,
   containerRef: React.RefObject<HTMLElement>,
 ) => {
-  const [inView, setInView] = useState(true);
+  const [inView, setInView] = useState(false);
 
   const listener = useCallback(() => {
-    console.log('listener ran');
     if (itemRef.current) {
       setInView(isScrolledIntoView(itemRef.current));
     }
   }, [itemRef]);
+
+  useEffect(() => {
+    listener();
+  }, [listener]);
 
   useEffect(() => {
     if (itemRef.current && containerRef.current) {
