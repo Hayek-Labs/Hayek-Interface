@@ -14,6 +14,8 @@ import { Chain } from './chains';
 import IBEP20 from '../abi/ibep20.json';
 import UChildERC20 from '../abi/UChildERC20.json';
 import ERC20 from '../abi/erc20.json';
+import React from 'react';
+import clsx from 'clsx';
 
 const coins = [
   'USDT',
@@ -55,19 +57,36 @@ interface CoinData {
   addresses: Record<Chain, string | undefined>;
 }
 
+const getNativeStableCoinLogoComponent = (
+  NativeStableCoinLogo: SVGComponent,
+) => {
+  return function Logo(
+    props: React.PropsWithChildren<React.SVGProps<SVGSVGElement>>,
+  ) {
+    return React.createElement(
+      NativeStableCoinLogo,
+      {
+        ...props,
+        className: clsx(props.className, 'native-stable-coin-logo'),
+      },
+      props.children,
+    );
+  };
+};
+
 export const coinToLogo: Record<Coin, SVGComponent> = {
   USDT: USDTLogo,
   USDC: USDCLogo,
   FRAX: FRAXLogo,
   HAS: HASLogo,
-  USDH: USDHLogo,
   BUSD: BUSDLogo,
   DAI: DAILogo,
-  AUDH: AUDHLogo,
-  GBPH: GBPHLogo,
-  JPYH: JPYHLogo,
-  EURH: EURHLogo,
-  CHFH: CHFHLogo,
+  USDH: getNativeStableCoinLogoComponent(USDHLogo),
+  AUDH: getNativeStableCoinLogoComponent(AUDHLogo),
+  GBPH: getNativeStableCoinLogoComponent(GBPHLogo),
+  JPYH: getNativeStableCoinLogoComponent(JPYHLogo),
+  EURH: getNativeStableCoinLogoComponent(EURHLogo),
+  CHFH: getNativeStableCoinLogoComponent(CHFHLogo),
   veHAS: HASLogo,
 };
 
