@@ -23,7 +23,7 @@ export default defineConfig({
         { path: '/exchange', component: '@/pages/Exchange' },
         {
           path: '/swap',
-          component: '@/pages/BuybackRecollat',
+          component: '@/pages/Swap',
         },
         {
           path: '/vehas',

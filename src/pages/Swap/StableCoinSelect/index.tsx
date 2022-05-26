@@ -1,16 +1,16 @@
 import { useCallback, useMemo } from 'react';
-import { Coin } from '@/constants/coin';
+import { ForeignStableCoin } from '@/constants/coin';
 import StableCoinOption from '../StableCoinOption';
 import { useSwapState } from '@/providers/StateProvider';
 
 interface Props {
-  options: Coin[];
+  options: ForeignStableCoin[];
 }
 const StableCoinSelect: React.FC<Props> = ({ options }) => {
   const { collateralCoin, setCollateralCoin } = useSwapState();
 
   const onCoinClick = useCallback(
-    (coin: Coin) => {
+    (coin: ForeignStableCoin) => {
       setCollateralCoin(coin);
     },
     [setCollateralCoin],
