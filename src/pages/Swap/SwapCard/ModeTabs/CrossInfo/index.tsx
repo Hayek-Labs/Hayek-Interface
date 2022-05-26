@@ -8,7 +8,12 @@ const CrossInfo: React.FC = () => {
   const { nativeStableCoin } = useSwapState();
 
   return (
-    <div className={clsx('flex flex-row w-full pt-2 h-24', styles['styles'])}>
+    <div
+      className={clsx(
+        'flex flex-row w-full pt-2 h-24 text-white px-4',
+        styles['styles'],
+      )}
+    >
       <div className="flex flex-col items-start justify-center text-hblack-4 w-32">
         Stablecoin
       </div>

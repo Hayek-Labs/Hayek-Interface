@@ -5,7 +5,6 @@ export const useCreateVeHASState = (): VeHASState => {
   const [HASCoinValue, setHASCoinValue] = useState(new BigNumber(0.0));
   const [veHASCoinValue, setVeHASCoinValue] = useState(new BigNumber(0.0));
   const [lockPeriod, setLockPeriod] = useState(new BigNumber(5.0));
-  const [mode, setMode] = useState<VeHASMode>('lock');
 
   return {
     HASCoinValue,
@@ -16,13 +15,8 @@ export const useCreateVeHASState = (): VeHASState => {
 
     lockPeriod,
     setLockPeriod,
-
-    mode,
-    setMode,
   };
 };
-
-type VeHASMode = 'lock' | 'my-vehas' | 'vote';
 
 export interface VeHASState {
   HASCoinValue: BigNumber;
@@ -33,7 +27,4 @@ export interface VeHASState {
 
   lockPeriod: BigNumber;
   setLockPeriod: SetState<BigNumber>;
-
-  mode: VeHASMode;
-  setMode: SetState<VeHASMode>;
 }

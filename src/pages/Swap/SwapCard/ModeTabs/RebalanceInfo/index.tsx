@@ -63,7 +63,9 @@ const RebalanceInfo: React.FC<RebalanceInfoProps> = ({ rebalanceData }) => {
   const overflow = surplusOverflow || deficitOverflow || balancedOverflow;
 
   return (
-    <div className={clsx('flex flex-col h-24', styles['styles'])}>
+    <div
+      className={clsx('flex flex-col h-24 text-white px-4', styles['styles'])}
+    >
       {surplusCoins.length > 0 && (
         <RebalanceInfoRow
           title="Collateral Surplus"
