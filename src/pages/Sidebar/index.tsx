@@ -91,12 +91,12 @@ const sidebarItems = [
   //   icon: <GiArchBridge size={svgSize} />,
   //   route: '/cross-chain',
   // },
-  // {
-  //   title: 'Staking',
-  //   icon: <GrStakeholder size={svgSize} className="remove-svg-fill" />,
-  //   route: '/staking',
-  // },
-  // { title: 'AMOs', icon: <AiFillDiff size={svgSize} />, route: '/amos' },
+  {
+    title: 'Staking',
+    icon: <GrStakeholder size={svgSize} className="mr-[-3px]" />,
+    route: '/staking',
+  },
+  { title: 'AMOs', icon: <AiFillDiff size={svgSize} />, route: '/amos' },
   // {
   //   title: 'Governance',
   //   icon: <RiGovernmentFill size={svgSize} />,

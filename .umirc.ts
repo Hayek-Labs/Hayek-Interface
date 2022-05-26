@@ -33,6 +33,14 @@ export default defineConfig({
           path: '/gauge',
           component: '@/pages/Gauge',
         },
+        {
+          path: '/staking',
+          component: '@/pages/Staking',
+        },
+        {
+          path: '/amos',
+          component: '@/pages/AMOs',
+        },
       ],
     },
   ],
