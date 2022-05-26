@@ -10,7 +10,6 @@ import { ReactComponent as JPYHLogo } from '@/assets/logos/coins/JPYH-01.svg';
 import { ReactComponent as EURHLogo } from '@/assets/logos/coins/EURH-01.svg';
 import { ReactComponent as CHFHLogo } from '@/assets/logos/coins/CHFH-01.svg';
 import { ReactComponent as FRAXLogo } from '@/assets/logos/coins/frax-frax-logo.svg';
-import { ReactComponent as USTLogo } from '@/assets/logos/coins/terra-ust-logo.svg';
 import { Chain } from './chains';
 import IBEP20 from '../abi/ibep20.json';
 import UChildERC20 from '../abi/UChildERC20.json';
@@ -45,7 +44,7 @@ export type NativeStableCoin = typeof _supportedNativeStableCoins[number];
 export const supportedNativeStableCoins =
   _supportedNativeStableCoins as readonly Coin[];
 
-const _supportedForiegnStableCoins = ['USDT', 'USDC', 'FRAX'] as const;
+const _supportedForiegnStableCoins = ['USDT', 'USDC'] as const;
 export type ForeignStableCoin = typeof _supportedForiegnStableCoins[number];
 export const supportedForiegnStableCoins =
   _supportedForiegnStableCoins as readonly Coin[];
