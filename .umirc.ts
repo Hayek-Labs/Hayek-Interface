@@ -37,10 +37,6 @@ export default defineConfig({
           path: '/staking',
           component: '@/pages/Staking',
         },
-        {
-          path: '/amos',
-          component: '@/pages/AMOs',
-        },
       ],
     },
   ],

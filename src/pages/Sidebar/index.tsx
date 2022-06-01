@@ -96,7 +96,7 @@ const sidebarItems = [
     icon: <GrStakeholder size={svgSize} className="mr-[-3px]" />,
     route: '/staking',
   },
-  { title: 'AMOs', icon: <AiFillDiff size={svgSize} />, route: '/amos' },
+  // { title: 'AMOs', icon: <AiFillDiff size={svgSize} />, route: '/amos' },
   // {
   //   title: 'Governance',
   //   icon: <RiGovernmentFill size={svgSize} />,
