@@ -1,4 +1,4 @@
-import { Coin, coinToLogo } from '@/constants/coin';
+import { Coin, coinToLogo, LP } from '@/constants/coin';
 import ReactSelect, {
   components,
   DropdownIndicatorProps,
@@ -7,17 +7,33 @@ import ReactSelect, {
 } from 'react-select';
 import styles from './styles.less';
 import { ReactComponent as Dropdown } from '@/assets/icons/dropdown.svg';
+import PoolIcon from '../PoolIcon';
+
+const renderCoin = (value: Coin | LP) => {
+  if (typeof value === 'object') {
+    const size = 20;
+    const coin1 = value.coin1;
+    const coin2 = value.coin2;
+    return (
+      <div className="mr-3">
+        <PoolIcon coin1={coin1} coin2={coin2} size={size} />
+      </div>
+    );
+  } else {
+    const size = 30;
+    const Logo = coinToLogo[value];
+    return <Logo width={size} height={size} className="mr-2" />;
+  }
+};
 
 const SingleValue = ({
   children,
   ...props
 }: SingleValueProps<CoinOption, false>) => {
-  const Logo = coinToLogo[props.data.value];
-  const size = 30;
   return (
     <components.SingleValue {...props} isMulti={false}>
       <div className="flex flex-row items-center">
-        <Logo width={size} height={size} className="mr-2" />
+        {renderCoin(props.data.value)}
         {children}
       </div>
     </components.SingleValue>
@@ -25,12 +41,10 @@ const SingleValue = ({
 };
 
 const Option = ({ children, ...props }: OptionProps<CoinOption, false>) => {
-  const Logo = coinToLogo[props.data.value];
-  const size = 30;
   return (
     <components.Option {...props} isMulti={false}>
       <div className="flex flex-row items-center">
-        <Logo width={size} height={size} className="mr-2" />
+        {renderCoin(props.data.value)}
         {children}
       </div>
     </components.Option>
@@ -48,17 +62,19 @@ const DropdownIndicator = ({
 };
 
 export interface CoinOption {
-  readonly value: Coin;
+  readonly value: Coin | LP;
 }
 
 interface Props {
-  options: readonly Coin[];
-  value: Coin;
+  options: readonly (Coin | LP)[];
+  value: Coin | LP;
   setValue?: (val: CoinOption) => void;
   canSelect?: boolean;
 }
 
-const coinToObject = (value: Coin): { value: Coin } => ({ value });
+const coinToObject = (value: Coin | LP): { value: Coin | LP } => ({
+  value,
+});
 
 const CoinSelect: React.FC<Props> = ({
   options,
@@ -77,7 +93,12 @@ const CoinSelect: React.FC<Props> = ({
         isSearchable={false}
         isMulti={false}
         isDisabled={!canSelect}
-        getOptionLabel={({ value }) => value}
+        getOptionLabel={({ value }) =>
+          typeof value === 'object'
+            ? `${value.platform} LP`
+            : // ? `${value.coin1}-${value.coin2} LP (${value.platform})`
+              value
+        }
         components={{
           SingleValue,
           Option,

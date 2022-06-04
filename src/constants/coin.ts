@@ -34,6 +34,12 @@ const coins = [
 ] as const;
 export type Coin = typeof coins[number];
 
+export type LP<C1 extends Coin = Coin, C2 extends Coin = Coin> = {
+  coin1: C1;
+  coin2: C2;
+  platform: string;
+};
+
 const _supportedNativeStableCoins = [
   'USDH',
   'EURH',

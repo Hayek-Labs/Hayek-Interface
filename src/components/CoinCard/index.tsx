@@ -1,18 +1,18 @@
-import { Coin } from '@/constants/coin';
+import { Coin, LP } from '@/constants/coin';
 import { useWeb3React } from '@web3-react/core';
 import BigNumber from 'bignumber.js';
 import clsx from 'clsx';
 import CoinSelect from '../CoinSelect';
 
 const CoinDisplay: React.FC<{
-  coin: Coin;
+  coin: Coin | LP<Coin, Coin>;
   select?: {
-    selectFrom: readonly Coin[];
-    setCoin?: SetState<Coin>;
+    selectFrom: readonly (Coin | LP)[];
+    setCoin?: SetState<Coin | LP>;
     canSelect: boolean;
   };
 }> = ({ coin, select }) => {
-  const options: readonly Coin[] = select ? select.selectFrom : [coin];
+  const options: readonly (Coin | LP)[] = select ? select.selectFrom : [coin];
 
   return (
     <div className="flex flex-col">
@@ -34,7 +34,7 @@ const CoinDisplay: React.FC<{
 };
 
 const CoinCard: React.FC<{
-  coin: Coin;
+  coin: Coin | LP;
   input: {
     value: BigNumber;
     setValue: SetState<BigNumber>;
@@ -42,8 +42,8 @@ const CoinCard: React.FC<{
     canInput: boolean;
   };
   select?: {
-    selectFrom: readonly Coin[];
-    setCoin?: SetState<Coin>;
+    selectFrom: readonly (Coin | LP)[];
+    setCoin?: SetState<Coin | LP>;
     canSelect: boolean;
   };
   size?: 'md' | 'lg';

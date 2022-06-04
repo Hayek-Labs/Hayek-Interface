@@ -65,6 +65,7 @@ export const ForeignStableCoinCard: React.FC<{
       size="md"
       select={{
         selectFrom: supportedForiegnStableCoins,
+        // @ts-ignore
         setCoin: setForeignStableCoin,
         canSelect: true,
       }}
@@ -101,6 +102,7 @@ export const NativeStableCoinCard: React.FC<{
       size="lg"
       select={{
         selectFrom: supportedNativeStableCoins,
+        // @ts-ignore
         setCoin: setNativeStableCoin,
         canSelect: true,
       }}
