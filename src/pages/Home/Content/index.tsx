@@ -11,6 +11,7 @@ import CoinGraph from '../CoinGraph';
 import Satisfication from '../Satisfaction';
 import VeHASSupply from '../VeHASSupply';
 import GaugePieChart from '@/pages/Home/GaugePieChart';
+import AMOs from '../AMOs';
 
 const coinData: {
   id: number;
@@ -134,9 +135,13 @@ const Content: React.FC = () => {
         </div>
       </div>
 
-      <div className="w-full m-2 border border-solid border-hblack-1" />
+      <div className="w-full m-2 border border-solid border-hblack-3" />
 
       <GaugePieChart />
+
+      <div className="w-full m-2 border border-solid border-hblack-3" />
+
+      <AMOs />
     </>
   );
 };

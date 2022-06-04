@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 import React from 'react';
-import { getEntryKey, PoolWithChartInfo } from '../..';
 
 const LegendEntry: React.FC<{
-  payload: PoolWithChartInfo;
+  payload: { key: string; color: string; name: string };
   visible: boolean;
   onToggleVisible: (key: string) => void;
-}> = ({ payload, visible, onToggleVisible }) => {
+  getEntryKey: (entry: any) => string;
+}> = ({ payload, visible, onToggleVisible, getEntryKey }) => {
   return (
     <li
       className={clsx(

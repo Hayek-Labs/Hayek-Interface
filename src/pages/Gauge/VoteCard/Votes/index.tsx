@@ -1,86 +1,12 @@
-import Btn from '@/components/Btn';
 import { InputNumber } from 'antd';
 import clsx from 'clsx';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import styles from './styles.less';
-import { MdOutlineContentCopy } from 'react-icons/md';
-import { Coin, coinToLogo } from '@/constants/coin';
 import Button from '@/components/Button';
 import ConnectDefaultBtn from '@/components/ConnectDefaultBtn';
-
-export interface Pool {
-  key: number;
-  name: string;
-  coin1: Coin;
-  coin2: Coin;
-  address: string;
-}
-
-export const pools: Pool[] = [
-  {
-    key: 1,
-    name: 'Uniswap V3',
-    coin1: 'USDH',
-    coin2: 'USDC',
-    address: '0x3EF2 ... B4B0',
-  },
-  {
-    key: 2,
-    name: 'ACY Finance',
-    coin1: 'USDH',
-    coin2: 'USDT',
-    address: '0x3e14 ... 6AeC',
-  },
-  {
-    key: 3,
-    name: 'SushiSwap',
-    coin1: 'USDH',
-    coin2: 'USDC',
-    address: '0xF224 ... f53e',
-  },
-  {
-    key: 4,
-    name: 'Uniswap V3',
-    coin1: 'EURH',
-    coin2: 'USDC',
-    address: '0x3EA2 ... B4B0',
-  },
-  {
-    key: 5,
-    name: 'ACY Finance',
-    coin1: 'GBPH',
-    coin2: 'USDT',
-    address: '0x3eB4 ... 6AeC',
-  },
-  {
-    key: 6,
-    name: 'SushiSwap',
-    coin1: 'JPYH',
-    coin2: 'DAI',
-    address: '0xF2C4 ... f53e',
-  },
-  {
-    key: 7,
-    name: 'Uniswap V3',
-    coin1: 'AUDH',
-    coin2: 'USDC',
-    address: '0x3ED2 ... B4B0',
-  },
-  {
-    key: 8,
-    name: 'ACY Finance',
-    coin1: 'USDH',
-    coin2: 'USDC',
-    address: '0x3eE4 ... 6AeC',
-  },
-  {
-    key: 9,
-    name: 'SushiSwap',
-    coin1: 'USDH',
-    coin2: 'DAI',
-    address: '0xF2F4 ... f53e',
-  },
-];
+import { Pool, pools } from '@/constants/mockPools';
+import PoolInfo from '@/components/PoolInfo';
+import { useSeeMore } from '@/hooks/useSeeMore';
 
 const PoolDisplay: React.FC<{
   pool: Pool;
@@ -90,35 +16,9 @@ const PoolDisplay: React.FC<{
   setWeight: (address: string, newWeight: number) => void;
   unusedWeight: number;
 }> = ({ pool, weight, isConfirmed, setWeight, unusedWeight }) => {
-  const AddressTooltip = () => {
-    return <MdOutlineContentCopy size={10} className="ml-1" />;
-  };
-
-  const PoolIcon: React.FC<{ coin1: Coin; coin2: Coin }> = ({
-    coin1,
-    coin2,
-  }) => {
-    const Logo1 = coinToLogo[coin1];
-    const Logo2 = coinToLogo[coin2];
-    const size = 15;
-    return (
-      <div className="flex flex-row relative mr-3">
-        <Logo1 width={size} height={size} className="z-10" />
-        <Logo2 width={size} height={size} className="absolute left-1/2" />
-      </div>
-    );
-  };
-
   return (
     <div className="pool-display-table-row">
-      <span className="items-center">
-        <PoolIcon coin1={pool.coin1} coin2={pool.coin2} />
-        <span className="text-white">
-          {pool.coin1}-{pool.coin2}
-        </span>
-        <span className="ml-1 text-[0.6rem]"> {pool.name}</span>
-        <AddressTooltip />
-      </span>
+      <PoolInfo pool={pool} size="sm" />
       <span>
         <InputNumber
           bordered={false}
@@ -211,9 +111,12 @@ const Votes = () => {
     return pools.every((pool) => voteState.confirmations[pool.address]);
   }, [voteState.confirmations]);
 
-  const [maxPoolsToDisplay, setMaxPoolsToDisplay] = useState(5);
-
-  const poolsInDisplay = pools.slice(0, maxPoolsToDisplay);
+  const {
+    elementsDisplayed: poolsInDisplay,
+    increment,
+    reset,
+    allElementsVisible,
+  } = useSeeMore(pools, 5, 5);
 
   return (
     <div
@@ -242,12 +145,10 @@ const Votes = () => {
             unusedWeight={unusedWeight}
           />
         ))}
-        {poolsInDisplay.length < pools.length ? (
-          <div onClick={() => setMaxPoolsToDisplay((prev) => prev + 5)}>
-            See more...
-          </div>
+        {!allElementsVisible ? (
+          <div onClick={() => increment()}>See more...</div>
         ) : (
-          <div onClick={() => setMaxPoolsToDisplay(5)}>See less...</div>
+          <div onClick={() => reset()}>See less...</div>
         )}
       </div>
       <div className="mt-auto" />

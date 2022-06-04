@@ -92,9 +92,9 @@ const sidebarItems = [
   //   route: '/cross-chain',
   // },
   {
-    title: 'Staking',
+    title: 'Farm',
     icon: <GrStakeholder size={svgSize} className="mr-[-3px]" />,
-    route: '/staking',
+    route: '/farm',
   },
   // { title: 'AMOs', icon: <AiFillDiff size={svgSize} />, route: '/amos' },
   // {

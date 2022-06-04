@@ -34,8 +34,8 @@ export default defineConfig({
           component: '@/pages/Gauge',
         },
         {
-          path: '/staking',
-          component: '@/pages/Staking',
+          path: '/farm',
+          component: '@/pages/Farm',
         },
       ],
     },
