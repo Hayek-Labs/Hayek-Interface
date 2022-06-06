@@ -3,6 +3,7 @@ import { AppState, useCreateAppState } from '@/state';
 import { MintRedeemState } from '@/state/mintOrRedeem';
 import { SwapState } from '@/state/swap';
 import { VeHASState } from '@/state/veHAS';
+import { FarmState } from '@/state/farm';
 
 const StateContext = React.createContext<AppState>(undefined!);
 
@@ -20,6 +21,10 @@ export const useSwapState = (): SwapState => {
 
 export const useVeHASState = (): VeHASState => {
   return useAppState().veHAS;
+};
+
+export const useFarmState = (): FarmState => {
+  return useAppState().farm;
 };
 
 const StateProvider: React.FC = ({ children }) => {

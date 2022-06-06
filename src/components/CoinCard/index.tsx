@@ -48,15 +48,17 @@ const CoinCard: React.FC<{
   };
   size?: 'md' | 'lg';
   balance: BigNumber | undefined;
+  balanceIsVisibleOverride?: boolean;
 }> = ({
   coin,
   input: { value, setValue, onChange, canInput },
   size = 'lg',
   select,
   balance,
+  balanceIsVisibleOverride = true,
 }) => {
   const { isActive, account } = useWeb3React();
-  const balanceIsVisible = isActive && !!account;
+  const balanceIsVisible = isActive && !!account && balanceIsVisibleOverride;
   return (
     <div
       className={clsx(
@@ -78,18 +80,20 @@ const CoinCard: React.FC<{
           disabled={!canInput}
         />
       </div>
-      <div className="h-1" />
-      <div
-        className={clsx(
-          'flex flex-row items-center text-hblack-4',
-          balanceIsVisible ? '' : 'opacity-0',
-        )}
-      >
-        <span>Balance</span>
-        <span className="ml-auto">
-          {balance ? balance.toFixed(2) : 'Fetching...'}
-        </span>
-      </div>
+      <>
+        <div className="h-1" />
+        <div
+          className={clsx(
+            'flex flex-row items-center text-hblack-4',
+            balanceIsVisible ? '' : 'opacity-0',
+          )}
+        >
+          <span>Balance</span>
+          <span className="ml-auto">
+            {balance ? balance.toFixed(2) : 'Fetching...'}
+          </span>
+        </div>
+      </>
     </div>
   );
 };
