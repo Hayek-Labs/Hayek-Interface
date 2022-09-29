@@ -9,11 +9,23 @@ const CoinData: {
   wallet: number;
   weight: number;
 }[] = [
-  // { coin: 'MATIC', price: 0.74, pool: 2.23, wallet: 5.75, weight: 0.0019 },
-  // { coin: 'WBTC', price: 19484.58, pool: 109816.53, wallet: 99872.09, weight: 97.7003 },
-  // { coin: 'WETH', price: 1333.12, pool: 1729.85, wallet: 99988.90, weight: 1.5389 },
-  { coin: 'USDC', price: 1.0, pool: 633.15, wallet: 59762.0, weight: 0.5632 },
   { coin: 'USDT', price: 1.0, pool: 219.56, wallet: 988401.19, weight: 0.1953 },
+  { coin: 'BUSD', price: 1.0, pool: 633.15, wallet: 59762.0, weight: 0.5632 },
+  {
+    coin: 'ETH',
+    price: 1333.12,
+    pool: 1729.85,
+    wallet: 99988.9,
+    weight: 1.5389,
+  },
+  {
+    coin: 'BTC',
+    price: 19484.58,
+    pool: 109816.53,
+    wallet: 99872.09,
+    weight: 97.7003,
+  },
+  { coin: 'BNB', price: 278.61, pool: 2.23, wallet: 5.75, weight: 0.0019 },
 ];
 
 const CoinsTable = () => {
