@@ -31,8 +31,8 @@ const coinData: {
   },
   {
     id: 2,
-    coin: 'HAS',
-    name: 'HAS',
+    coin: 'HAYEK',
+    name: 'HAYEK',
     description: 'Government token',
     rise: true,
     price: 590,
@@ -102,11 +102,11 @@ const Content: React.FC = () => {
 
       <div className="w-full flex flex-col lg:w-2/3">
         <CoinGraph coin="USDH" />
-        <CoinGraph coin="EURH" />
+        {/* <CoinGraph coin="EURH" />
         <CoinGraph coin="JPYH" />
         <CoinGraph coin="AUDH" />
         <CoinGraph coin="GBPH" />
-        <CoinGraph coin="CHFH" />
+        <CoinGraph coin="CHFH" /> */}
       </div>
 
       <div className="w-full flex flex-col lg:w-1/3">

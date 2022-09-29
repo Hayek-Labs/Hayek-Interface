@@ -14,6 +14,7 @@ import {
   RiExchangeBoxLine,
 } from 'react-icons/ri';
 import { BsStack } from 'react-icons/bs';
+import { GoFileDirectory } from 'react-icons/go';
 
 import { ReactComponent as LogoSVG } from '@/assets/logo.svg';
 import { ReactComponent as MintSVG } from '@/assets/icons/mint_sidebar.svg';
@@ -71,11 +72,11 @@ const sidebarItems = [
   //   ),
   //   route: '/redeem',
   // },
-  {
-    title: 'Swap',
-    icon: <RiExchangeBoxLine viewBox="0 0 24 24" size={svgSize} />,
-    route: '/swap',
-  },
+  // {
+  //   title: 'Swap',
+  //   icon: <RiExchangeBoxLine viewBox="0 0 24 24" size={svgSize} />,
+  //   route: '/swap',
+  // },
   // {
   //   title: 'veHAS',
   //   icon: <FaToolbox size={svgSize} />,
@@ -95,6 +96,11 @@ const sidebarItems = [
     title: 'Farm',
     icon: <GrStakeholder size={svgSize} className="mr-[-3px]" />,
     route: '/farm',
+  },
+  {
+    title: 'Portfolio',
+    icon: <GoFileDirectory size={svgSize} className="mr-[-3px]" />,
+    route: '/portfolio',
   },
   // { title: 'AMOs', icon: <AiFillDiff size={svgSize} />, route: '/amos' },
   // {

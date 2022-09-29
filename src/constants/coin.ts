@@ -3,6 +3,7 @@ import { ReactComponent as USDCLogo } from '@/assets/logos/coins/usd-coin-usdc-l
 import { ReactComponent as BUSDLogo } from '@/assets/logos/coins/binance-usd-busd-logo.svg';
 import { ReactComponent as DAILogo } from '@/assets/logos/coins/multi-collateral-dai-dai-logo.svg';
 import { ReactComponent as HASLogo } from '@/assets/logos/coins/HAS-LOGO.svg';
+import { ReactComponent as HAYEKLogo } from '@/assets/logos/coins/HAYEK-LOGO.svg';
 import { ReactComponent as USDHLogo } from '@/assets/logos/coins/USDH-01.svg';
 import { ReactComponent as AUDHLogo } from '@/assets/logos/coins/AUDH-01.svg';
 import { ReactComponent as GBPHLogo } from '@/assets/logos/coins/GBPH-01.svg';
@@ -21,6 +22,7 @@ const coins = [
   'USDT',
   'USDC',
   'HAS',
+  'HAYEK',
   'USDH',
   'BUSD',
   'DAI',
@@ -85,6 +87,7 @@ export const coinToLogo: Record<Coin, SVGComponent> = {
   USDC: USDCLogo,
   FRAX: FRAXLogo,
   HAS: HASLogo,
+  HAYEK: HAYEKLogo,
   BUSD: BUSDLogo,
   DAI: DAILogo,
   USDH: getNativeStableCoinLogoComponent(USDHLogo),
@@ -103,6 +106,7 @@ export const coinToCoinGeckoId: Record<Coin, string | undefined> = {
   DAI: 'dai',
   FRAX: undefined,
   HAS: undefined,
+  HAYEK: undefined,
   USDH: undefined,
   AUDH: undefined,
   GBPH: undefined,
@@ -129,6 +133,7 @@ export const chainCoinToAddress: Record<
     BUSD: undefined,
     DAI: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
     HAS: undefined,
+    HAYEK: undefined,
     USDH: undefined,
     AUDH: undefined,
     GBPH: undefined,
@@ -144,6 +149,7 @@ export const chainCoinToAddress: Record<
     BUSD: '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
     DAI: '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3',
     HAS: undefined,
+    HAYEK: undefined,
     USDH: undefined,
     AUDH: undefined,
     GBPH: undefined,
@@ -159,6 +165,7 @@ export const chainCoinToAddress: Record<
     DAI: '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
     FRAX: '0x45c32fA6DF82ead1e2EF74d17b76547EDdFaFF89',
     HAS: undefined,
+    HAYEK: undefined,
     USDH: undefined,
     AUDH: undefined,
     GBPH: undefined,
