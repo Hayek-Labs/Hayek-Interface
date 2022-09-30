@@ -1,5 +1,6 @@
 import { Coin, coinToLogo } from '@/constants/coin';
 import clsx from 'clsx';
+import Icon from '../Icon';
 import styles from './styles.less';
 
 const CoinData: {
@@ -8,6 +9,7 @@ const CoinData: {
   pool: number;
   wallet: number;
   weight: number;
+  id: number;
 }[] = [
   {
     coin: 'USDT',
@@ -15,13 +17,31 @@ const CoinData: {
     pool: 219.56,
     wallet: 988401.19,
     weight: 0.1953,
+    id: 1,
+  },
+  {
+    coin: 'DAI',
+    price: 0.99,
+    pool: 289.62,
+    wallet: 5785.3,
+    weight: 0.2336,
+    id: 2,
   },
   {
     coin: 'BUSD',
     price: 1.0,
-    pool: 633.15,
-    wallet: 59762.0,
-    weight: 0.5632,
+    pool: 523.85,
+    wallet: 6845.0,
+    weight: 0.0178,
+    id: 3,
+  },
+  {
+    coin: 'USDC',
+    price: 1.0,
+    pool: 219.56,
+    wallet: 988401.19,
+    weight: 0.1953,
+    id: 4,
   },
   {
     coin: 'ETH',
@@ -29,6 +49,7 @@ const CoinData: {
     pool: 1729.85,
     wallet: 99988.9,
     weight: 1.5389,
+    id: 5,
   },
   {
     coin: 'BTC',
@@ -36,6 +57,7 @@ const CoinData: {
     pool: 109816.53,
     wallet: 99872.09,
     weight: 97.7003,
+    id: 6,
   },
   {
     coin: 'BNB',
@@ -43,10 +65,11 @@ const CoinData: {
     pool: 2.23,
     wallet: 5.75,
     weight: 0.0019,
+    id: 7,
   },
 ];
 
-const CoinsTable = () => {
+const CoinTable = () => {
   return (
     <div
       className={clsx(
@@ -54,10 +77,11 @@ const CoinsTable = () => {
         styles['styles'],
       )}
     >
-      <div className="flex justify-between items-center">
-        <div className="text-lg font-bold mb-2">Composition</div>
-      </div>
-      <div className="rounded-md bg-hblack-2 w-4/12 px-2">
+      <div className="rounded-lg bg-card px-2 w-full py-2">
+        <div className="flex justify-between items-center p-2">
+          <div className="text-white font-bold">Top Coins</div>
+          <Icon path="res-react-dash-plus" className="w-5 h-5" />
+        </div>
         <div className="coin-display-table-row">
           <span>Name</span>
           <span>Price</span>
@@ -65,11 +89,12 @@ const CoinsTable = () => {
           <span>Wallet</span>
           <span>Weight</span>
         </div>
-        {CoinData.map(({ coin, price, pool, wallet, weight }) => {
+        {CoinData.map(({ coin, price, pool, wallet, weight, id }) => {
           const Logo = coinToLogo[coin];
           return (
             <div className="coin-display-table-row">
               <span>
+                <span className="mr-2">{id}</span>
                 <Logo className="mx-2 w-5 h-5" />
                 <span className="text-white">{coin}</span>
               </span>
@@ -86,4 +111,4 @@ const CoinsTable = () => {
     </div>
   );
 };
-export default CoinsTable;
+export default CoinTable;

@@ -37,10 +37,6 @@ export default defineConfig({
           path: '/farm',
           component: '@/pages/Farm',
         },
-        {
-          path: '/portfolio',
-          component: '@/pages/Portfolio',
-        },
       ],
     },
   ],

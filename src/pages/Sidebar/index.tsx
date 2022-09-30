@@ -97,11 +97,6 @@ const sidebarItems = [
     icon: <GrStakeholder size={svgSize} className="mr-[-3px]" />,
     route: '/farm',
   },
-  {
-    title: 'Portfolio',
-    icon: <GoFileDirectory size={svgSize} className="mr-[-3px]" />,
-    route: '/portfolio',
-  },
   // { title: 'AMOs', icon: <AiFillDiff size={svgSize} />, route: '/amos' },
   // {
   //   title: 'Governance',

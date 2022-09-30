@@ -10,8 +10,9 @@ import CRGraph from '../CRGraph';
 import CoinGraph from '../CoinGraph';
 import Satisfication from '../Satisfaction';
 import VeHASSupply from '../VeHASSupply';
-import GaugePieChart from '@/pages/Home/GaugePieChart';
+import GaugePieChart from '../GaugePieChart';
 import AMOs from '../AMOs';
+import CoinTable from '../CoinTable';
 
 const coinData: {
   id: number;
@@ -112,11 +113,13 @@ const Content: React.FC = () => {
       </div>
 
       <div className="w-full flex flex-col lg:w-1/3">
-        <div className="w-full p-2">
+        {/* <div className="w-full p-2">
           <div className="rounded-lg bg-card h-80">
             <TopCoins />
           </div>
-        </div>
+        </div> */}
+
+        <CoinTable />
 
         {/* <div className="w-full p-2">
           <div className="rounded-lg bg-card h-80">
