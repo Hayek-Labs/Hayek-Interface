@@ -10,7 +10,7 @@ const TVGraph: React.FC = () => {
           <div className="">
             <div className="flex items-center">
               <span className="font-bold text-white inline-flex flex-row items-center">
-                Total Value
+                USDH Market Cap
               </span>
               <div className="flex-grow" />
 

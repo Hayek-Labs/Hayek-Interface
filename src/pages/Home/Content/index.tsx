@@ -25,7 +25,7 @@ const coinData: {
     id: 1,
     coin: 'USDH',
     name: 'USDH',
-    description: 'Algorithmic stable coin',
+    description: 'USD Hayek',
     rise: true,
     price: 3490,
   },
@@ -89,12 +89,12 @@ const Content: React.FC = () => {
       <div className="w-full lg:w-1/3 flex flex-col justify-between p-2">
         <div className="rounded-lg bg-card flex flex-row items-center justify-center h-24 p-2 text-xs text-white">
           <div className="flex flex-col items-center">
-            <span className="">TOTAL MARKET CAP</span>
-            <span className="font-bold">$12.21M</span>
+            <span className="">Funding Rate</span>
+            <span className="font-bold">12.21%</span>
           </div>
           <span className="w-5" />
           <div className="flex flex-col items-center">
-            <span className="">TOTAL COLLATERAL</span>
+            <span className="">AMOs</span>
             <span className="font-bold">$8.90M</span>
           </div>
         </div>
@@ -107,6 +107,8 @@ const Content: React.FC = () => {
         <CoinGraph coin="AUDH" />
         <CoinGraph coin="GBPH" />
         <CoinGraph coin="CHFH" /> */}
+
+        <TVGraph />
       </div>
 
       <div className="w-full flex flex-col lg:w-1/3">
@@ -116,23 +118,23 @@ const Content: React.FC = () => {
           </div>
         </div>
 
-        <div className="w-full p-2">
+        {/* <div className="w-full p-2">
           <div className="rounded-lg bg-card h-80">
             <Satisfication />
           </div>
-        </div>
+        </div> */}
 
-        <CRGraph />
+        {/* <CRGraph /> */}
 
-        <TVGraph />
+        {/* <TVGraph /> */}
 
         <VeHASSupply />
 
-        <div className="w-full p-2">
+        {/* <div className="w-full p-2">
           <div className="rounded-lg bg-card overflow-hidden h-80">
             <AddComponent />
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="w-full m-2 border border-solid border-hblack-3" />

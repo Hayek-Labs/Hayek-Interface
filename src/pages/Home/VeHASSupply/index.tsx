@@ -10,7 +10,7 @@ const CRGraph: React.FC = () => {
           <div className="">
             <div className="flex items-center">
               <span className="font-bold text-white inline-flex flex-row items-center">
-                veHAS Total Supply
+                HAYEK Market Cap
               </span>
               <div className="flex-grow" />
 
