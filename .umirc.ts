@@ -21,10 +21,10 @@ export default defineConfig({
         { path: '/mint', component: '@/pages/Mint' },
         { path: '/redeem', component: '@/pages/Redeem' },
         { path: '/exchange', component: '@/pages/Exchange' },
-        // {
-        //   path: '/swap',
-        //   component: '@/pages/Swap',
-        // },
+        {
+          path: '/swap',
+          component: '@/pages/Swap',
+        },
         {
           path: '/vehas',
           component: '@/pages/VeHAS',

@@ -72,11 +72,11 @@ const sidebarItems = [
   //   ),
   //   route: '/redeem',
   // },
-  // {
-  //   title: 'Swap',
-  //   icon: <RiExchangeBoxLine viewBox="0 0 24 24" size={svgSize} />,
-  //   route: '/swap',
-  // },
+  {
+    title: 'Swap',
+    icon: <RiExchangeBoxLine viewBox="0 0 24 24" size={svgSize} />,
+    route: '/swap',
+  },
   // {
   //   title: 'veHAS',
   //   icon: <FaToolbox size={svgSize} />,

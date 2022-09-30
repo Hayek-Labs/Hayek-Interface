@@ -37,7 +37,7 @@ const CoinsTable = () => {
       )}
     >
       <div className="flex justify-between items-center">
-        <div className="text-lg font-bold mb-2">Portfolio</div>
+        <div className="text-lg font-bold mb-2">Composition</div>
       </div>
       <div className="rounded-md bg-hblack-2 w-4/12 px-2">
         <div className="coin-display-table-row">
@@ -60,17 +60,6 @@ const CoinsTable = () => {
               <span>${wallet.toFixed(2)}</span>
               <span>{weight.toFixed(4)}%</span>
             </div>
-            // <div className="flex items-center mt-3" key={id}>
-            //   <div className="">{id}</div>
-            //   <Logo className="ml-2 w-6 h-6" />
-            //   <div className="ml-2">{coin}</div>
-            //   <div className="flex-grow" />
-            //   <div className="">{`$${price.toLocaleString()}`}</div>
-            //   <div className="ml-2">{`$${pool.toLocaleString()}`}</div>
-            //   <div className="ml-2">{`${wallet.toLocaleString()} ${coin}`}</div>
-            //   <div className="mx-2">{`${weight.toLocaleString()}%`}</div>
-            //   <Icon path="res-react-dash-options" className="w-2 h-2" />
-            // </div>
           );
         })}
       </div>
