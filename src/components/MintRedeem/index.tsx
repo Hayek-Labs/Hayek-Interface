@@ -197,8 +197,8 @@ const Card: React.FC<{ mode: 'mint' | 'redeem' }> = ({ mode }) => {
 
   useCoinValueMapping(isMint);
 
-  const ConversionIcon = isMint ? MintIcon : RedeemIcon;
-  const conversionIconSize = 20;
+  // const ConversionIcon = isMint ? MintIcon : RedeemIcon;
+  // const conversionIconSize = 20;
 
   // const modeTabsOnChange = useCallback(
   //   (val) => setMode(val === 0 ? 'mint' : 'redeem'),
@@ -219,8 +219,8 @@ const Card: React.FC<{ mode: 'mint' | 'redeem' }> = ({ mode }) => {
         <div className="flex flex-col justify-center w-full p-2 rounded-lg">
           {!isMint ? (
             <>
-              <HASCoinCard isMint={isMint} />
-              <BsPlusLg size={15} className="self-center my-2 fill-hblack-4" />
+              {/* <HASCoinCard isMint={isMint} /> */}
+              {/* <BsPlusLg size={15} className="self-center my-2 fill-hblack-4" /> */}
               <ForeignStableCoinCard isMint={isMint} />
             </>
           ) : (
@@ -233,11 +233,23 @@ const Card: React.FC<{ mode: 'mint' | 'redeem' }> = ({ mode }) => {
         </div>
         <div className="flex flex-col items-center">
           <div className={styles['icon-container']}>
-            <ConversionIcon
+            {/* <ConversionIcon
               width={conversionIconSize}
               height={conversionIconSize}
               className="self-center my-2 fill-hblack-4 rotate-180"
-            />
+            /> */}
+            <svg
+              className="self-center my-2 fill-hblack-4"
+              viewBox="64 64 896 896"
+              focusable="false"
+              data-icon="arrow-down"
+              width="1.5em"
+              height="1.5em"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M862 465.3h-81c-4.6 0-9 2-12.1 5.5L550 723.1V160c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v563.1L255.1 470.8c-3-3.5-7.4-5.5-12.1-5.5h-81c-6.8 0-10.5 8.1-6 13.2L487.9 861a31.96 31.96 0 0 0 48.3 0L868 478.5c4.5-5.2.8-13.2-6-13.2z"></path>
+            </svg>
           </div>
         </div>
         <div className="flex flex-col justify-center w-full">
