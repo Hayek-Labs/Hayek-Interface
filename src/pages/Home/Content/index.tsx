@@ -57,7 +57,7 @@ const Content: React.FC = () => {
   return (
     <>
       <div className="w-full sm:flex p-2 items-end">
-        <div className="sm:flex-grow flex justify-between">
+        {/* <div className="sm:flex-grow flex justify-between">
           <div className="">
             <div className="flex items-center">
               <div className="flex items-center p-2 bg-card rounded-xl">
@@ -73,7 +73,7 @@ const Content: React.FC = () => {
             </div>
           </div>
           <SidebarShowButton />
-        </div>
+        </div> */}
       </div>
       {coinData.map(({ id, coin, name, price, description, rise }) => (
         <CoinCard
