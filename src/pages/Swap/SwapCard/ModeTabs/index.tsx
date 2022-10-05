@@ -45,10 +45,10 @@ const ModeTabs: React.FC<{
       }
     >
       <AntTabPane tab="Rebalance" key="1">
-        <RebalanceInfo rebalanceData={rebalanceData} />
+        {/* <RebalanceInfo rebalanceData={rebalanceData} /> */}
       </AntTabPane>
       <AntTabPane tab="Cross" key="2">
-        <CrossInfo />
+        {/* <CrossInfo /> */}
       </AntTabPane>
     </AntTabs>
   );
