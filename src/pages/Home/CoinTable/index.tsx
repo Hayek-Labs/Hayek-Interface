@@ -7,7 +7,6 @@ const CoinData: {
   coin: Coin;
   price: number;
   pool: number;
-  wallet: number;
   weight: number;
   id: number;
 }[] = [
@@ -15,7 +14,6 @@ const CoinData: {
     coin: 'USDT',
     price: 1.0,
     pool: 219.56,
-    wallet: 988401.19,
     weight: 0.1953,
     id: 1,
   },
@@ -23,7 +21,6 @@ const CoinData: {
     coin: 'DAI',
     price: 0.99,
     pool: 289.62,
-    wallet: 5785.3,
     weight: 0.2336,
     id: 2,
   },
@@ -31,7 +28,6 @@ const CoinData: {
     coin: 'BUSD',
     price: 1.0,
     pool: 523.85,
-    wallet: 6845.0,
     weight: 0.0178,
     id: 3,
   },
@@ -39,7 +35,6 @@ const CoinData: {
     coin: 'USDC',
     price: 1.0,
     pool: 219.56,
-    wallet: 988401.19,
     weight: 0.1953,
     id: 4,
   },
@@ -47,7 +42,6 @@ const CoinData: {
     coin: 'ETH',
     price: 1333.12,
     pool: 1729.85,
-    wallet: 99988.9,
     weight: 1.5389,
     id: 5,
   },
@@ -55,7 +49,6 @@ const CoinData: {
     coin: 'BTC',
     price: 19484.58,
     pool: 109816.53,
-    wallet: 99872.09,
     weight: 97.7003,
     id: 6,
   },
@@ -63,7 +56,6 @@ const CoinData: {
     coin: 'BNB',
     price: 278.61,
     pool: 2.23,
-    wallet: 5.75,
     weight: 0.0019,
     id: 7,
   },
@@ -80,16 +72,14 @@ const CoinTable = () => {
       <div className="rounded-lg bg-card px-2 w-full py-2">
         <div className="flex justify-between items-center p-2">
           <div className="text-white font-bold">Top Coins</div>
-          <Icon path="res-react-dash-plus" className="w-5 h-5" />
         </div>
         <div className="coin-display-table-row">
           <span>Name</span>
           <span>Price</span>
           <span>Pool</span>
-          <span>Wallet</span>
           <span>Weight</span>
         </div>
-        {CoinData.map(({ coin, price, pool, wallet, weight, id }) => {
+        {CoinData.map(({ coin, price, pool, weight, id }) => {
           const Logo = coinToLogo[coin];
           return (
             <div className="coin-display-table-row">
@@ -100,7 +90,6 @@ const CoinTable = () => {
               </span>
               <span>${price.toFixed(2)}</span>
               <span>${pool.toFixed(2)}</span>
-              <span>${wallet.toFixed(2)}</span>
               <span>{weight.toFixed(4)}%</span>
             </div>
           );
