@@ -21,6 +21,7 @@ const coinData: {
   description: string;
   price: number;
   rise: boolean;
+  stable: boolean;
 }[] = [
   {
     id: 1,
@@ -28,7 +29,8 @@ const coinData: {
     name: 'USDH',
     description: 'USD Hayek',
     rise: true,
-    price: 3490,
+    price: 1,
+    stable: true,
   },
   {
     id: 2,
@@ -37,6 +39,7 @@ const coinData: {
     description: 'Government token',
     rise: true,
     price: 590,
+    stable: false,
   },
 ];
 
@@ -75,7 +78,7 @@ const Content: React.FC = () => {
           <SidebarShowButton />
         </div> */}
       </div>
-      {coinData.map(({ id, coin, name, price, description, rise }) => (
+      {coinData.map(({ id, coin, name, price, description, rise, stable }) => (
         <CoinCard
           key={id}
           id={id}
@@ -84,6 +87,7 @@ const Content: React.FC = () => {
           transactionAmount={price}
           rise={rise}
           Img={coin ? coinToLogo[coin] : undefined}
+          stable={stable}
         />
       ))}
 

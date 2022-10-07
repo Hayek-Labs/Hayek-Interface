@@ -16,7 +16,7 @@ const PieChartCard: React.FC = () => {
     <div className="w-full lg:w-full p-2 flex flex-col items-center justify-center">
       <div className="rounded-lg w-full bg-card h-[30rem] px-4 py-2 box-border flex flex-col">
         <span className="font-bold text-white inline-flex flex-row items-center">
-          veHAS Pool Weights
+          veHAYEK Pool Weights
         </span>
         <div className="flex h-[30rem] flex-col">
           <HomeRenderIfVisible height="480px">

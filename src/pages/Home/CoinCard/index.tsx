@@ -9,6 +9,7 @@ interface Props {
   transactionAmount: number;
   rise: boolean;
   Img: SVGComponent | undefined;
+  stable: boolean;
 }
 
 const CoinCard: React.FC<Props> = ({
@@ -17,6 +18,7 @@ const CoinCard: React.FC<Props> = ({
   transactionAmount,
   rise,
   Img,
+  stable,
 }) => {
   const { transactions } = useSpring({
     transactions: transactionAmount,
@@ -37,10 +39,12 @@ const CoinCard: React.FC<Props> = ({
           </div>
         </div>
         <div className="flex flex-col items-center justify-center">
-          <Icon
-            path={rise ? 'res-react-dash-bull' : 'res-react-dash-bear'}
-            className="w-8 h-8"
-          />
+          {!stable && (
+            <Icon
+              path={rise ? 'res-react-dash-bull' : 'res-react-dash-bear'}
+              className="w-8 h-8"
+            />
+          )}
           <animated.div
             className={clsx(
               rise ? 'text-green-500' : 'text-red-500',
