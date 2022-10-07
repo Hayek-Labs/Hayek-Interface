@@ -4,7 +4,7 @@ import { ReactComponent as BUSDLogo } from '@/assets/logos/coins/binance-usd-bus
 import { ReactComponent as DAILogo } from '@/assets/logos/coins/multi-collateral-dai-dai-logo.svg';
 import { ReactComponent as HASLogo } from '@/assets/logos/coins/HAS-LOGO.svg';
 import { ReactComponent as HAYEKLogo } from '@/assets/logos/coins/HAYEK-01.svg';
-import { ReactComponent as USDHLogo } from '@/assets/logos/coins/USDH-01.svg';
+import { ReactComponent as USDHLogo } from '@/assets/logos/coins/USDH-02.svg';
 import { ReactComponent as AUDHLogo } from '@/assets/logos/coins/AUDH-01.svg';
 import { ReactComponent as GBPHLogo } from '@/assets/logos/coins/GBPH-01.svg';
 import { ReactComponent as JPYHLogo } from '@/assets/logos/coins/JPYH-01.svg';
