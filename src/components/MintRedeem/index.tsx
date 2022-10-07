@@ -8,6 +8,8 @@ import {
   HASCoinCard,
   ForeignStableCoinCard,
   NativeStableCoinCard,
+  Coin0Card,
+  Coin1Card,
 } from './CoinDisplay';
 import { useMintOrRedeemState } from '@/providers/StateProvider';
 import { useEffect, useState } from 'react';
@@ -207,7 +209,7 @@ const Card: React.FC<{ mode: 'mint' | 'redeem' }> = ({ mode }) => {
   // );
 
   return (
-    <div className="bg-card w-96 flex flex-col justify-center px-4 pt-2 pb-4 rounded-lg">
+    <div className="bg-card w-1/3 flex flex-col justify-center px-4 pt-2 pb-4 rounded-lg">
       <span className="font-bold text-center text-md mb-2 text-hblack-4">
         {pageText}
       </span>
@@ -222,11 +224,15 @@ const Card: React.FC<{ mode: 'mint' | 'redeem' }> = ({ mode }) => {
             <>
               {/* <HASCoinCard isMint={isMint} /> */}
               {/* <BsPlusLg size={15} className="self-center my-2 fill-hblack-4" /> */}
-              <ForeignStableCoinCard isMint={isMint} />
+              <Coin0Card isMint={isMint} />
+              <div className="h-2" />
+              <Coin1Card isMint={isMint} />
             </>
           ) : (
             <>
-              <ForeignStableCoinCard isMint={isMint} />
+              <Coin0Card isMint={isMint} />
+              <div className="h-2" />
+              <Coin1Card isMint={isMint} />
               {/* <BsPlusLg size={15} className="self-center my-2 fill-hblack-4" /> */}
               {/* <HASCoinCard isMint={isMint} /> */}
             </>
@@ -267,68 +273,11 @@ const Card: React.FC<{ mode: 'mint' | 'redeem' }> = ({ mode }) => {
   );
 };
 
-const AddComponent: React.FC<{
-  mode: 'mint' | 'redeem';
-  setShowMintRedeem: Function;
-}> = ({ mode, setShowMintRedeem }) => {
-  return (
-    <div className="rounded-lg bg-card overflow-hidden w-96">
-      <div className="w-full h-20 add-component-head" />
-      <div
-        className="flex flex-col items-center"
-        style={{
-          transform: 'translate(0, -40px)',
-        }}
-      >
-        <div
-          className=""
-          style={{
-            background: '#414455',
-            width: '80px',
-            height: '80px',
-            borderRadius: '999px',
-          }}
-        >
-          <img
-            src="https://assets.codepen.io/3685267/res-react-dash-rocket.svg"
-            alt=""
-            className="w-full h-full"
-          />
-        </div>
-        <div className="text-white font-bold mt-3">No Collateral Added Yet</div>
-        <div className="mt-2">Simply add your collateral</div>
-        <div className="mt-1">Just click on the button</div>
-        <div
-          className="flex items-center p-3 mt-3 cursor-pointer"
-          style={{
-            background: '#2f49d1',
-            borderRadius: '15px',
-            padding: '8px 16px',
-            justifyContent: 'center',
-            color: 'white',
-          }}
-          onClick={() => {
-            setShowMintRedeem(true);
-          }}
-        >
-          <Icon path="res-react-dash-add-component" className="w-5 h-5" />
-          <div className="ml-2">Add Collateral</div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const MintRedeem: React.FC<{ mode: 'mint' | 'redeem' }> = ({ mode }) => {
-  const [showMintRedeem, setShowMintRedeem] = useState(false);
-
   return (
     <div className="flex flex-col w-full h-full text-white">
       <div className="flex-1 w-full flex flex-col text-center p-4 sm:p-2 justify-center items-center">
-        {(mode == 'redeem' || showMintRedeem) && <Card mode={mode} />}
-        {mode == 'mint' && !showMintRedeem && (
-          <AddComponent mode={mode} setShowMintRedeem={setShowMintRedeem} />
-        )}
+        <Card mode={mode} />
       </div>
     </div>
   );

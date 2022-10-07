@@ -50,11 +50,11 @@ export type LP<C1 extends Coin = Coin, C2 extends Coin = Coin> = {
 
 const _supportedNativeStableCoins = [
   'USDH',
-  'EURH',
-  'JPYH',
-  'AUDH',
-  'GBPH',
-  'CHFH',
+  // 'EURH',
+  // 'JPYH',
+  // 'AUDH',
+  // 'GBPH',
+  // 'CHFH',
 ] as const;
 export type NativeStableCoin = typeof _supportedNativeStableCoins[number];
 export const supportedNativeStableCoins =
@@ -64,6 +64,9 @@ const _supportedForiegnStableCoins = ['USDT', 'USDC'] as const;
 export type ForeignStableCoin = typeof _supportedForiegnStableCoins[number];
 export const supportedForiegnStableCoins =
   _supportedForiegnStableCoins as readonly Coin[];
+
+const _supportedCoins = ['USDT', 'USDC', 'BUSD', 'BTC', 'ETH', 'BNB'] as const;
+export const supportedCoins = _supportedCoins as readonly Coin[];
 
 interface CoinData {
   logo: SVGComponent;
