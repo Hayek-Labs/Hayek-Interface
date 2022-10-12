@@ -91,16 +91,27 @@ const Content: React.FC = () => {
         />
       ))}
 
-      <div className="w-full lg:w-1/3 flex flex-col justify-between p-2">
-        <div className="rounded-lg bg-card flex flex-row items-center justify-center h-24 p-2 text-xs text-white">
+      <div className="w-full lg:w-1/3 flex p-2">
+        <div className="rounded-lg bg-card flex flex-row items-center justify-center w-full h-24 p-2 mr-4">
           <div className="flex flex-col items-center">
-            <span className="">Funding Rate</span>
-            <span className="font-bold">12.21%</span>
+            <div className="flex flex-row">
+              <span className="text-white font-bold text-base mr-4">
+                12.21%
+              </span>
+              <span className="text-white font-bold text-base">$12.21M</span>
+            </div>
+            <span className="text-sm">Funding Fee</span>
           </div>
-          <span className="w-5" />
+        </div>
+        <div className="rounded-lg bg-card flex flex-row items-center justify-center w-full h-24 p-2">
           <div className="flex flex-col items-center">
-            <span className="">AMOs</span>
-            <span className="font-bold">$8.90M</span>
+            <div className="flex flex-row">
+              <span className="text-white font-bold text-base mr-4">
+                21.10%
+              </span>
+              <span className="text-white font-bold text-base">$8.90M</span>
+            </div>
+            <span className="text-sm">AMO</span>
           </div>
         </div>
       </div>
