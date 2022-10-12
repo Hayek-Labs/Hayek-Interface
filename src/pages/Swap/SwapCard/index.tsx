@@ -87,8 +87,10 @@ const SwapCard: React.FC<{
 
   return (
     <div className="bg-card w-1/3 flex flex-col justify-center pb-4 rounded-lg text-white text-center">
-      <ModeTabs rebalanceData={rebalanceData} />
-      <div className="h-4" />
+      {/* <ModeTabs rebalanceData={rebalanceData} /> */}
+      <span className="font-bold text-center text-md mt-2 mb-2 text-hblack-4">
+        SWAP
+      </span>
       <div className="relative px-4">
         {/* {balancedCoinPrompt} */}
         <SwapCoinDisplay stableCoinOptions={stableCoinOptions} />{' '}
