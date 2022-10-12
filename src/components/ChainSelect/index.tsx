@@ -10,6 +10,7 @@ import specialStyles from './styles.less';
 import { ReactComponent as Dropdown } from '@/assets/icons/dropdown.svg';
 import { VscDebugDisconnect } from 'react-icons/vsc';
 import clsx from 'clsx';
+import { useSidebarContext } from '@/pages/Sidebar';
 
 const SingleValue = ({
   children,
@@ -17,15 +18,24 @@ const SingleValue = ({
 }: SingleValueProps<ChainOption, false>) => {
   const Logo = props.data.value && chainToLogo[props.data.value];
   const size = 30;
+  const { sidebarExpand } = useSidebarContext();
   return (
     <components.SingleValue {...props} isMulti={false}>
       <div className="flex flex-row items-center">
         {Logo && <Logo width={size} height={size} />}
-        <span className="xl:group-hover:inline ml-2 text-[0px] xl:group-hover:text-lg trans">
+        {/* <span className="xl:group-hover:inline ml-2 text-[0px] xl:group-hover:text-lg trans"> */}
+        <span
+          className={clsx(
+            sidebarExpand
+              ? 'xl:inline ml-2 text-[0px] xl:text-lg trans'
+              : 'ml-2 text-[0px] trans',
+          )}
+        >
           {children}
         </span>
         {!props.data.value && (
-          <div className="block xl:group-hover:hidden">
+          // <div className="block xl:group-hover:hidden">
+          <div className={clsx(sidebarExpand ? 'block xl:hidden' : 'block')}>
             <VscDebugDisconnect size={size} />
           </div>
         )}
@@ -100,12 +110,16 @@ const ChainSelect: React.FC<Props> = ({
   setValue,
   canSelect = true,
 }) => {
+  const { sidebarExpand } = useSidebarContext();
+
   return (
     <div
       className={clsx(
         selectStyles['select-wrapper'],
         specialStyles['select-wrapper'],
-        'bg-hblack-3 rounded-xl py-2 w-full h-full flex items-center justify-start sm:justify-center xl:group-hover:justify-start px-3 sm:px-0 xl:group-hover:px-3 hover:cursor-pointer',
+        // 'bg-hblack-3 rounded-xl py-2 w-full h-full flex items-center justify-start sm:justify-center xl:group-hover:justify-start px-3 sm:px-0 xl:group-hover:px-3 hover:cursor-pointer',
+        'bg-hblack-3 rounded-xl py-2 w-full h-full flex items-center justify-start sm:justify-center px-3 sm:px-0 hover:cursor-pointer',
+        sidebarExpand ? 'xl:justify-start xl:px-3' : '',
       )}
     >
       <ReactSelect
