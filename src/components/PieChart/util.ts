@@ -20,11 +20,11 @@ export const generateVisibleMap = <T>(
 };
 
 const COLORS = [
-  '#ff299b',
+  '#b4299b',
   '#9300c4',
   '#00d0ff',
   '#ff8042',
-  '#f7b91c',
+  '#e6ba1c',
   '#2f49d1',
   '#10b981',
   '#ef4444',
