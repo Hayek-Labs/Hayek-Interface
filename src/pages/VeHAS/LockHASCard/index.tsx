@@ -27,7 +27,7 @@ const LockHASCard = () => {
   useComputeVeHAS(state);
 
   return (
-    <div className="bg-card w-96 flex flex-col justify-center rounded-lg text-white text-center relative">
+    <div className="bg-card w-1/3 flex flex-col justify-center rounded-lg text-white text-center relative">
       <AntTabs defaultActiveKey="1" type="card" size="middle" tabBarGutter={0}>
         <AntTabPane tab="Lock" key="1">
           <LockHASDisplay state={state} />
