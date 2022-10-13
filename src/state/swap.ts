@@ -1,4 +1,4 @@
-import { ForeignStableCoin, NativeStableCoin } from '@/constants/coin';
+import { ForeignStableCoin, NativeStableCoin, Coin } from '@/constants/coin';
 import BigNumber from 'bignumber.js';
 import { useState } from 'react';
 import { useSwapState } from '@/providers/StateProvider';
@@ -32,6 +32,12 @@ export const useCreateSwapState = (): SwapState => {
 
   const [crossSellHAS, setCrossSellHAS] = useState(false);
 
+  const [swapCoin0, setSwapCoin0] = useState<Coin>('BTC');
+  const [swapCoinValue0, setSwapCoinValue0] = useState(new BigNumber(0));
+
+  const [swapCoin1, setSwapCoin1] = useState<Coin>('USDT');
+  const [swapCoinValue1, setSwapCoinValue1] = useState(new BigNumber(0));
+
   return {
     mode,
     setMode,
@@ -51,6 +57,14 @@ export const useCreateSwapState = (): SwapState => {
     setNativeStableCoin,
     nativeStableCoinValue,
     setNativeStableCoinValue,
+    swapCoin0,
+    setSwapCoin0,
+    swapCoinValue0,
+    setSwapCoinValue0,
+    swapCoin1,
+    setSwapCoin1,
+    swapCoinValue1,
+    setSwapCoinValue1,
   };
 };
 
@@ -116,4 +130,14 @@ export interface SwapState {
   setNativeStableCoin: SetState<NativeStableCoin>;
   nativeStableCoinValue: BigNumber;
   setNativeStableCoinValue: SetState<BigNumber>;
+
+  swapCoin0: Coin;
+  setSwapCoin0: SetState<Coin>;
+  swapCoinValue0: BigNumber;
+  setSwapCoinValue0: SetState<BigNumber>;
+
+  swapCoin1: Coin;
+  setSwapCoin1: SetState<Coin>;
+  swapCoinValue1: BigNumber;
+  setSwapCoinValue1: SetState<BigNumber>;
 }
