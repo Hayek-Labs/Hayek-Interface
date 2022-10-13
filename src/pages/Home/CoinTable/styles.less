@@ -1,0 +1,73 @@
+.styles {
+  :global {
+    .ant-table,
+    .ant-table-row,
+    .ant-table-row:hover,
+    .ant-table-cell,
+    .ant-table-cell:hover,
+    .ant-table-cell-row-hover {
+      background-color: transparent !important;
+      color: white !important;
+    }
+
+    .ant-table {
+      .ant-table-cell:first-child {
+        text-align: left;
+      }
+
+      .ant-table-cell {
+        border-bottom-color: transparent;
+        padding: 8px;
+
+        text-align: right;
+      }
+    }
+
+    .coin-display-table-row {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+
+      &:first-child {
+        border-bottom: thin solid #353535;
+      }
+
+      &:not(:first-child) {
+        // border-bottom: thin dotted #353535;
+      }
+
+      // &:not(:first-child):hover {
+      //   background-color: #353535;
+      // }
+
+      > * {
+        padding: 6px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      > :first-child {
+        text-align: left;
+        justify-content: flex-start;
+        flex: 3;
+      }
+      > :not(:first-child) {
+        text-align: right;
+        justify-content: flex-end;
+      }
+      > :nth-child(2) {
+        flex: 2;
+      }
+      > :nth-child(3) {
+        flex: 2;
+      }
+      > :nth-child(4) {
+        flex: 2;
+      }
+      > :nth-child(5) {
+        flex: 2;
+      }
+    }
+  }
+}

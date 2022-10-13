@@ -14,6 +14,7 @@ import {
   RiExchangeBoxLine,
 } from 'react-icons/ri';
 import { BsStack } from 'react-icons/bs';
+import { GoFileDirectory } from 'react-icons/go';
 
 import { ReactComponent as LogoSVG } from '@/assets/logo.svg';
 import { ReactComponent as MintSVG } from '@/assets/icons/mint_sidebar.svg';
@@ -133,6 +134,8 @@ export const icons = sidebarItems.reduce<Record<string, JSX.Element>>(
 export const SidebarContext = React.createContext<{
   sidebarVisible: boolean;
   setSidebarVisible: SetState<boolean>;
+  sidebarExpand: boolean;
+  setSidebarExpand: SetState<boolean>;
 }>(undefined!);
 
 export const useSidebarContext = () => {
@@ -169,7 +172,7 @@ const SidebarItemHighlight: React.FC<{ selectedIndex: number }> = ({
 };
 
 const Sidebar = () => {
-  const { sidebarVisible } = useSidebarContext();
+  const { sidebarVisible, sidebarExpand } = useSidebarContext();
 
   const { useAccount } = useWeb3Hooks();
   const account = useAccount();
@@ -188,12 +191,13 @@ const Sidebar = () => {
   const setSelected = (id: string) => {
     history.push(idToRoute[id]);
   };
-
   return (
     <div className={styles['styles']}>
       <div
         className={clsx(
-          'sidebar-wrapper flex-shrink-0 sm:fixed inset-y-0 left-0 bg-card w-full sm:w-24 xl:hover:w-60 group sm:flex flex-col z-10',
+          // 'sidebar-wrapper flex-shrink-0 sm:fixed inset-y-0 left-0 bg-card w-full sm:w-24 xl:hover:w-60 group sm:flex flex-col z-10',
+          'sidebar-wrapper flex-shrink-0 sm:fixed inset-y-0 left-0 bg-card w-full sm:w-24 group sm:flex flex-col z-10',
+          sidebarExpand ? 'xl:w-60' : 'sm:w-24',
           sidebarVisible ? 'flex' : 'hidden',
         )}
       >
@@ -212,6 +216,7 @@ const Sidebar = () => {
                 item={item}
                 onClick={setSelected}
                 isSelected={selected === item.id}
+                sidebarExpand={sidebarExpand}
               />
             ))}
           </div>

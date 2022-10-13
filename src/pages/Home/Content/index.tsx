@@ -10,8 +10,9 @@ import CRGraph from '../CRGraph';
 import CoinGraph from '../CoinGraph';
 import Satisfication from '../Satisfaction';
 import VeHASSupply from '../VeHASSupply';
-import GaugePieChart from '@/pages/Home/GaugePieChart';
+import GaugePieChart from '../GaugePieChart';
 import AMOs from '../AMOs';
+import CoinTable from '../CoinTable';
 
 const coinData: {
   id: number;
@@ -20,22 +21,25 @@ const coinData: {
   description: string;
   price: number;
   rise: boolean;
+  stable: boolean;
 }[] = [
   {
     id: 1,
     coin: 'USDH',
     name: 'USDH',
-    description: 'Algorithmic stable coin',
+    description: 'USD Hayek',
     rise: true,
-    price: 3490,
+    price: 1,
+    stable: true,
   },
   {
     id: 2,
-    coin: 'HAS',
-    name: 'HAS',
+    coin: 'HAYEK',
+    name: 'HAYEK',
     description: 'Government token',
     rise: true,
     price: 590,
+    stable: false,
   },
 ];
 
@@ -56,7 +60,7 @@ const Content: React.FC = () => {
   return (
     <>
       <div className="w-full sm:flex p-2 items-end">
-        <div className="sm:flex-grow flex justify-between">
+        {/* <div className="sm:flex-grow flex justify-between">
           <div className="">
             <div className="flex items-center">
               <div className="flex items-center p-2 bg-card rounded-xl">
@@ -72,9 +76,9 @@ const Content: React.FC = () => {
             </div>
           </div>
           <SidebarShowButton />
-        </div>
+        </div> */}
       </div>
-      {coinData.map(({ id, coin, name, price, description, rise }) => (
+      {coinData.map(({ id, coin, name, price, description, rise, stable }) => (
         <CoinCard
           key={id}
           id={id}
@@ -83,56 +87,72 @@ const Content: React.FC = () => {
           transactionAmount={price}
           rise={rise}
           Img={coin ? coinToLogo[coin] : undefined}
+          stable={stable}
         />
       ))}
 
-      <div className="w-full lg:w-1/3 flex flex-col justify-between p-2">
-        <div className="rounded-lg bg-card flex flex-row items-center justify-center h-24 p-2 text-xs text-white">
+      <div className="w-full lg:w-1/3 flex p-2">
+        <div className="rounded-lg bg-card flex flex-row items-center justify-center w-full h-24 p-2 mr-4">
           <div className="flex flex-col items-center">
-            <span className="">TOTAL MARKET CAP</span>
-            <span className="font-bold">$12.21M</span>
+            <div className="flex flex-row">
+              <span className="text-white font-bold text-base mr-4">
+                12.21%
+              </span>
+              <span className="text-white font-bold text-base">$12.21M</span>
+            </div>
+            <span className="text-sm">Funding Fee</span>
           </div>
-          <span className="w-5" />
+        </div>
+        <div className="rounded-lg bg-card flex flex-row items-center justify-center w-full h-24 p-2">
           <div className="flex flex-col items-center">
-            <span className="">TOTAL COLLATERAL</span>
-            <span className="font-bold">$8.90M</span>
+            <div className="flex flex-row">
+              <span className="text-white font-bold text-base mr-4">
+                21.10%
+              </span>
+              <span className="text-white font-bold text-base">$8.90M</span>
+            </div>
+            <span className="text-sm">AMO</span>
           </div>
         </div>
       </div>
 
       <div className="w-full flex flex-col lg:w-2/3">
         <CoinGraph coin="USDH" />
-        <CoinGraph coin="EURH" />
+        {/* <CoinGraph coin="EURH" />
         <CoinGraph coin="JPYH" />
         <CoinGraph coin="AUDH" />
         <CoinGraph coin="GBPH" />
-        <CoinGraph coin="CHFH" />
+        <CoinGraph coin="CHFH" /> */}
+
+        <TVGraph />
       </div>
 
       <div className="w-full flex flex-col lg:w-1/3">
-        <div className="w-full p-2">
+        {/* <div className="w-full p-2">
           <div className="rounded-lg bg-card h-80">
             <TopCoins />
           </div>
-        </div>
+        </div> */}
 
-        <div className="w-full p-2">
+        <CoinTable />
+
+        {/* <div className="w-full p-2">
           <div className="rounded-lg bg-card h-80">
             <Satisfication />
           </div>
-        </div>
+        </div> */}
 
-        <CRGraph />
+        {/* <CRGraph /> */}
 
-        <TVGraph />
+        {/* <TVGraph /> */}
 
         <VeHASSupply />
 
-        <div className="w-full p-2">
+        {/* <div className="w-full p-2">
           <div className="rounded-lg bg-card overflow-hidden h-80">
             <AddComponent />
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="w-full m-2 border border-solid border-hblack-3" />

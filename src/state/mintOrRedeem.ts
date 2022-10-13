@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 export const useCreateMintOrRedeemState = (): MintRedeemState => {
   const [independentCoin, setIndependentCoin] = useState<
-    'has' | 'native' | 'foreign'
+    'has' | 'native' | 'foreign' | 'coin0' | 'coin1'
   >('native');
 
   const [foreignStableCoin, setForeignStableCoin] = useState<Coin>('USDT');
@@ -19,6 +19,12 @@ export const useCreateMintOrRedeemState = (): MintRedeemState => {
     new BigNumber('0'),
   );
 
+  const [coin0, setCoin0] = useState<Coin>('USDT');
+  const [coin0Value, setCoin0Value] = useState(new BigNumber('0'));
+
+  const [coin1, setCoin1] = useState<Coin>('USDT');
+  const [coin1Value, setCoin1Value] = useState(new BigNumber('0'));
+
   return {
     independentCoin,
     setIndependentCoin,
@@ -32,12 +38,22 @@ export const useCreateMintOrRedeemState = (): MintRedeemState => {
     setNativeStableCoin,
     nativeStableCoinValue,
     setNativeStableCoinValue,
+    coin0,
+    setCoin0,
+    coin0Value,
+    setCoin0Value,
+    coin1,
+    setCoin1,
+    coin1Value,
+    setCoin1Value,
   };
 };
 
 export interface MintRedeemState {
-  independentCoin: 'has' | 'native' | 'foreign';
-  setIndependentCoin: SetState<'has' | 'native' | 'foreign'>;
+  independentCoin: 'has' | 'native' | 'foreign' | 'coin0' | 'coin1';
+  setIndependentCoin: SetState<
+    'has' | 'native' | 'foreign' | 'coin0' | 'coin1'
+  >;
   foreignStableCoin: Coin;
   setForeignStableCoin: SetState<Coin>;
   foreignStableCoinValue: BigNumber;
@@ -48,4 +64,12 @@ export interface MintRedeemState {
   setNativeStableCoin: SetState<Coin>;
   nativeStableCoinValue: BigNumber;
   setNativeStableCoinValue: SetState<BigNumber>;
+  coin0: Coin;
+  setCoin0: SetState<Coin>;
+  coin0Value: BigNumber;
+  setCoin0Value: SetState<BigNumber>;
+  coin1: Coin;
+  setCoin1: SetState<Coin>;
+  coin1Value: BigNumber;
+  setCoin1Value: SetState<BigNumber>;
 }

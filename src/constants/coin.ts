@@ -3,13 +3,17 @@ import { ReactComponent as USDCLogo } from '@/assets/logos/coins/usd-coin-usdc-l
 import { ReactComponent as BUSDLogo } from '@/assets/logos/coins/binance-usd-busd-logo.svg';
 import { ReactComponent as DAILogo } from '@/assets/logos/coins/multi-collateral-dai-dai-logo.svg';
 import { ReactComponent as HASLogo } from '@/assets/logos/coins/HAS-LOGO.svg';
-import { ReactComponent as USDHLogo } from '@/assets/logos/coins/USDH-01.svg';
+import { ReactComponent as HAYEKLogo } from '@/assets/logos/coins/HAYEK-01.svg';
+import { ReactComponent as USDHLogo } from '@/assets/logos/coins/USDH-02.svg';
 import { ReactComponent as AUDHLogo } from '@/assets/logos/coins/AUDH-01.svg';
 import { ReactComponent as GBPHLogo } from '@/assets/logos/coins/GBPH-01.svg';
 import { ReactComponent as JPYHLogo } from '@/assets/logos/coins/JPYH-01.svg';
 import { ReactComponent as EURHLogo } from '@/assets/logos/coins/EURH-01.svg';
 import { ReactComponent as CHFHLogo } from '@/assets/logos/coins/CHFH-01.svg';
 import { ReactComponent as FRAXLogo } from '@/assets/logos/coins/frax-frax-logo.svg';
+import { ReactComponent as BTCLogo } from '@/assets/logos/coins/BTC-01.svg';
+import { ReactComponent as ETHLogo } from '@/assets/logos/coins/ETH-01.svg';
+import { ReactComponent as BNBLogo } from '@/assets/logos/coins/BNB-01.svg';
 import { Chain } from './chains';
 import IBEP20 from '../abi/ibep20.json';
 import UChildERC20 from '../abi/UChildERC20.json';
@@ -21,6 +25,7 @@ const coins = [
   'USDT',
   'USDC',
   'HAS',
+  'HAYEK',
   'USDH',
   'BUSD',
   'DAI',
@@ -31,6 +36,9 @@ const coins = [
   'CHFH',
   'FRAX',
   'veHAS',
+  'BTC',
+  'ETH',
+  'BNB',
 ] as const;
 export type Coin = typeof coins[number];
 
@@ -42,11 +50,11 @@ export type LP<C1 extends Coin = Coin, C2 extends Coin = Coin> = {
 
 const _supportedNativeStableCoins = [
   'USDH',
-  'EURH',
-  'JPYH',
-  'AUDH',
-  'GBPH',
-  'CHFH',
+  // 'EURH',
+  // 'JPYH',
+  // 'AUDH',
+  // 'GBPH',
+  // 'CHFH',
 ] as const;
 export type NativeStableCoin = typeof _supportedNativeStableCoins[number];
 export const supportedNativeStableCoins =
@@ -56,6 +64,9 @@ const _supportedForiegnStableCoins = ['USDT', 'USDC'] as const;
 export type ForeignStableCoin = typeof _supportedForiegnStableCoins[number];
 export const supportedForiegnStableCoins =
   _supportedForiegnStableCoins as readonly Coin[];
+
+const _supportedCoins = ['USDT', 'USDC', 'BUSD', 'BTC', 'ETH', 'BNB'] as const;
+export const supportedCoins = _supportedCoins as readonly Coin[];
 
 interface CoinData {
   logo: SVGComponent;
@@ -85,6 +96,7 @@ export const coinToLogo: Record<Coin, SVGComponent> = {
   USDC: USDCLogo,
   FRAX: FRAXLogo,
   HAS: HASLogo,
+  HAYEK: HAYEKLogo,
   BUSD: BUSDLogo,
   DAI: DAILogo,
   USDH: getNativeStableCoinLogoComponent(USDHLogo),
@@ -94,6 +106,9 @@ export const coinToLogo: Record<Coin, SVGComponent> = {
   EURH: getNativeStableCoinLogoComponent(EURHLogo),
   CHFH: getNativeStableCoinLogoComponent(CHFHLogo),
   veHAS: HASLogo,
+  BTC: BTCLogo,
+  ETH: ETHLogo,
+  BNB: BNBLogo,
 };
 
 export const coinToCoinGeckoId: Record<Coin, string | undefined> = {
@@ -103,6 +118,7 @@ export const coinToCoinGeckoId: Record<Coin, string | undefined> = {
   DAI: 'dai',
   FRAX: undefined,
   HAS: undefined,
+  HAYEK: undefined,
   USDH: undefined,
   AUDH: undefined,
   GBPH: undefined,
@@ -110,6 +126,9 @@ export const coinToCoinGeckoId: Record<Coin, string | undefined> = {
   EURH: undefined,
   CHFH: undefined,
   veHAS: undefined,
+  BTC: 'bitcoin',
+  ETH: 'ethereum',
+  BNB: 'binancecoin',
 };
 
 export const chainToCoinInterface: Record<Chain, any> = {
@@ -129,6 +148,7 @@ export const chainCoinToAddress: Record<
     BUSD: undefined,
     DAI: '0x6B175474E89094C44Da98b954EedeAC495271d0F',
     HAS: undefined,
+    HAYEK: undefined,
     USDH: undefined,
     AUDH: undefined,
     GBPH: undefined,
@@ -136,6 +156,9 @@ export const chainCoinToAddress: Record<
     EURH: undefined,
     CHFH: undefined,
     veHAS: undefined,
+    BTC: undefined,
+    ETH: undefined,
+    BNB: undefined,
   },
   [Chain.BSC]: {
     USDT: '0x55d398326f99059fF775485246999027B3197955',
@@ -144,6 +167,7 @@ export const chainCoinToAddress: Record<
     BUSD: '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
     DAI: '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3',
     HAS: undefined,
+    HAYEK: undefined,
     USDH: undefined,
     AUDH: undefined,
     GBPH: undefined,
@@ -151,6 +175,9 @@ export const chainCoinToAddress: Record<
     EURH: undefined,
     veHAS: undefined,
     CHFH: undefined,
+    BTC: undefined,
+    ETH: undefined,
+    BNB: undefined,
   },
   [Chain.Polygon]: {
     USDT: '0xc2132D05D31c914a87C6611C10748AEb04B58e8F',
@@ -159,6 +186,7 @@ export const chainCoinToAddress: Record<
     DAI: '0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063',
     FRAX: '0x45c32fA6DF82ead1e2EF74d17b76547EDdFaFF89',
     HAS: undefined,
+    HAYEK: undefined,
     USDH: undefined,
     AUDH: undefined,
     GBPH: undefined,
@@ -166,6 +194,9 @@ export const chainCoinToAddress: Record<
     EURH: undefined,
     veHAS: undefined,
     CHFH: undefined,
+    BTC: undefined,
+    ETH: undefined,
+    BNB: undefined,
   },
 };
 
