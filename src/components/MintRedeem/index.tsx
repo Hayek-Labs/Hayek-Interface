@@ -225,8 +225,6 @@ const Card: React.FC<{ mode: 'mint' | 'redeem' }> = ({ mode }) => {
               {/* <HASCoinCard isMint={isMint} /> */}
               {/* <BsPlusLg size={15} className="self-center my-2 fill-hblack-4" /> */}
               <Coin0Card isMint={isMint} />
-              <div className="h-2" />
-              <Coin1Card isMint={isMint} />
             </>
           ) : (
             <>

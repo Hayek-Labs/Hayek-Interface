@@ -191,7 +191,7 @@ export const Coin1Card: React.FC<{
             alt=""
             className="w-5 h-5"
           />
-          <div className="ml-2">Add Component</div>
+          <div className="ml-2">Add Collateral</div>
         </div>
       )}
     </>
