@@ -16,13 +16,13 @@ export const pools: Pool[] = [
     coin2: 'USDC',
     address: '0x3EF2 ... B4B0',
   },
-  {
-    key: 2,
-    name: 'ACY Finance',
-    coin1: 'USDH',
-    coin2: 'USDT',
-    address: '0x3e14 ... 6AeC',
-  },
+  // {
+  //   key: 2,
+  //   name: 'ACY Finance',
+  //   coin1: 'USDH',
+  //   coin2: 'USDT',
+  //   address: '0x3e14 ... 6AeC',
+  // },
   {
     key: 3,
     name: 'SushiSwap',
@@ -58,13 +58,13 @@ export const pools: Pool[] = [
   //   coin2: 'USDC',
   //   address: '0x3ED2 ... B4B0',
   // },
-  {
-    key: 8,
-    name: 'ACY Finance',
-    coin1: 'USDH',
-    coin2: 'USDC',
-    address: '0x3eE4 ... 6AeC',
-  },
+  // {
+  //   key: 8,
+  //   name: 'ACY Finance',
+  //   coin1: 'USDH',
+  //   coin2: 'USDC',
+  //   address: '0x3eE4 ... 6AeC',
+  // },
   {
     key: 9,
     name: 'SushiSwap',

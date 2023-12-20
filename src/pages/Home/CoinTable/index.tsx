@@ -11,53 +11,40 @@ const CoinData: {
   id: number;
 }[] = [
   {
-    coin: 'USDT',
-    price: 1.0,
-    pool: 219.56,
-    weight: 0.1953,
+    coin: 'BTC',
+    price: 19484.58,
+    pool: 109816.53,
+    weight: 97.7003,
     id: 1,
-  },
-  {
-    coin: 'DAI',
-    price: 0.99,
-    pool: 289.62,
-    weight: 0.2336,
-    id: 2,
-  },
-  {
-    coin: 'BUSD',
-    price: 1.0,
-    pool: 523.85,
-    weight: 0.0178,
-    id: 3,
-  },
-  {
-    coin: 'USDC',
-    price: 1.0,
-    pool: 219.56,
-    weight: 0.1953,
-    id: 4,
   },
   {
     coin: 'ETH',
     price: 1333.12,
     pool: 1729.85,
     weight: 1.5389,
+    id: 2,
+  },
+
+  {
+    coin: 'USDT',
+    price: 1.0,
+    pool: 219.56,
+    weight: 0.1953,
+    id: 3,
+  },
+  {
+    coin: 'DAI',
+    price: 0.99,
+    pool: 289.62,
+    weight: 0.2336,
+    id: 4,
+  },
+  {
+    coin: 'USDC',
+    price: 1.0,
+    pool: 219.56,
+    weight: 0.1953,
     id: 5,
-  },
-  {
-    coin: 'BTC',
-    price: 19484.58,
-    pool: 109816.53,
-    weight: 97.7003,
-    id: 6,
-  },
-  {
-    coin: 'BNB',
-    price: 278.61,
-    pool: 2.23,
-    weight: 0.0019,
-    id: 7,
   },
 ];
 
@@ -71,7 +58,7 @@ const CoinTable = () => {
     >
       <div className="rounded-lg bg-card px-2 w-full py-2">
         <div className="flex justify-between items-center p-2">
-          <div className="text-white font-bold">Top Coins</div>
+          <div className="text-white font-bold">Collateral</div>
         </div>
         <div className="coin-display-table-row">
           <span>Name</span>

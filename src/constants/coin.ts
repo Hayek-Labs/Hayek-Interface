@@ -40,7 +40,7 @@ const coins = [
   'ETH',
   'BNB',
 ] as const;
-export type Coin = typeof coins[number];
+export type Coin = (typeof coins)[number];
 
 export type LP<C1 extends Coin = Coin, C2 extends Coin = Coin> = {
   coin1: C1;
@@ -56,16 +56,16 @@ const _supportedNativeStableCoins = [
   // 'GBPH',
   // 'CHFH',
 ] as const;
-export type NativeStableCoin = typeof _supportedNativeStableCoins[number];
+export type NativeStableCoin = (typeof _supportedNativeStableCoins)[number];
 export const supportedNativeStableCoins =
   _supportedNativeStableCoins as readonly Coin[];
 
 const _supportedForiegnStableCoins = ['USDT', 'USDC'] as const;
-export type ForeignStableCoin = typeof _supportedForiegnStableCoins[number];
+export type ForeignStableCoin = (typeof _supportedForiegnStableCoins)[number];
 export const supportedForiegnStableCoins =
   _supportedForiegnStableCoins as readonly Coin[];
 
-const _supportedCoins = ['USDT', 'USDC', 'BUSD', 'BTC', 'ETH', 'BNB'] as const;
+const _supportedCoins = ['BTC', 'ETH'] as const;
 export const supportedCoins = _supportedCoins as readonly Coin[];
 
 interface CoinData {
@@ -105,7 +105,7 @@ export const coinToLogo: Record<Coin, SVGComponent> = {
   JPYH: getNativeStableCoinLogoComponent(JPYHLogo),
   EURH: getNativeStableCoinLogoComponent(EURHLogo),
   CHFH: getNativeStableCoinLogoComponent(CHFHLogo),
-  veHAS: HASLogo,
+  veHAS: HAYEKLogo,
   BTC: BTCLogo,
   ETH: ETHLogo,
   BNB: BNBLogo,

@@ -106,7 +106,7 @@ export const NativeStableCoinCard: React.FC<{
         selectFrom: supportedNativeStableCoins,
         // @ts-ignore
         setCoin: setNativeStableCoin,
-        canSelect: true,
+        canSelect: false,
       }}
       balance={balance}
     />
@@ -115,12 +115,12 @@ export const NativeStableCoinCard: React.FC<{
 
 export const Coin0Card: React.FC<{
   isMint: boolean;
-}> = () => {
+  canSelect?: boolean;
+}> = ({ canSelect = true }) => {
   const { coin0, setCoin0, coin0Value, setCoin0Value, setIndependentCoin } =
     useMintOrRedeemState();
 
   const balance = useBalance(coin0);
-
   return (
     <CoinCard
       coin={coin0}
@@ -137,7 +137,7 @@ export const Coin0Card: React.FC<{
         selectFrom: supportedCoins,
         // @ts-ignore
         setCoin: setCoin0,
-        canSelect: true,
+        canSelect: canSelect,
       }}
       balance={balance}
     />
@@ -146,18 +146,18 @@ export const Coin0Card: React.FC<{
 
 export const Coin1Card: React.FC<{
   isMint: boolean;
-}> = () => {
+  canSelect: boolean;
+}> = ({ canSelect = true }) => {
   const { coin1, setCoin1, coin1Value, setCoin1Value, setIndependentCoin } =
     useMintOrRedeemState();
 
   const balance = useBalance(coin1);
   const [isActive, setIsActive] = useState(false);
-
   return (
     <>
       {isActive ? (
         <CoinCard
-          coin={coin1}
+          coin={'ETH'}
           input={{
             value: coin1Value,
             setValue: setCoin1Value,
@@ -171,7 +171,7 @@ export const Coin1Card: React.FC<{
             selectFrom: supportedCoins,
             // @ts-ignore
             setCoin: setCoin1,
-            canSelect: true,
+            canSelect: canSelect,
           }}
           balance={balance}
         />

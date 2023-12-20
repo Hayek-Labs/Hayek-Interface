@@ -19,10 +19,10 @@ export const useCreateMintOrRedeemState = (): MintRedeemState => {
     new BigNumber('0'),
   );
 
-  const [coin0, setCoin0] = useState<Coin>('USDT');
+  const [coin0, setCoin0] = useState<Coin>('BTC');
   const [coin0Value, setCoin0Value] = useState(new BigNumber('0'));
 
-  const [coin1, setCoin1] = useState<Coin>('USDT');
+  const [coin1, setCoin1] = useState<Coin>('BTC');
   const [coin1Value, setCoin1Value] = useState(new BigNumber('0'));
 
   return {
