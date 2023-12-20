@@ -37,7 +37,7 @@ const LockHASDisplay: React.FC<{ state: VeHASState }> = ({ state }) => {
       <div className="flex flex-col items-center h-full pb-4">
         <div className="flex-grow" />
         <CoinCard
-          coin="HAS"
+          coin="HAYEK"
           input={{
             value: HASCoinValue,
             setValue: setHASCoinValue,
