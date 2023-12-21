@@ -22,7 +22,7 @@ import { ReactComponent as RedeemSVG } from '@/assets/icons/redeem_sidebar.svg';
 
 import Icon from '../Home/Icon';
 import MenuItem from './MenuItem';
-import ChainDisplay from './ChainDisplay';
+import ChainDisplay from '../Home/ChainDisplay';
 import { useWeb3Hooks } from '@/providers/web3HooksProvider';
 
 import styles from './styles.less';
@@ -207,7 +207,7 @@ const Sidebar = () => {
           </div>
         </div>
         <div className="flex-grow overflow-x-hidden overflow-y-auto flex flex-col">
-          <ChainDisplay />
+          {/* <ChainDisplay /> */}
           <div className="flex flex-col relative px-3">
             <SidebarItemHighlight selectedIndex={Number.parseInt(selected)} />
             {sidebarItems.map((item) => (

@@ -18,7 +18,8 @@ const SingleValue = ({
 }: SingleValueProps<ChainOption, false>) => {
   const Logo = props.data.value && chainToLogo[props.data.value];
   const size = 30;
-  const { sidebarExpand } = useSidebarContext();
+  // const { sidebarExpand } = useSidebarContext();
+  const sidebarExpand = true;
   return (
     <components.SingleValue {...props} isMulti={false}>
       <div className="flex flex-row items-center">
@@ -111,7 +112,7 @@ const ChainSelect: React.FC<Props> = ({
   canSelect = true,
 }) => {
   const { sidebarExpand } = useSidebarContext();
-
+  console.log('sidebarExpand', sidebarExpand);
   return (
     <div
       className={clsx(
@@ -119,7 +120,8 @@ const ChainSelect: React.FC<Props> = ({
         specialStyles['select-wrapper'],
         // 'bg-hblack-3 rounded-xl py-2 w-full h-full flex items-center justify-start sm:justify-center xl:group-hover:justify-start px-3 sm:px-0 xl:group-hover:px-3 hover:cursor-pointer',
         'bg-hblack-3 rounded-xl py-2 w-full h-full flex items-center justify-start sm:justify-center px-3 sm:px-0 hover:cursor-pointer',
-        sidebarExpand ? 'xl:justify-start xl:px-3' : '',
+        'xl:justify-start xl:px-3',
+        // sidebarExpand ? 'xl:justify-start xl:px-3' : '',
       )}
     >
       <ReactSelect

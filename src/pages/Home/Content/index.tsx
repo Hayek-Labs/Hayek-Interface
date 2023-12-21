@@ -13,6 +13,7 @@ import VeHASSupply from '../VeHASSupply';
 import GaugePieChart from '../GaugePieChart';
 import AMOs from '../AMOs';
 import CoinTable from '../CoinTable';
+import ChainDisplay from '../ChainDisplay';
 
 const coinData: {
   id: number;
@@ -104,7 +105,7 @@ const Content: React.FC = () => {
           </div>
         </div>
         <div className="rounded-lg bg-card flex flex-row items-center justify-center w-full h-24 p-2">
-          <div className="flex flex-col items-center">
+          {/* <div className="flex flex-col items-center">
             <div className="flex flex-row">
               <span className="text-white font-bold text-base mr-4">
                 21.10%
@@ -112,7 +113,8 @@ const Content: React.FC = () => {
               <span className="text-white font-bold text-base">$8.90M</span>
             </div>
             <span className="text-sm">AMO</span>
-          </div>
+          </div> */}
+          <ChainDisplay />
         </div>
       </div>
 
