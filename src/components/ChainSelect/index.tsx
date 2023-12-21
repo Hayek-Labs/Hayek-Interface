@@ -64,13 +64,13 @@ const Option = ({ children, ...props }: OptionProps<ChainOption, false>) => {
             <VscDebugDisconnect size={size} />
             <div className="xl:group-hover:block ml-0 xl:group-hover:ml-2 trans" />
             <div className="min-h-[30px] flex flex-row items-center">
-              <span className="text-ellipsis w-full text-[0px] xl:group-hover:text-base xl:group-hover:inline trans">
+              <span className="text-ellipsis w-full text xl:group-hover:text-base xl:group-hover:inline trans">
                 Disconnect
               </span>
             </div>
           </>
         ) : (
-          <span className="text-[0px] xl:group-hover:text-base xl:group-hover:inline trans">
+          <span className="text xl:group-hover:text-base xl:group-hover:inline trans">
             {children}
           </span>
         )}

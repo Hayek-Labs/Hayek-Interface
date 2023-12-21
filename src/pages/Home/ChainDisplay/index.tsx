@@ -22,7 +22,9 @@ const ChainDisplay = () => {
   );
 
   const disconnect = useCallback(() => {
-    connector.deactivate();
+    if (connector.deactivate) {
+      connector.deactivate();
+    }
   }, [connector]);
 
   const chainId = useChainId();
