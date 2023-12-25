@@ -89,7 +89,7 @@ const LockHASDisplay: React.FC<{ state: VeHASState }> = ({ state }) => {
         <BsArrowDown size={30} className="mb-4 fill-hblack-4" />
         <div className="flex-grow" />
         <CoinCard
-          coin="veHAS"
+          coin="veHAYEK"
           input={{
             value: veHASCoinValue,
             setValue: setVeHASCoinValue,

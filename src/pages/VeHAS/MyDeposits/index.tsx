@@ -111,7 +111,7 @@ const DepositDisplay: React.FC<{ deposit: Deposit }> = ({ deposit }) => {
       <div className="flex flex-row items-center mb-2 text-white">
         <Amount value={deposit.HAS} name="HAS" />
         <BsArrowRight size={18} className="mx-2" />
-        <Amount value={deposit.veHAS} name="veHAS" />
+        <Amount value={deposit.veHAS} name="veHAYEK" />
       </div>
       <Btn disabled={!canWithdraw} className="w-full self-center">
         Withdraw

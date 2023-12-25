@@ -51,14 +51,16 @@ const Option = ({ children, ...props }: OptionProps<ChainOption, false>) => {
   return (
     <components.Option {...props} isMulti={false}>
       <div className="flex flex-row items-center justify-start">
-        <div className="flex-grow xl:group-hover:flex-grow-0 trans" />
-        {Logo && (
-          <Logo
-            className="ml-0 xl:group-hover:mr-2 trans"
-            width={size}
-            height={size}
-          />
-        )}
+        <div className="mr-4">
+          {Logo && (
+            <Logo
+              className="ml-0 xl:group-hover:mr-2 trans"
+              width={size}
+              height={size}
+            />
+          )}
+        </div>
+
         {props.data.value === undefined ? (
           <>
             <VscDebugDisconnect size={size} />
@@ -74,7 +76,6 @@ const Option = ({ children, ...props }: OptionProps<ChainOption, false>) => {
             {children}
           </span>
         )}
-        <div className="flex-grow xl:group-hover:flex-grow-0 trans" />
       </div>
     </components.Option>
   );

@@ -5,6 +5,7 @@ import {
 } from '@/constants/coin';
 import { useBalance } from '@/hooks/useBalance';
 import { useMintOrRedeemState } from '@/providers/StateProvider';
+import { Chain, chainToLogo } from '@/constants/chains';
 import BigNumber from 'bignumber.js';
 import CoinCard from '../CoinCard';
 import { useState } from 'react';
@@ -153,6 +154,7 @@ export const Coin1Card: React.FC<{
 
   const balance = useBalance(coin1);
   const [isActive, setIsActive] = useState(false);
+  const Logo = chainToLogo[Chain.Ethereum];
   return (
     <>
       {isActive ? (
@@ -186,12 +188,16 @@ export const Coin1Card: React.FC<{
             setIsActive(true);
           }}
         >
-          <img
+          {/* <img
             src={`https://assets.codepen.io/3685267/res-react-dash-add-component.svg`}
             alt=""
             className="w-5 h-5"
-          />
-          <div className="ml-2">Add Collateral</div>
+          /> */}
+          <div className="ml-2 flex items-center">
+            Change to&nbsp;&nbsp;
+            <Logo width={10} height={10} />
+            &nbsp; ETH
+          </div>
         </div>
       )}
     </>
