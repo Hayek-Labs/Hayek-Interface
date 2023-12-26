@@ -35,7 +35,7 @@ export const useCreateSwapState = (): SwapState => {
   const [swapCoin0, setSwapCoin0] = useState<Coin>('BTC');
   const [swapCoinValue0, setSwapCoinValue0] = useState(new BigNumber(0));
 
-  const [swapCoin1, setSwapCoin1] = useState<Coin>('USDT');
+  const [swapCoin1, setSwapCoin1] = useState<Coin>('USDH');
   const [swapCoinValue1, setSwapCoinValue1] = useState(new BigNumber(0));
 
   return {
